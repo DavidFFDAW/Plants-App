@@ -1,5 +1,5 @@
-// import { useState } from 'react';
 // import leaf from '../../leaf.png';
+import { Link } from "react-router-dom";
 
 export default function Header() {
 
@@ -9,7 +9,8 @@ export default function Header() {
         <header className="flex center head">
             <div>
                 {/* <img src={ leaf } alt="" width="30" height="30"/> */}
-                <a href="/plant/create/new" className='btn btn-principal-static'>Crear nueva planta</a>
+                <Link to="/plant/create/new" className='btn btn-principal-static'>Crear nueva planta</Link>
+                <Link to="/plant/gallery" className='btn btn-principal-static'>Gallery</Link>
             </div>
 
             {/* <div className="last input-div">

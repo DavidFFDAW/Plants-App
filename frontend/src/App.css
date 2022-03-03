@@ -653,9 +653,9 @@ form.custom-form .inpt-textarea {
     border: 2px solid #953030;
     background-color: #953030;
 }
-.btn.btn-danger:hover{
+/* .btn.btn-danger:hover{
 
-}
+} */
 .btn.btn-principal:hover{
     background-color: transparent;
     border: 2px solid var(--blue);

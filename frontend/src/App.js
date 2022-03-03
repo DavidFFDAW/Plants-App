@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 import Header from './components/Header';
 import PlantCreationPage from './pages/PlantCreationPage';
-// import PlantGallery from './pages/PlantGallery';
+import PlantsGallery from './pages/PlantGallery';
 
 import './App.css';
 
@@ -16,11 +16,11 @@ function App() {
           <Route path="/" exact>
             {/* <HomePage/> */}
           </Route>
-          <Route path="/plant/:name" exact>
+          <Route path="/plant/name/:name" exact>
             {/* <PokemonDetailPage/> */}
           </Route>
           <Route path="/plant/gallery" exact>
-            {/* <PlantGallery/> */}
+            <PlantsGallery/>
           </Route>
           <Route path="/plant/search/:name" exact>
             {/* <PokemonSearchPage/> */}
