@@ -1,24 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
-export default function Alert({ cssClass, message, seconds }) {
-
-    const alert = useRef('alert');
-    console.log(alert.current);
+export default function Alert({ cssClass = '', message = '', seconds, setAlertInfo, show = false }) {
 
     useEffect(() => {
-        setTimeout(_ => {
-            alert.current.classList.add('alert-disappear');
-            // alert.current.onAnimationEnd = _ => {
-                alert.current.remove();
-            // }
-        }, seconds );
-    },[]);
+        if (seconds) {
+            setTimeout(_ => {
+                setAlertInfo({ show: false, message: '' });
+            }, seconds * 1000);
+        }
+    },[ seconds, setAlertInfo ]);
+
+    const closeAlert = _ => {
+        setAlertInfo({ show: false, message: '' });
+    };
+
+    if (show) {
+        return (
+            <>
+                <div className='bg-block'></div>
+                <div className="flex center alert">
+                    <div className={ `alertt ${ cssClass }` }>
+                        <button type="button" className='alert-close' onClick={ closeAlert }>&times;</button>
+                        { message }
+                    </div>
+                </div>
+            </>     
+        );
+    }
 
     return(
-        <div className="flex center" ref={ alert }>
-            <div className={ `alert ${ cssClass }` }>
-                { message }
-            </div>
-        </div>
+        <></>
     );
 }

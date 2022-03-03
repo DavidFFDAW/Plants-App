@@ -9,7 +9,7 @@ export default function Header() {
         <header className="flex center head">
             <div>
                 {/* <img src={ leaf } alt="" width="30" height="30"/> */}
-                <a href="/plant/create/new" className='btn btn-secondary'>Crear nueva planta</a>
+                <a href="/plant/create/new" className='btn btn-principal-static'>Crear nueva planta</a>
             </div>
 
             {/* <div className="last input-div">
