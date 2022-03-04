@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import Alert from "../components/Alert";
 
 export default function PlantCreationPage() {
-
+    
+    const histoire = useHistory();
     const [alertInfo, setAlertInfo] = useState({ show: false, message: "" });
     const [formData, setFormData] = useState({
         name: "",
@@ -25,6 +27,9 @@ export default function PlantCreationPage() {
         .then(res => {
             if (res.error) {
                 setAlertInfo({ show: true, message: res.message });
+            }
+            if (res.code === 201) {
+                histoire.push('/');
             }
         });
     }
