@@ -20,9 +20,11 @@ export default function PlantCreationPage() {
         frm.append("type", formData.type);
         frm.append("file", formData.image);
 
-        console.log(frm);
-
-        fetch('http://146.59.159.40/plants_images/api/upload.php',{ mode: 'cors', method: 'POST', body: frm })
+        fetch('http://vps-f87b433e.vps.ovh.net/plants_images/api/create.php', {
+            mode: 'cors',
+            method: 'POST',
+            body: frm,
+        })
         .then(res => res.json())
         .then(res => {
             if (res.error) {
