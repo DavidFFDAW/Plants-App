@@ -80,7 +80,7 @@ export default function PlantCreationPage() {
                         </div>
                         <div className="down-little">
                             <label className="form-label block">Imagen</label>
-                            <input type="file" className="general-input" capture="camera" accept="image/*" required onChange={ ev => {
+                            <input type="file" className="general-input" accept="image/*" required onChange={ ev => {
                                 setFormData({ ...formData, image: ev.target.files[0] });
                             }} />
                         </div>
