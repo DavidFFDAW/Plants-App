@@ -11,6 +11,3 @@
 
         die(json_encode($array));
     }
-
-    json(200, 'Se recibieron las plantas de forma correcta', false, array('plant' => 'pl'));
-?>

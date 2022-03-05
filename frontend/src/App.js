@@ -17,7 +17,7 @@ function App() {
           <Route path="/" exact>
             <PlantsBasicListing />
           </Route>
-          <Route path="/plant/name/:name" exact>
+          <Route path="/plant/name/:id" exact>
             {/* <PokemonDetailPage/> */}
           </Route>
           <Route path="/plant/gallery" exact>

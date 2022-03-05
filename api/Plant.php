@@ -117,7 +117,7 @@ class Plant {
         return new Plant($result->fetch_assoc());
     }
 
-    public static function findAll($json = false): mixed {
+    public static function findAll($json = false) {
         $db = DBConnection::getConnection();
         $sql = "SELECT * FROM plants";
         $stmt = $db->prepare($sql);

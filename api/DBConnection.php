@@ -12,6 +12,7 @@ class DBConnection {
     {
         $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->db)
         or die("Connection failed");     
+        $this->conn->set_charset('utf8');
     }
 
     public static function getInstance()

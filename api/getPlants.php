@@ -8,7 +8,7 @@ require_once './Plant.php';
 
 $plants = Plant::findAll();
 
-if (empty($plants)) {
+if (!isset($plants) || empty($plants)) {
     json(404, 'No se encontraron plantas', true);
 }
 

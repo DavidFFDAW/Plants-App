@@ -13,10 +13,10 @@ export default function Header() {
     return (
         <header className="flex between head">
             <div>
-                <h1 style={{ margin: 0 }}>Plant-App</h1>
+                <h1 style={{ margin: 0, color: '#FFF' }}>Plant-App</h1>
             </div>
             <div>
-                <Hamburger toggled={ isMenuOpened } color={'#00acee'} toggle={ setOpenMenu } size={30} label="Show Menu" hideOutline={true} rounded />
+                <Hamburger toggled={ isMenuOpened } color={'#FFF'} toggle={ setOpenMenu } size={30} label="Show Menu" hideOutline={true} rounded />
             </div>
             
             <HeadMenu 
