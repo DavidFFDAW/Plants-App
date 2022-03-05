@@ -26,9 +26,9 @@ jobs:
     - name: Removing .git
       run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && rm -rf .git"
     - name: Moving backend api to folder
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && mv ./api /var/www/html/plants_images/api"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && mv ./api/* /var/www/html/plants_images/api/"
     - name: Moving frontend to folder 
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && mv ./frontend /var/www/html/plants_images/frontend"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && mv ./frontend/* /var/www/html/plants_images/frontend/"
     - name: Executing frontend container 
       run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/frontend && sh docker.sh"
     - name: Deleting tmp dir
