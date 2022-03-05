@@ -21,6 +21,8 @@ jobs:
     - name: Check current directory content
       run: ls -a
 
+    - name: Removing /tmp directory if present
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/ && rm -rf ./tmp"
     - name: Cloning the repository
       run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/ && git clone https://github.com/DavidFFDAW/Plants-App.git tmp"
     - name: Removing .git
