@@ -18,14 +18,14 @@ export default function Alert({ cssClass = '', message = '', seconds, setAlertIn
         return (
             <>
                 <div className='bg-block'></div>
-                <div className="flex center alert">
-                    <div className={ `alertt ${ cssClass }` }>
+                <div className={`alert ${ cssClass }`}>
+                    <div className="down-little flex center">
                         <button type="button" className='alert-close' onClick={ closeAlert }>&times;</button>
                         { message }
-                        { acceptButton && <div className='flex center'>
-                            <button type="button" className='btn btn-principal-static' onClick={ closeAlert }>Aceptar</button>
-                        </div> }
                     </div>
+                    { acceptButton && <div className='down flex center'>
+                        <button type="button" className='btn btn-principal-static' onClick={ closeAlert }>Aceptar</button>
+                    </div> }
                 </div>
             </>     
         );

@@ -1,22 +1,28 @@
-// import leaf from '../../leaf.png';
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Divide as Hamburger } from 'hamburger-react';
+import HeadMenu from './HeadMenu';
 
 export default function Header() {
 
-    // const [search, setSearch] = useState('');
+    const [ isMenuOpened, setOpenMenu ] = useState(false);
+
+    const closeMenu = _ => {
+        setOpenMenu(false);
+    }
 
     return (
-        <header className="flex center head">
+        <header className="flex between head">
             <div>
-                {/* <img src={ leaf } alt="" width="30" height="30"/> */}
-                <Link to="/plant/create/new" className='btn btn-principal-static'>Crear nueva planta</Link>
-                <Link to="/plant/gallery" className='btn btn-principal-static'>Gallery</Link>
+                <h1 style={{ margin: 0 }}>Plant-App</h1>
             </div>
-
-            {/* <div className="last input-div">
-                <input className="text-search" type="text" value={ search } placeholder="Senecio Silvery" onChange={ ev => setSearch(ev.target.value) } />
-                <button className="btn btn-search" type="button">Buscar</button>
-            </div> */}
+            <div>
+                <Hamburger toggled={ isMenuOpened } color={'#00acee'} toggle={ setOpenMenu } size={30} label="Show Menu" hideOutline={true} rounded />
+            </div>
+            
+            <HeadMenu 
+                isOpen={ isMenuOpened } 
+                closeMenu={ closeMenu }
+            />
         </header>
     );
 }

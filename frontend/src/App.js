@@ -23,6 +23,9 @@ function App() {
           <Route path="/plant/gallery" exact>
             <PlantsGallery />
           </Route>
+          <Route path="/plant/searcher" exact>
+            {/* <PokemonSearchPage/> */}
+          </Route>
           <Route path="/plant/search/:name" exact>
             {/* <PokemonSearchPage/> */}
           </Route>
