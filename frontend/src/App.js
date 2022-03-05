@@ -5,7 +5,11 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import PlantCreationPage from './pages/PlantCreationPage';
 import PlantsGallery from './pages/PlantGallery';
+<<<<<<< HEAD
 import PlantsBasicListing from './pages/PlantsBasicListPage';
+=======
+import PlantsBasicListing from './pages/PlantsBasicListPage;
+>>>>>>> 97da908ef52762a164ee85b83dadb8f5e0dd6417
 
 import './App.css';
 
