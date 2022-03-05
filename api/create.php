@@ -4,18 +4,11 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 // $headers = apache_request_headers();
 
+require_once './functions.php';
 require_once './Plant.php';
 
-function json(array $array) {
-    die(json_encode($array));
-}
-
 if (!isset($_POST['name']) || empty($_POST['name'])) {
-      json(array(
-            'error' => true,
-            'message' => 'No se han recibido los datos correctos',
-            'code' => 400
-      ));
+      json(400,'No se han recibido los datos correctos',true);      
       exit();
 }
 // VALIDACION DEL TOKEN
@@ -57,15 +50,7 @@ $plant->setCreatedAt($createdAt);
 $plant->setLastTimeWatered(null);
 
 if (!$plant->create()) {
-      json(array(
-            'error' => true,
-            'message' => 'Error en la creación de la planta',
-            'code' => 500
-      ));
+      json(500,'Error en la creación de la planta',true);
 }
 
-json(array(
-	'error' => false,
-      'message' => 'Planta creada correctamente',
-      'code' => 201,
-));
+json(201,'Planta creada correctamente',false);

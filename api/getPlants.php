@@ -3,26 +3,13 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 
+require_once './functions.php';
 require_once './Plant.php';
-
-function json(array $array) {
-    die(json_encode($array));
-}
 
 $plants = Plant::findAll();
 
-
 if (empty($plants)) {
-    json(array(
-        'error' => true,
-        'message' => 'No hay plantas',
-        'code' => 404
-    ));
+    json(404, 'No se encontraron plantas', true);
 }
 
-json(array(
-	    'error' => false,
-        'message' => 'Se recibieron las plantas de forma correcta',
-        'code' => 200,
-        'plants' => $plants
-));
+json(200, 'Se recibieron las plantas de forma correcta', false, array('plants' => $plants));

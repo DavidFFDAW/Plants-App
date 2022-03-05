@@ -4,9 +4,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 // $headers = apache_request_headers();
 
-function json(array $array) {
-    die(json_encode($array));
-}
+require_once './functions.php';
 
 $path = dirname(__DIR__).DIRECTORY_SEPARATOR;
 
@@ -19,10 +17,4 @@ while ($file = readdir($dir)) {
 	}
 }
 
-json(array(
-	'error' => false,
-	'images' => $images
-));
-// 83878c91171338902e0fe0fb97a8c47a
-
-// Al mandarlo desde el cliente con FormData, funciona bien de esta manera. (_POST)
+json(200, 'Se recibieron las plantas de forma correcta', false, array('images' => $images));
