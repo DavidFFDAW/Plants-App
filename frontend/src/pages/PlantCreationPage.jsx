@@ -96,16 +96,10 @@ export default function PlantCreationPage() {
                         </div>
                         <div >
                             <label className="form-label block">Imagen</label>
-<<<<<<< HEAD
                             <button type="button" className="btn btn-secondary file-btn">
                                 <input type="file" className="file-inpt" accept="image/*" onChange={ setImage }/>
                                 Subir Imagen                            
                             </button>
-=======
-                            <input type="file" className="general-input" accept="image/*" required onChange={ ev => {
-                                setFormData({ ...formData, image: ev.target.files[0] });
-                            }} />
->>>>>>> 97da908ef52762a164ee85b83dadb8f5e0dd6417
                         </div>
                     </div>
                     <button style={{ width: '100%' }} className="down btn btn-primary" type="button" onClick={ handleSend }>Mandar</button>
