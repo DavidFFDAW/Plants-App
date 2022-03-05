@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import Alert from "../components/Alert";
 
 export default function PlantCreationPage() {
-
+    
+    const histoire = useHistory();
     const [alertInfo, setAlertInfo] = useState({ show: false, message: "" });
     const [formData, setFormData] = useState({
         name: "",
@@ -18,13 +20,18 @@ export default function PlantCreationPage() {
         frm.append("type", formData.type);
         frm.append("file", formData.image);
 
-        console.log(frm);
-
-        fetch('http://146.59.159.40/plants_images/api/upload.php',{ mode: 'cors', method: 'POST', body: frm })
+        fetch('http://vps-f87b433e.vps.ovh.net/plants_images/api/create.php', {
+            mode: 'cors',
+            method: 'POST',
+            body: frm,
+        })
         .then(res => res.json())
         .then(res => {
             if (res.error) {
                 setAlertInfo({ show: true, message: res.message });
+            }
+            if (res.code === 201) {
+                histoire.push('/');
             }
         });
     }
@@ -80,7 +87,7 @@ export default function PlantCreationPage() {
                         </div>
                         <div className="down-little">
                             <label className="form-label block">Imagen</label>
-                            <input type="file" className="general-input" capture="camera" accept="image/*" required onChange={ ev => {
+                            <input type="file" className="general-input" accept="image/*" required onChange={ ev => {
                                 setFormData({ ...formData, image: ev.target.files[0] });
                             }} />
                         </div>
