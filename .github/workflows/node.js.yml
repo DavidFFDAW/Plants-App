@@ -22,7 +22,7 @@ jobs:
       run: ls -a
 
     - name: Cloning the repository
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/repo/ && git clone https://github.com/DavidFFDAW/Plants-App.git"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/ && git clone https://github.com/DavidFFDAW/Plants-App.git tmp"
     - name: Removing .git
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/repo/ && rm -rf .git"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && rm -rf .git"
 
