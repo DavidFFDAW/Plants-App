@@ -9,7 +9,17 @@ export default function PlantCreationPage() {
     const [formData, setFormData] = useState({
         name: "",
         description: "",
+        location: 'Cocina'
     }); 
+
+    const setImage = (e) => {
+        const file = e.target.files[0];
+        if (!['image/jpeg', 'image/png','image/jpg'].includes(file.type)){
+            setAlertInfo({ show: true, message: 'Tipo de imagen no permitido' });
+            return 0;
+        }
+        setFormData({ ...formData, image: e.target.files[0] });
+    }
 
     const handleSend = () => {
         const frm = new FormData();
@@ -42,40 +52,39 @@ export default function PlantCreationPage() {
                 show={alertInfo.show} 
                 message={alertInfo.message} 
                 setAlertInfo={setAlertInfo} 
-                seconds={4} 
+                seconds={4}
+                acceptButton={true}
             />
             <div className="content-container">
-                <div className="box-no-padding-total">
-                    <div className="col-12">
-                        <h1>Crear nueva planta</h1>
-                    </div>
-
-                    <div className="down-little pad-20">
-                        <div>
+                <h1 className="title-body">Crear nueva planta</h1>
+                
+                <div className="down box-no-padding-total">
+                    <div className="grid-images">
+                        <div >
                             <label className="form-label block">Nombre</label>
                             <input type="text" className="general-input" placeholder="Senecio Silvery" onChange={ ev => {
                                 setFormData({ ...formData, name: ev.target.value });
                             }} required />
                         </div>
-                        <div className="down-little">
+                        <div >
                             <label className="form-label block">Nombre Científico</label>
                             <input type="text" className="general-input" placeholder="Asteraceae (The Aster Family)" onChange={ ev => {
                                 setFormData({ ...formData, real_name: ev.target.value });
                             }} required />
                         </div>
-                        <div className="down-little">
+                        <div >
                             <label className="form-label block">Description <span className="optional"> Opcional</span></label>
                             <textarea className="general-input" placeholder="Planta con tonos grises y con tacto de 'terciopelo'" onChange={ ev => {
                                 setFormData({ ...formData, description: ev.target.value });
                             }}></textarea>
                         </div>
-                        <div className="down-little">
+                        <div >
                             <label className="form-label block">Tipo <span className="optional"> Opcional</span></label>
                             <input className="general-input" placeholder="Sol, Humedad, ..." onChange={ ev => {
                                 setFormData({ ...formData, type: ev.target.value });
                             }} />
                         </div>
-                        <div className="down-little">
+                        <div >
                             <label className="form-label block">Localización <span className="optional"> Opcional</span></label>
                             <select className="general-input" defaultValue={"Cocina"} onChange={ ev => {
                                 setFormData({ ...formData, location: ev.target.value });
@@ -85,14 +94,15 @@ export default function PlantCreationPage() {
                                 <option value="Balcón">Balcón</option>
                             </select>
                         </div>
-                        <div className="down-little">
+                        <div >
                             <label className="form-label block">Imagen</label>
-                            <input type="file" className="general-input" accept="image/*" required onChange={ ev => {
-                                setFormData({ ...formData, image: ev.target.files[0] });
-                            }} />
+                            <button type="button" className="btn btn-secondary file-btn">
+                                <input type="file" className="file-inpt" accept="image/*" onChange={ setImage }/>
+                                Subir Imagen                            
+                            </button>
                         </div>
                     </div>
-                    <button className="btn btn-primary" type="button" onClick={ handleSend }>Mandar</button>
+                    <button style={{ width: '100%' }} className="down btn btn-primary" type="button" onClick={ handleSend }>Mandar</button>
                 </div>
             </div>
         </>

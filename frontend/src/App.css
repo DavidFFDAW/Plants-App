@@ -1,6 +1,6 @@
 :root{
-    --blue: #69c37ff5; 
-    /* --blue: #70abdbda;  */
+    --blue: #00acee; 
+    --green: #6fc27ada; 
     --black: #282a36;
     --links-ft-size: 22px;
 }
@@ -20,7 +20,7 @@
 .title-div { margin-bottom: 50px; }
 body{
     min-height: 100vh;
-    background: linear-gradient(#f3f3f3 40%,#86c397f5);
+    /* background: linear-gradient(#f3f3f3 40%,#86c397f5); */
 }
 body.guest{
     background: #eee;    
@@ -98,7 +98,8 @@ body.guest{
 .content-container{
     box-sizing: border-box;
     /* margin-left: 100px; */
-    padding: 70px 50px;
+    /* padding: 70px 5px; */
+    padding: 85px 10px 49px 10px;
 }
 .grid-images{
     display: grid;
@@ -238,7 +239,7 @@ body.guest{
     background-color: white;
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-bottom: 6px solid #549c66f5;
+    border-bottom: 6px solid var(--blue);
     border-radius: 10px 10px 0 0;
     transition: all 0.8s;
 }
@@ -516,14 +517,15 @@ form.custom-form .inpt-form{
     box-sizing: border-box;
     padding-left: 15px;
     outline: none;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    /* border-radius: 5px; */
     font-weight: 500;
     font-size: 15px;
     cursor: pointer;
     resize: vertical;
     background-color: #FFF;
-    box-shadow: 0 0 4px var(--blue);
+    border-bottom: 2px solid var(--blue);
+    /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); */
     transition: all 0.3s;
 }
 .general-input:focus{
@@ -545,6 +547,21 @@ form.custom-form .inpt-textarea {
     border-bottom: 2px solid var(--blue);
     border-radius: 10px;
     outline: none;
+}
+.file-btn {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+.file-inpt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    z-index: 10;
+    opacity: 0;
 }
 .btn{
     text-transform: uppercase;
@@ -606,7 +623,7 @@ a{
     width: 100%;
     min-height: 50px;
     padding: 5px 0;
-    background: #fff8d7;
+    background: #FFFFFF;
 }
 .bg-block {
     position: absolute;
@@ -614,6 +631,9 @@ a{
     left: 0;
     width: 100%;
     height: 100%;
+    min-height: 120vh;
+    overflow: hidden;
+
     background:rgba(0, 0, 0, 0.8);
     opacity: .5;
     z-index: 900;

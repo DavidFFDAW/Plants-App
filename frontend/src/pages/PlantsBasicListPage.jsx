@@ -24,14 +24,14 @@ export default function PlantBasicListPage() {
       return (
             <>
                   <div className="content-container">
-                  <div className="box-no-padding-total">
+                  <div className="">
                         <div className="col-12">
                               <h1>LISTADO</h1>
                         </div>
 
-                        <div className="down-little cartitas">
+                        <div className="down-little grid-images">
                               {plants.map((plant, ind) => (
-                                    <div className="plant-card" key={ind}>
+                                    <div className="box-no-padding-total plant-card" key={ind}>
                                           <div className="plant-card-image">
                                                 <img src={plant.image ? plant.image : placeholdImg } alt=""/>
                                           </div>
@@ -45,8 +45,12 @@ export default function PlantBasicListPage() {
                                                 <p className="plant-card-info-item">{plant.last_time_watered}</p>
                                                 <p className="plant-card-info-item">{plant.created_at}</p>
                                           </div>
+                                          <div className="flex between">
+                                                <button className="btn btn-secondary">Regar</button>                              
+                                                <button className="btn btn-principal">Ver Detalles</button>                              
+                                          </div>
                                     </div>                                                
-                              )) }                               
+                              )) } 
                         </div>
                   </div>
                   </div>

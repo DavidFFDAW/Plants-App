@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export default function Alert({ cssClass = '', message = '', seconds, setAlertInfo, show = false }) {
+export default function Alert({ cssClass = '', message = '', seconds, setAlertInfo, show = false, acceptButton = false }) {
 
     useEffect(() => {
         if (seconds) {
@@ -22,6 +22,9 @@ export default function Alert({ cssClass = '', message = '', seconds, setAlertIn
                     <div className={ `alertt ${ cssClass }` }>
                         <button type="button" className='alert-close' onClick={ closeAlert }>&times;</button>
                         { message }
+                        { acceptButton && <div className='flex center'>
+                            <button type="button" className='btn btn-principal-static' onClick={ closeAlert }>Aceptar</button>
+                        </div> }
                     </div>
                 </div>
             </>     
