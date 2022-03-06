@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function PlantList ({ plants, placeholdImg }) {
     return (
         <>
@@ -14,7 +16,7 @@ export default function PlantList ({ plants, placeholdImg }) {
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.last_time_watered}</p>
                                 <div className="down flex between">
                                         <button className="btn btn-secondary">Regar</button>                              
-                                        <button className="btn btn-principal">Detalles</button>                              
+                                        <Link to={ `/plant/details/${ plant.id }` } className="btn btn-principal">Detalles</Link>                              
                                 </div>
                             </div>
                     </div>                                                

@@ -5,6 +5,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import PlantCreationPage from './pages/PlantCreationPage';
 import PlantsGallery from './pages/PlantGallery';
+import PlantDetailsPage from './pages/PlantDetailsPage';
 import PlantsBasicListing from './pages/PlantsBasicListPage';
 
 import './App.css';
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/plant/create/new" exact>
             <PlantCreationPage />
+          </Route>
+          <Route path="/plant/details/:id" exact>
+            <PlantDetailsPage />
           </Route>
         </Switch>
     </Router>
