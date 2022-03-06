@@ -18,6 +18,7 @@ export default function PlantBasicListPage() {
                         return 0;
                   }
                   setPlants(res.plants);
+                  // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
 
