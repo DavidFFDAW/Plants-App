@@ -4,7 +4,7 @@ import Alert from "../components/Alert";
 
 export default function PlantCreationPage() {
     
-    // const histoire = useHistory();
+    const histoire = useHistory();
     const [alertInfo, setAlertInfo] = useState({ show: false, message: "" });
     const [formData, setFormData] = useState({
         name: "",
@@ -15,7 +15,12 @@ export default function PlantCreationPage() {
     const setImage = (e) => {
         const file = e.target.files[0];
         if (!['image/jpeg', 'image/png','image/jpg'].includes(file.type)){
-            setAlertInfo({ show: true, message: 'Tipo de imagen no permitido' });
+            setAlertInfo({ 
+                show: true, 
+                message: 'Tipo de imagen no permitido',
+                seconds: 4,
+                showButton: true
+            });
             return 0;
         }
         setFormData({ ...formData, image: e.target.files[0] });
@@ -37,6 +42,10 @@ export default function PlantCreationPage() {
         })
         .then(res => res.json())
         .then(res => {
+            if (res.code === 201) {
+                histoire.push('/');
+                return 0;
+            }
             setAlertInfo({ 
                 show: true, 
                 message: res.code+': '+res.message,
@@ -46,9 +55,6 @@ export default function PlantCreationPage() {
             if (res.error) {
                 setAlertInfo({ show: true, message: res.message });
             }
-            // if (res.code === 201) {
-            //     histoire.push('/');
-            // }
         });
     }
 

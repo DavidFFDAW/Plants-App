@@ -29,16 +29,10 @@ $imageName = str_replace(' ', '_', $_POST['name']);
 
 
 if (isset($_FILES['file'])) {
-      $debug = "Hay un archivo\n";     
       $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-      $debug .= "Extensión: ".$ext."\n";
       $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
-      $debug .= "Nombre final: ".$finalFilename."\n";
       $imageIsUploaded = move_uploaded_file($_FILES['file']['tmp_name'], $imagesDirPath . $finalFilename);
-      $debug .= "Se ha subido el archivo: ".($imageIsUploaded ? 'SI' : 'NO')."\n";
       $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants_images/'.$finalFilename;
-      $debug .= "URL final: ".$finalImageURL."\n";
-      file_put_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.date('Y-m-d').'_imagedebug_log.log', $debug);
 }
 
 $createdAt = (isset($_POST['created_at']) && !empty($_POST['created_at'])) ? $_POST['created_at'] : date('Y-m-d H:i:s');
