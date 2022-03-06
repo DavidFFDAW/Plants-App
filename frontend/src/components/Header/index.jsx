@@ -1,19 +1,30 @@
 import { useState } from 'react';
 import { Divide as Hamburger } from 'hamburger-react';
 import HeadMenu from './HeadMenu';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export default function Header() {
 
     const [ isMenuOpened, setOpenMenu ] = useState(false);
+    const url = useLocation();
+    const hist = useHistory();
 
     const closeMenu = _ => {
         setOpenMenu(false);
     }
 
+    const getButtonOrName = () => {
+        if (url.pathname !== '/') {
+            return <button className='btn' onClick={ _ => hist.goBack() }>&lt;</button>
+        }
+        return <h1 style={{ margin: 0, color: '#FFF' }}>Plant-App</h1>
+    }
+
+
     return (
         <header className="flex between head">
             <div>
-                <h1 style={{ margin: 0, color: '#FFF' }}>Plant-App</h1>
+                { getButtonOrName() }
             </div>
             <div>
                 <Hamburger toggled={ isMenuOpened } color={'#FFF'} toggle={ setOpenMenu } size={30} label="Show Menu" hideOutline={true} rounded />
