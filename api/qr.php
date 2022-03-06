@@ -25,7 +25,7 @@ $qrName = 'plant'.$_GET['id'].'qr';
 $finalUrlToQR = 'vps-f87b433e.vps.ovh.net:8669'.$_GET['url'];
 $finalQrGeneratedFileName = md5($qrName).'.png';
 $finalQrGeneratedFilePath = $imagesDir.'/qrs/'.$finalQrGeneratedFileName;
-$finalURL = 'vps-f87b433e.vps.ovh.net/plants_images/qrs/'.$finalQrGeneratedFileName;
+$finalURL = 'http://vps-f87b433e.vps.ovh.net/plants_images/qrs/'.$finalQrGeneratedFileName;
 
 
 if (!file_exists($imagesDir.'/qrs/'.$finalQrGeneratedFileName)) {

@@ -106,7 +106,7 @@ class Plant {
 
     
     // ↓_DATABASE METHODS_↓
-    public static function find(int $id): Plant {
+    public static function find(int $id, $model = false)  {
         $db = DBConnection::getConnection();
         $sql = "SELECT * FROM plants WHERE id = ? LIMIT 1";
         $stmt = $db->prepare($sql);
@@ -114,7 +114,7 @@ class Plant {
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        return new Plant($result->fetch_assoc());
+        return $model ? new Plant($result->fetch_assoc()) : $result->fetch_assoc();
     }
 
     public static function findAll($json = false) {
