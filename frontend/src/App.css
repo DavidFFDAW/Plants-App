@@ -51,6 +51,7 @@ body.guest{
     height: 30px;
     background: #00acee;
     outline: none;
+    cursor: pointer;
     font-size: 20px;
     color: #FFFFFF;
     border: none;

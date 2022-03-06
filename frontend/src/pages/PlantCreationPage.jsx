@@ -37,7 +37,12 @@ export default function PlantCreationPage() {
         })
         .then(res => res.json())
         .then(res => {
-            setAlertInfo({ show: true, message: res.code+': '+res.message });
+            setAlertInfo({ 
+                show: true, 
+                message: res.code+': '+res.message,
+                seconds: 5,
+                showButton: true
+             });
             if (res.error) {
                 setAlertInfo({ show: true, message: res.message });
             }
@@ -53,8 +58,8 @@ export default function PlantCreationPage() {
                 show={alertInfo.show} 
                 message={alertInfo.message} 
                 setAlertInfo={setAlertInfo} 
-                seconds={4}
-                acceptButton={true}
+                seconds={alertInfo.seconds || 4}
+                acceptButton={ alertInfo.showButton || true}
             />
             <div className="flex center">
                 <div className="content-container">

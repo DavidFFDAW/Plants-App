@@ -14,8 +14,8 @@ if (!isset($_POST['name']) || empty($_POST['name'])) {
 // VALIDACION DEL TOKEN
 // 83878c91171338902e0fe0fb97a8c47a
 /* if (!isset($headers['Authorization']) || $headers['Authorization'] != md5('p')) {
-	json(array(
-		'error' => true,
+      json(array(
+            'error' => true,
 		'message' => 'No hay un token valido para hacer la petición',
             'code' => 403	
 	));
@@ -29,7 +29,6 @@ $imageName = str_replace(' ', '_', $_POST['name']);
 
 
 if (isset($_FILES['file'])) {
-      $f = fopen($imagesDirPath.date('Y-m-d').'_debug_image.log', 'w+');
       $debug = "Hay un archivo\n";     
       $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
       $debug .= "Extensión: ".$ext."\n";
@@ -39,8 +38,7 @@ if (isset($_FILES['file'])) {
       $debug .= "Se ha subido el archivo: ".($imageIsUploaded ? 'SI' : 'NO')."\n";
       $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants_images/'.$finalFilename;
       $debug .= "URL final: ".$finalImageURL."\n";
-      fwrite($f, $debug);
-      fclose($f);
+      file_put_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.date('Y-m-d').'_imagedebug_log.log', $debug);
 }
 
 $createdAt = (isset($_POST['created_at']) && !empty($_POST['created_at'])) ? $_POST['created_at'] : date('Y-m-d H:i:s');
