@@ -116,7 +116,7 @@ body.guest{
 }
 .grid-images{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 350px);
     grid-gap: 30px;
     margin-top: 30px;
 }
@@ -652,22 +652,29 @@ a{
 }
 .head .head-menu .link {
     width: 100%;
-    display: block;
     text-align: left;
+    display: block;
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 600;
+    box-sizing: border-box;
     padding: 14px 0;
     padding-left: 10px;
     /* border-bottom: 2px solid transparent; */
 }
-.head .head-menu .link::before {
+/* .head .head-menu .link::before {
     content: '> '
-}
+} */
 .head .head-menu .link:hover {
     background: var(--green);
     border-bottom: none;
     color: #FFF;
+}
+.head .head-menu .link svg {
+    margin-right: 10px;
+}
+.head .head-menu .link:hover svg {
+    fill: #FFFFFF;
 }
 .bg-block {
     position: fixed;
