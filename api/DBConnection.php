@@ -1,15 +1,22 @@
 <?php
+require_once './EnvReader.php';
 
 class DBConnection {    
     private static $instance = null;
     private $conn;
-    private $host = 'localhost';
-    private $user = 'davidff';
-    private $pass = 'root';
-    private $db = 'plants_app';
+    private $host = '';
+    private $user = '';
+    private $pass = '';
+    private $db = '';
 
     private function __construct()
     {
+        $env = EnvReader::getInstance();
+        $this->host = $env->get('DB_HOST');
+        $this->user = $env->get('DB_USER');
+        $this->pass = $env->get('DB_PASSWORD');
+        $this->db = $env->get('DB_NAME');
+        
         $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->db)
         or die("Connection failed");     
         $this->conn->set_charset('utf8');
