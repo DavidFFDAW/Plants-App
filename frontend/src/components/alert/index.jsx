@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 export default function Alert({ cssClass = '', message = '', seconds, setAlertInfo, show = false, acceptButton = false }) {
 
     useEffect(() => {
-        if (seconds) {
+        if (seconds && seconds > 0) {
             setTimeout(_ => {
                 setAlertInfo({ show: false, message: '' });
             }, seconds * 1000);
