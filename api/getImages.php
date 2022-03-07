@@ -6,14 +6,14 @@ header('Access-Control-Allow-Methods: GET');
 
 require_once './functions.php';
 
-$path = dirname(__DIR__).DIRECTORY_SEPARATOR;
+$path = dirname(__DIR__).DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR;
 
 $images = array();
 $dir = opendir($path);
 
 while ($file = readdir($dir)) {
 	if ($file != '.' && $file != '..' && !is_dir($path.$file)) {
-		$images[] = "http://vps-f87b433e.vps.ovh.net/plants_images/$file";
+		$images[] = "http://vps-f87b433e.vps.ovh.net/plants/images/$file";
 	}
 }
 
