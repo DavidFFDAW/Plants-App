@@ -8,6 +8,6 @@
         if (!empty($extra)) {
             $array = array_merge($array, $extra);
         }
-
+        http_response_code($code);
         die(json_encode($array));
     }

@@ -6,13 +6,13 @@ header('Access-Control-Allow-Methods: POST');
 require_once './functions.php';
 require_once './Plant.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    json(200,'La peticion debe ser POST',true);      
-    exit();
-}
+// if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+//     json(200,'La peticion debe ser POST',true);      
+//     exit();
+// }
 
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric((int) $_GET['id'])) {
-    json(200,'El parametro de ID es incorrecto',true);      
+    json(400,'El parametro de ID es incorrecto',true);      
     exit();
 }
 
