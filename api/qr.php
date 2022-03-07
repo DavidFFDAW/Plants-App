@@ -6,7 +6,7 @@ header('Access-Control-Allow-Methods: GET');
 
 require_once './functions.php';
 
-// http://vps-f87b433e.vps.ovh.net/plants_images/api/qr.php?id=1&url=/plant/name/:name
+// http://vps-f87b433e.vps.ovh.net/plants/api/qr.php?id=1&url=/plant/name/:name
 if (!isset($_GET['id']) || !isset($_GET['url'])) {
     json(400, 'No se ha recibido la informacion necesaria', true);
 }
@@ -25,7 +25,7 @@ $qrName = 'plant'.$_GET['id'].'qr';
 $finalUrlToQR = 'vps-f87b433e.vps.ovh.net:8669'.$_GET['url'];
 $finalQrGeneratedFileName = md5($qrName).'.png';
 $finalQrGeneratedFilePath = $imagesDir.'/qrs/'.$finalQrGeneratedFileName;
-$finalURL = 'http://vps-f87b433e.vps.ovh.net/plants_images/qrs/'.$finalQrGeneratedFileName;
+$finalURL = 'http://vps-f87b433e.vps.ovh.net/plants/qrs/'.$finalQrGeneratedFileName;
 
 
 if (!file_exists($imagesDir.'/qrs/'.$finalQrGeneratedFileName)) {
