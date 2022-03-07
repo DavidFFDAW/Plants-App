@@ -26,12 +26,13 @@ $imageIsUploaded = false;
 $imagesDirPath = dirname(__DIR__).DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR;
 // ...plants/images
 
-if (!is_dir($$imagesDirPath)) {
+if (!is_dir($imagesDirPath)) {
 	mkdir($imagesDirPath);
 }
 
 $finalImageURL = '';
 $imageName = str_replace(' ', '_', $_POST['name']);
+$finalFilename = date('Y-m-d').'_'.$imageName.'.jpg';
 
 
 if (isset($_FILES['file'])) {
@@ -48,7 +49,7 @@ $plant = new Plant();
 $plant->setName($_POST['name']);
 $plant->setRealName($_POST['real_name']);
 $plant->setDescription($_POST['description']);
-$plant->setImage($finalImageURL);
+$plant->setImage(file_exists($imagesDirPath.$finalFilename) ? $finalImageURL : '');
 $plant->setLocation($_POST['location']);
 $plant->setExtraLocation($extraLocation);
 $plant->setType($_POST['type']);
