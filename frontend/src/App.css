@@ -618,6 +618,17 @@ form.custom-form .inpt-textarea {
     background-color: var(--blue);
     color: white;
 }
+.btn.btn-secondary:disabled,
+.btn.btn-secondary-static:disabled,
+.btn.btn-secondary-static[disabled],
+.btn.btn-secondary:[disabled],
+.btn.btn-secondary:[disabled]:hover,
+.btn.btn-secondary:disabled:hover {
+    background-color: transparent;
+    color: #B0B0B0;
+    border: 2px solid #B0B0B0;
+}
+
 .btn.btn-primary:active,
 .btn.btn-secondary:active{
     background-color: #4a5568;
