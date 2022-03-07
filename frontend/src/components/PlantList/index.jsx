@@ -1,16 +1,7 @@
 import { Link } from "react-router-dom";
 import { apiURL } from "../../constants/config";
 
-export default function PlantList({ plants, placeholdImg }) {
-    
-    const waterPlant = (id) => { 
-        fetch(`${apiURL}waterPlant.php?id=${id}`, {
-            method: "POST",
-            mode: "cors",
-        })
-        .then(res => res.json())
-        .then(res => console.log(res));
-    }
+export default function PlantList({ plants, placeholdImg, waterPlant }) {
 
     return (
         <>
