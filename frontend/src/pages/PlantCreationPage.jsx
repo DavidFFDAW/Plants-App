@@ -35,7 +35,7 @@ export default function PlantCreationPage() {
         frm.append("type", formData.type);
         frm.append("file", formData.image);
 
-        fetch('http://vps-f87b433e.vps.ovh.net/plants_images/api/create.php', {
+        fetch('http://vps-f87b433e.vps.ovh.net/plants/api/create.php', {
             mode: 'cors',
             method: 'POST',
             body: frm,
