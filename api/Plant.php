@@ -156,6 +156,17 @@ class Plant {
         return $updated;
     }
 
+    public function updateField (string $key, $value) {
+        $db = DBConnection::getConnection();
+        $sql = "UPDATE plants SET `$key` = ? WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param('si', $value, $this->id);
+        $updated = $stmt->execute();
+        $stmt->close();
+
+        return $updated;
+    }
+
 
     public function __toString()
     {

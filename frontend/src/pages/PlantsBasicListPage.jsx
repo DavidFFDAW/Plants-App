@@ -23,6 +23,23 @@ export default function PlantBasicListPage() {
             });
       }, []);
 
+      const waterPlant = (id) => { 
+            fetch(`${apiURL}waterPlant.php?id=${id}`, {
+                  method: "POST",
+                  mode: "cors",
+            })
+                  .then(res => res.json())
+                  .then(res => {
+                        console.log(res);
+                        if (res.error) {
+                              alert(res.message);
+                              return 0;
+                        }
+                        const newPlants = plants.map(plant => plant.id !== id ? plant : { ...plant, last_time_watered: res.watered });
+                        setPlants(newPlants);
+                  });
+      }
+
     
 
       return (
@@ -36,7 +53,8 @@ export default function PlantBasicListPage() {
 
                                     <PlantList
                                           plants={ plants }
-                                          placeholdImg={ placeholdImg }
+                                          placeholdImg={placeholdImg}
+                                          waterPlant={waterPlant}
                                     />
                               </div>
                         </div>
