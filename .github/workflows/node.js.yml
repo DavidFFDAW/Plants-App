@@ -22,18 +22,18 @@ jobs:
       run: ls -a
 
     - name: Removing /tmp directory if present
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/ && rm -rf ./tmp"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/ && rm -rf ./tmp"
     - name: Cloning the repository
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/ && git clone https://github.com/DavidFFDAW/Plants-App.git tmp"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/ && git clone https://github.com/DavidFFDAW/Plants-App.git tmp"
     - name: Removing .git
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && rm -rf .git"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/tmp/ && rm -rf .git"
     - name: Moving backend api to folder
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && cp -R ./api/* /var/www/html/plants_images/api/ && rm -rf /var/www/html/plants_images/tmp/api/"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/tmp/ && cp -R ./api/* /var/www/html/plants/api/ && rm -rf /var/www/html/plants/tmp/api/"
     - name: Moving frontend to folder 
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/tmp/ && cp -R ./frontend/* /var/www/html/plants_images/frontend/ && rm -rf /var/www/html/plants_images/tmp/frontend/"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/tmp/ && cp -R ./frontend/* /var/www/html/plants/frontend/ && rm -rf /var/www/html/plants/tmp/frontend/"
     - name: Executing frontend container 
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/frontend && sh docker.sh"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/frontend && sh docker.sh"
     - name: Deleting tmp dir
-      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants_images/ && rm -rf tmp/"
+      run: ssh -o StrictHostKeyChecking=no -i ../key.pem root@${{ secrets.SSH_HOST }} "cd /var/www/html/plants/ && rm -rf tmp/"
 
 
