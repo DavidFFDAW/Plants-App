@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { apiURL, imagesURL } from "../constants/config";
 
 export default function PlantDetailsPage() {
     const param = useParams();
@@ -9,7 +10,7 @@ export default function PlantDetailsPage() {
     const [ qr, setQR ] = useState({ shown: false });
     
     useEffect(() => {
-        fetch(`http://vps-f87b433e.vps.ovh.net/plants_images/api/getPlants.php?id=${param.id}`)
+        fetch(`${ apiURL }getPlants.php?id=${ param.id }`)
         .then(res => res.json())
         .then(res => {
             console.log(res);
@@ -22,22 +23,18 @@ export default function PlantDetailsPage() {
     },[ param ]);
 
     const checkQRCode = (id) => {
-        const url = `http://vps-f87b433e.vps.ovh.net/plants_images/api/qr.php?id=${id}&url=${urlLoc.pathname}`;
+        const url = `${ apiURL }qr.php?id=${id}&url=${ urlLoc.pathname }`;
         console.log('url: ',url);
         fetch(url).then(res => res.json())
         .then(res => {
-            console.log('response');
-            console.log(res);
             if ( res.error ) {
-                alert(res.message);
+                alert(res.code+':  '+res.message);
                 return 0;
             }
             setQR({
                 shown: true,
                 code: res.qr
             });
-            console.log('qr response');
-            console.log(qr);
         });
     }
 
@@ -64,7 +61,8 @@ export default function PlantDetailsPage() {
                             <button 
                                 type="button" 
                                 className="down btn btn-secondary"
-                                onClick={() => checkQRCode(plant.id) }
+                                onClick={() => checkQRCode(plant.id)}
+                                disabled={qr.shown}                                
                             >Ver QR</button>
                         </div>
                     </div>

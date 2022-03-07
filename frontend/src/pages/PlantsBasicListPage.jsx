@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
+import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
 
 export default function PlantBasicListPage() {
 
       const [plants, setPlants] = useState([]);
-      const placeholdImg = 'https://via.placeholder.com/339x450.png?text=Image+could+not+be+found';
+      const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
       useEffect(() => { 
-            fetch('http://vps-f87b433e.vps.ovh.net/plants_images/api/getPlants.php?order=location')
+            fetch(`${ apiURL }getPlants.php?`)
             .then(res => res.json())
             .then(res => {
                   console.log('Status code: ',res.code);

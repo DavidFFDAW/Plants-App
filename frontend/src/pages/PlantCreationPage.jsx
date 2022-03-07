@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from 'react-router-dom';
+import { apiURL } from "../constants/config";
 import Alert from "../components/Alert";
 
 export default function PlantCreationPage() {
@@ -35,7 +36,7 @@ export default function PlantCreationPage() {
         frm.append("type", formData.type);
         frm.append("file", formData.image);
 
-        fetch('http://vps-f87b433e.vps.ovh.net/plants/api/create.php', {
+        fetch(`${apiURL}create.php`, {
             mode: 'cors',
             method: 'POST',
             body: frm,
