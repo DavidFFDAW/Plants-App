@@ -145,6 +145,17 @@ class Plant {
         return $created;
     }
 
+    public function update(): bool {
+        $db = DBConnection::getConnection();
+        $sql = "UPDATE plants SET name = ?, real_name = ?, image = ?, description = ?, location = ?, extra_location = ?, type = ?, created_at = ?, last_time_watered = ? WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param('sssssssssi', $this->name, $this->real_name, $this->image, $this->description, $this->location, $this->extra_location, $this->type, $this->created_at, $this->last_time_watered, $this->id);
+        $updated = $stmt->execute();
+        $stmt->close();
+
+        return $updated;
+    }
+
 
     public function __toString()
     {

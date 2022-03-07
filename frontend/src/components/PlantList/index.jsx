@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import { apiURL } from "../../constants/config";
 
-export default function PlantList ({ plants, placeholdImg }) {
+export default function PlantList({ plants, placeholdImg }) {
+    
+    const waterPlant = (id) => { 
+        fetch(`${apiURL}waterPlant.php?id=${id}`, {
+            method: "POST",
+            mode: "cors",
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+    }
+
     return (
         <>
             <div className="down-little grid-images">
@@ -14,8 +25,9 @@ export default function PlantList ({ plants, placeholdImg }) {
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.real_name}</p>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.location}</p>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.last_time_watered}</p>
+                            
                                 <div className="down flex between">
-                                        <button className="btn btn-secondary">Regar</button>                              
+                                        <button className="btn btn-secondary" onClick={ _ => waterPlant(plant.id) }>Regar</button>                              
                                         <Link to={ `/plant/details/${ plant.id }` } className="btn btn-principal">Detalles</Link>                              
                                 </div>
                             </div>
