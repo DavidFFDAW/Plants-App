@@ -60,10 +60,15 @@ export default function PlantDetailsPage() {
 
                             <button 
                                 type="button" 
-                                className="down btn btn-secondary"
+                                className={`down btn btn-secondary-static ${ qr.shown ? 'disabled' : '' }`}
                                 onClick={() => checkQRCode(plant.id)}
                                 disabled={qr.shown}                                
                             >Ver QR</button>
+
+                            {qr.shown && <button
+                                type="button"
+                                className="down btn btn-principal-static"
+                            >Descargar QR</button>}
                         </div>
                     </div>
                 </div>

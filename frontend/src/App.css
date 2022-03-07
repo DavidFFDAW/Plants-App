@@ -618,11 +618,17 @@ form.custom-form .inpt-textarea {
     background-color: var(--blue);
     color: white;
 }
+.btn.btn-secondary-static.disabled {
+    opacity: 0.5;
+    background-color: transparent;
+    color: #B0B0B0;
+    border: 2px solid #B0B0B0;
+}
 .btn.btn-secondary:disabled,
 .btn.btn-secondary-static:disabled,
 .btn.btn-secondary-static[disabled],
-.btn.btn-secondary:[disabled],
-.btn.btn-secondary:[disabled]:hover,
+.btn.btn-secondary[disabled],
+.btn.btn-secondary[disabled]:hover,
 .btn.btn-secondary:disabled:hover {
     background-color: transparent;
     color: #B0B0B0;
