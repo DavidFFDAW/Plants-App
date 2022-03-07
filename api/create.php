@@ -23,7 +23,13 @@ if (!isset($_POST['name']) || empty($_POST['name'])) {
 
 $ext = '.jpg';
 $imageIsUploaded = false;
-$imagesDirPath = dirname(__DIR__).DIRECTORY_SEPARATOR;
+$imagesDirPath = dirname(__DIR__).DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR;
+// ...plants/images
+
+if (!is_dir($$imagesDirPath)) {
+	mkdir($imagesDirPath);
+}
+
 $finalImageURL = '';
 $imageName = str_replace(' ', '_', $_POST['name']);
 
@@ -32,7 +38,7 @@ if (isset($_FILES['file'])) {
       $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
       $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
       $imageIsUploaded = move_uploaded_file($_FILES['file']['tmp_name'], $imagesDirPath . $finalFilename);
-      $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants_images/'.$finalFilename;
+      $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants/images/'.$finalFilename;
 }
 
 $createdAt = (isset($_POST['created_at']) && !empty($_POST['created_at'])) ? $_POST['created_at'] : date('Y-m-d H:i:s');
