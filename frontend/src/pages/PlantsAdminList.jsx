@@ -20,9 +20,9 @@ export default function PlantAdminList () {
 
     return (
         <>
-            <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90% !important', margin: '0 auto' } }>
+            <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
                 { plants.map(it => (
-                    <div key={it.id} className="box flex between" style={{ width: '100% !important', boxSizing: 'border-box', margin: '20px 0' }}>
+                    <div key={it.id} className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '20px 0' }}>
                         <p>{ it.name }</p>
                         <p>{ it.location }</p>
                         <p>{ it.created_at }</p>
