@@ -12,7 +12,7 @@ export default function HeadMenu ({ isOpen, closeMenu }) {
                     <Link to={ '/plant/searcher' } className="link" onClick={closeMenu}><FaSearch/> Buscar</Link>
                     <Link to={ '/plant/gallery' } className="link" onClick={closeMenu}><FaImages/> Galería</Link>
                     <Link to={ '/plant/create/new' } className="link" onClick={closeMenu}><FaPlusSquare/> Crear Planta</Link>
-                    <Link to={ '/admin/plants' } className="link" onClick={closeMenu}><RiDashboard2Line/> Administración</Link>
+                    <Link to={ '/admin/plants' } className="link" onClick={closeMenu}><RiDashboard2Line/> Admin</Link>
             </div> }
         </>
     );
