@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ContentContainer } from '../components/ContentContainer';
 import { Link } from 'react-router-dom';
+import { apiURL } from '../constants/config'
 
 export default function PlantAdminList () {
     const [plants, setPlants] = useState([]);
