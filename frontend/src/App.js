@@ -7,6 +7,7 @@ import PlantCreationPage from './pages/PlantCreationPage';
 import PlantsGallery from './pages/PlantGallery';
 import PlantDetailsPage from './pages/PlantDetailsPage';
 import PlantsBasicListing from './pages/PlantsBasicListPage';
+import PlantsAdminList from './pages/PlantsAdminList';
 
 import './App.css';
 
@@ -17,9 +18,6 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <PlantsBasicListing />
-          </Route>
-          <Route path="/plant/name/:id" exact>
-            {/* <PokemonDetailPage/> */}
           </Route>
           <Route path="/plant/gallery" exact>
             <PlantsGallery />
@@ -35,6 +33,9 @@ function App() {
           </Route>
           <Route path="/plant/details/:id" exact>
             <PlantDetailsPage />
+          </Route>
+          <Route path="/admin/plants">
+            <PlantsAdminList />  
           </Route>
         </Switch>
     </Router>

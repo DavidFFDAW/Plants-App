@@ -11,9 +11,6 @@ export default function PlantBasicListPage() {
             fetch(`${ apiURL }getPlants.php?`)
             .then(res => res.json())
             .then(res => {
-                  console.log('Status code: ',res.code);
-                  console.log('Status code: ',res.message);
-                  console.log('Status code: ',res.plants);
                   if ( res.error ) {
                         alert(res.message);
                         return 0;
