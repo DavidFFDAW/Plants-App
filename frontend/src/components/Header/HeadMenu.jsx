@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FaImages, FaSearch, FaHome, FaPlusSquare } from 'react-icons/fa';
+import { RiDashboard2Line } from 'react-icons/ri';
 
 
 export default function HeadMenu ({ isOpen, closeMenu }) {
@@ -11,6 +12,7 @@ export default function HeadMenu ({ isOpen, closeMenu }) {
                     <Link to={ '/plant/searcher' } className="link" onClick={closeMenu}><FaSearch/> Buscar</Link>
                     <Link to={ '/plant/gallery' } className="link" onClick={closeMenu}><FaImages/> Galería</Link>
                     <Link to={ '/plant/create/new' } className="link" onClick={closeMenu}><FaPlusSquare/> Crear Planta</Link>
+                    <Link to={ '/admin/plants' } className="link" onClick={closeMenu}><RiDashboard2Line/> Administración</Link>
             </div> }
         </>
     );
