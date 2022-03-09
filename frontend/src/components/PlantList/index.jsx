@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
+import { getDifferenceInDaysBetweenDates } from "../../services/date.services";
+import { formatDate } from "../../services/date.services";
 
 export default function PlantList({ plants, placeholdImg, waterPlant }) {
 
@@ -11,12 +13,12 @@ export default function PlantList({ plants, placeholdImg, waterPlant }) {
                             <div className="plant-card-image">
                                 <img src={plant.image ? plant.image : placeholdImg} alt="" />
                             </div>
-                            <GiDrop className="water-drop" />
+                            { getDifferenceInDaysBetweenDates(plant.last_time_watered) > 4 && <GiDrop className="water-drop" /> }
                             <div className="plant-card-info" style={{ padding: '5px 20px' }}>
                                 <h4 className="plant-card-info-item" style={{ marginBottom:0, fontSize: '20px', textTransform: 'uppercase' }}>{plant.name}</h4>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.real_name}</p>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.location}</p>
-                                <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.last_time_watered}</p>
+                                <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{ formatDate(plant.last_time_watered) }</p>
                             
                                 <div className="down flex between">
                                         <button className="btn btn-secondary" onClick={ _ => waterPlant(plant.id) }><GiDrop/> Regar</button>                              

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { ContentContainer } from '../components/ContentContainer';
 import { Link } from 'react-router-dom';
 import { apiURL } from '../constants/config'
+import { formatDate } from '../services/date.services';
 
 export default function PlantAdminList () {
-    const [plants, setPlants] = useState([]);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const [plants, setPlants] = useState([]);    
 
     useEffect(_ => {
         fetch(`${ apiURL }getPlants.php?`)
@@ -26,7 +26,7 @@ export default function PlantAdminList () {
                     <div key={it.id} className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '20px 0' }}>
                         <p>{ it.name }</p>
                         <p>{ it.location }</p>
-                        <p>{ new Date(it.created_at).toLocaleDateString('es-ES', options) }</p>
+                        <p>{ formatDate(it.created_at) }</p>
                         <div className="flex between">
                             <Link to={`/plant/update/${it.id}`} className="btn btn-secondary-static">Editar</Link>
                             <Link to={`/plant/delete/${it.id}`} className="btn btn-principal-static">Borrar</Link>
