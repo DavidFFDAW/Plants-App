@@ -668,7 +668,7 @@ a{
     box-sizing: border-box;
     background: var(--green);
     color: #fff;
-    z-index: 2;
+    z-index: 20;
     /* border-bottom: 3px solid var(--blue); */
 }
 .head .head-menu {
@@ -678,6 +678,7 @@ a{
     right: 0;
     min-width: 50px;
     background: #FFFFFF;
+    z-index: 12;
 }
 .head .head-menu .link {
     width: 100%;
@@ -689,6 +690,7 @@ a{
     box-sizing: border-box;
     padding: 14px 0;
     padding-left: 10px;
+    z-index: 12;
     /* border-bottom: 2px solid transparent; */
 }
 /* .head .head-menu .link::before {
