@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
-import { getDifferenceInDaysBetweenDates } from "../../services/date.services";
+import { getDifferenceInDaysBetweenDates } from "../services/date.services";
 
 export default function PlantBasicListPage() {
 
