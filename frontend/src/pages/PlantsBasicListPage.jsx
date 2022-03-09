@@ -15,7 +15,8 @@ export default function PlantBasicListPage() {
                         alert(res.message);
                         return 0;
                   }
-                  setPlants(res.plants);
+                  const pl = res.plants.map(i => ({...i, watered_days_ago: getDifferenceInDaysBetweenDates(i.last_time_watered) }))
+                  setPlants(pl);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
