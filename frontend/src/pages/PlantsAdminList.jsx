@@ -22,12 +22,12 @@ export default function PlantAdminList () {
     return (
         <>
             <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
-                <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0' }}>
-                        <p>NOMBRE</p>
-                        <p>LOCALIZACION</p>
-                        <p>FECHA CREACIÓN</p>
-                        <div>
-                            <p>ACCIONES</p>
+                <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
+                        <p style={{ width: '50%', color: '#FFF', fontWeight: 700 }}>NOMBRE</p>
+                        <p style={{ width: '55%', color: '#FFF', fontWeight: 700 }}>LOCALIZACION</p>
+                        <p style={{ width: '65%', color: '#FFF', fontWeight: 700 }}>FECHA CREACIÓN</p>
+                        <div style={{ width: '25%', color: '#FFF', fontWeight: 700 }}>
+                            <p style={{ color: '#FFF', fontWeight: 700 }}>ACCIONES</p>
                         </div>
                 </div>
                 { plants.map(it => (
