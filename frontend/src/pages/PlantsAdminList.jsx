@@ -8,7 +8,7 @@ export default function PlantAdminList () {
     const [plants, setPlants] = useState([]);    
 
     useEffect(_ => {
-        fetch(`${ apiURL }getPlants.php?`)
+        fetch(`${ apiURL }getPlants.php`)
         .then(res => res.json())
         .then(res => {
               if ( res.error ) {
@@ -22,6 +22,14 @@ export default function PlantAdminList () {
     return (
         <>
             <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
+                <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0' }}>
+                        <p>NOMBRE</p>
+                        <p>LOCALIZACION</p>
+                        <p>FECHA CREACIÓN</p>
+                        <div>
+                            <p>ACCIONES</p>
+                        </div>
+                </div>
                 { plants.map(it => (
                     <div key={it.id} className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '20px 0' }}>
                         <p>{ it.name }</p>
