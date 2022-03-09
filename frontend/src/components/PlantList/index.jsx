@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
-import { getDifferenceInDaysBetweenDates } from "../../services/date.services";
 import { formatDate } from "../../services/date.services";
 
 export default function PlantList({ plants, placeholdImg, waterPlant }) {
