@@ -14,6 +14,8 @@ export default function PlantCreationPage({ showAlert }) {
 
     const setImage = (receivedFile) => {        
         setFormData({ ...formData, image: receivedFile });
+        console.log('Image must have been setted up');
+        console.log('Image: ', formData.image);
     }
 
     const handleSend = () => {
@@ -89,8 +91,9 @@ export default function PlantCreationPage({ showAlert }) {
                                     <option value="Balcón">Balcón</option>
                                 </select>
                             </div>
-                            <ImageUpload setFile={ setImage } showAlert={ showAlert } />
                         </div>
+                        <ImageUpload setFile={ setImage } showAlert={ showAlert } />
+
                         <button style={{ width: '100%' }} className="down btn btn-primary" type="button" onClick={ handleSend }>Mandar</button>
                     </div>
                 </div>
