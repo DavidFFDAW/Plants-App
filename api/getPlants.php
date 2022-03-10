@@ -12,7 +12,20 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric((int) $_GET['id'])) 
     exit();
 }
 
+function daysAgoWatered($lastTimeWatered) {
+    if (!isset($lastTimeWatered) || $lastTimeWatered == null) return false;
+    
+    $now = new DateTime('NOW');
+    $lastWatered = new DateTime($lastTimeWatered);
+
+    return $now->diff($lastWatered)->d;
+}
+
 $plants = Plant::findAll();
+
+foreach ($plants as $item) {
+    $item['watered_days_ago'] = daysAgoWatered($item);
+}
 
 if (!isset($plants) || empty($plants)) {
     json(404, 'No se encontraron plantas', true);
