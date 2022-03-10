@@ -23,8 +23,8 @@ function daysAgoWatered($lastTimeWatered) {
 
 $plants = Plant::findAll();
 
-foreach ($plants as $item) {
-    $item['watered_days_ago'] = daysAgoWatered($item);
+foreach ($plants as &$item) {
+    $item['watered_days_ago'] = daysAgoWatered($item['last_time_watered']);
 }
 
 if (!isset($plants) || empty($plants)) {
