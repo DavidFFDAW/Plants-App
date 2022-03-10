@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 export default function ImageUpload({ setFile, showAlert }) {
 
     const [showImage,setShowImage] = useState(false);
-    const imgReference = useRef('image');
+    const imgReference = useRef();
 
     const previewAndSetImage = (e) => {
         const file = e.target.files[0];

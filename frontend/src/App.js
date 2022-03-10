@@ -19,6 +19,9 @@ function App() {
   const showAlert = (message, seconds = 5) => {
     setAlertInfo({ show: true, message, seconds, acceptButton: true });
   }
+  const closeAlert = () => {
+    setAlertInfo(defaultOptions);
+  }
 
   return (
     <Router>
@@ -26,6 +29,7 @@ function App() {
         <Alert
           show={alertInfo.show} 
           message={alertInfo.message}
+          closeAlert={ closeAlert }
           seconds={alertInfo.seconds || 4}
           acceptButton={ alertInfo.showButton || true}
         />
