@@ -46,8 +46,9 @@ export default function PlantBasicListPage() {
                   <div className="flex center">
                         <div className="content-container">
                               <div className="">
-                                    <div className="col-12">
+                                    <div className="flex between">
                                           <h1>LISTADO</h1>
+                                          <button onClick={ _ => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) }>Bajar</button>
                                     </div>
 
                                     <PlantList
