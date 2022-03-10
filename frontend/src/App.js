@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 // import logo from './logo.svg';
 
@@ -12,15 +12,28 @@ import PlantsAdminList from './pages/PlantsAdminList';
 import './App.css';
 
 function App() {
+  const defaultOptions = { show: false, message: '', seconds: 4, acceptButton: true };
+  const [alertInfo, setAlertInfo] = useState(defaultOptions);
+
+  const showAlert = (message, seconds = 5) => {
+    setAlertInfo({ show: true, message, seconds, acceptButton: true });
+  }
+
   return (
     <Router>
-      <Header />
+        <Header />
+        <Alert
+          show={alertInfo.show} 
+          message={alertInfo.message}
+          seconds={alertInfo.seconds || 4}
+          acceptButton={ alertInfo.showButton || true}
+        />
         <Switch>
           <Route path="/" exact>
-            <PlantsBasicListing />
+            <PlantsBasicListing showAlert={showAlert} />
           </Route>
           <Route path="/plant/gallery" exact>
-            <PlantsGallery />
+            <PlantsGallery showAlert={showAlert} />
           </Route>
           <Route path="/plant/searcher" exact>
             {/* <PokemonSearchPage/> */}
@@ -29,13 +42,13 @@ function App() {
             {/* <PokemonSearchPage/> */}
           </Route>
           <Route path="/plant/create/new" exact>
-            <PlantCreationPage />
+            <PlantCreationPage showAlert={showAlert} />
           </Route>
           <Route path="/plant/details/:id" exact>
-            <PlantDetailsPage />
+            <PlantDetailsPage showAlert={showAlert} />
           </Route>
           <Route path="/admin/plants">
-            <PlantsAdminList />  
+            <PlantsAdminList showAlert={showAlert} />  
           </Route>
         </Switch>
     </Router>
