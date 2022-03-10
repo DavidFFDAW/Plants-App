@@ -23,7 +23,7 @@ export default function ImageUpload({ setFile, showAlert }) {
     }
 
     return (
-        <div>
+        <div className="down-little">
             <label className="form-label block">Imagen</label>
             { showImage && <div>
                 <img ref={imgReference} style={{ width: '350px', height: '360px' }} />

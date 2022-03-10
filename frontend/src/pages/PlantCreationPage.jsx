@@ -92,7 +92,9 @@ export default function PlantCreationPage({ showAlert }) {
                                 </select>
                             </div>
                         </div>
-                        <ImageUpload setFile={ setImage } showAlert={ showAlert } />
+                        <div className="flex center">
+                            <ImageUpload setFile={ setImage } showAlert={ showAlert } />
+                        </div>
 
                         <button style={{ width: '100%' }} className="down btn btn-primary" type="button" onClick={ handleSend }>Mandar</button>
                     </div>
