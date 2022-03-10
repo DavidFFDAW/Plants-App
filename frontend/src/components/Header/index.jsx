@@ -26,6 +26,7 @@ export default function Header() {
             <div>
                 { getButtonOrName() }
             </div>
+            <div>v1.1</div>
             <div>
                 <Hamburger toggled={ isMenuOpened } color={'#FFF'} toggle={ setOpenMenu } size={30} label="Show Menu" hideOutline={true} rounded />
             </div>

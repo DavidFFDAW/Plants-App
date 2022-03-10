@@ -5,7 +5,7 @@ export default function ImageUpload({ setFile, showAlert }) {
     const [showImage,setShowImage] = useState(false);
     const imgReference = useRef('image');
 
-    const previewAndSetImage = (ev) => {
+    const previewAndSetImage = (e) => {
         const file = e.target.files[0];
         if (!['image/jpeg', 'image/png','image/jpg'].includes(file.type)){
             showAlert('Tipo de imagen no permitido');
