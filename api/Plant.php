@@ -167,6 +167,17 @@ class Plant {
         return $updated;
     }
 
+    public function remove() {
+        $db = DBConnection::getConnection();
+        $sql = "DELETE FROM plants WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param('i', $this->id);
+        $removed = $stmt->execute();
+        $stmt->close();
+
+        return $removed;
+    }
+
 
     public function __toString()
     {
