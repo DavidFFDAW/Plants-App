@@ -11,7 +11,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric((int) $_GET['id']))
     exit();
 }
 
-$plant = Plant::find((int) $_GET['id']);
+$plant = Plant::find((int) $_GET['id'], true);
 
 if (!isset($plant) || !$plant) json(404,'Plant not found in DB',true);
 
