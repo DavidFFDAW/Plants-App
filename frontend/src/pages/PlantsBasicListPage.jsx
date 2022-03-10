@@ -48,7 +48,9 @@ export default function PlantBasicListPage() {
                               <div className="">
                                     <div className="flex between">
                                           <h1>LISTADO</h1>
-                                          <button onClick={ _ => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) }>Bajar</button>
+                                          <button onClick={ _ => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) }
+                                                className="btn btn-principal-static"
+                                          >Ir al final de la pagina</button>
                                     </div>
 
                                     <PlantList
