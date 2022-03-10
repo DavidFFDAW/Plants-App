@@ -1,4 +1,12 @@
 <?php
+
+    function headersWithMethod (string $method) {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: '.$method);
+        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, 
+        Content-Type, Accept, Access-Control-Request-Method, Authorization");
+    }
+
     function json(int $code,string $message, bool $error, array $extra = array()): string {
         $array = array(
             'error' => $error,

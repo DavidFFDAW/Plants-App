@@ -1,10 +1,9 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-
 require_once './functions.php';
 require_once './Plant.php';
+
+headersWithMethod('GET');
 
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric((int) $_GET['id'])) {
     $plant = Plant::find((int) $_GET['id']);
