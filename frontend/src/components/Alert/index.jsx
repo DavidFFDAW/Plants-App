@@ -8,7 +8,7 @@ export default function Alert({ cssClass = '', message = '', seconds, closeAlert
                 closeAlert();
             }, seconds * 1000);
         }
-    },[ seconds, setAlertInfo ]);
+    },[ seconds, closeAlert ]);
 
     if (show) {
         return (
