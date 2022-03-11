@@ -188,6 +188,21 @@ body.guest{
     padding: 10px;
 }
 
+h4.plant-card-info-item.title {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    border: 3px solid #fff;
+    color: #eee;
+    padding: 20px 0;
+    margin: auto;
+    box-sizing: border-box;
+}
+
 
 .roster-card {
     width: 400px;
