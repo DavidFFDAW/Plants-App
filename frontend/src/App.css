@@ -22,7 +22,7 @@
 body{
     min-height: 100vh;
     margin: 0;
-    /* background: linear-gradient(#f3f3f3 40%,#86c397f5); */
+    background: radial-gradient(#b3b3b3 10%,#fff);
 }
 body.guest{
     background: #eee;    
@@ -103,12 +103,12 @@ h4.plant-card-info-item.title {
     border-radius: 5px;
     transition: all 0.2s;
 }
-h4.plant-card-info-item.title:hover{
-    background: rgba(0, 0, 0, 0.9);
+.plant-card-image:hover img {
+  filter: blur(3px);
+  opacity: 0.6;
 }
-h4.plant-card-info-item.title:hover ~ img{
-    filter: blur(3px);
-    opacity: 0.6;
+.plant-card-image:hover .title {
+  background: rgba(0, 0, 0, 0.9);
 }
 .plant-card-info {
     margin-top: 330px;
