@@ -10,8 +10,8 @@ export default function PlantList({ plants, placeholdImg, waterPlant }) {
                 { plants.map((plant) => (
                     <div className="box-no-padding-total plant-card" key={plant.id} style={{ padding: '30px 0 !important' }}>
                             <div className="plant-card-image">
-                                <img src={plant.image ? plant.image : placeholdImg} alt="" />
                                 <h4 className="plant-card-info-item title" style={{ fontSize: '20px', textTransform: 'uppercase' }}>{plant.name}</h4>
+                                <img src={plant.image ? plant.image : placeholdImg} alt="" />
                             </div>
                             { plant.watered_days_ago > 2 && <GiDrop className="water-drop" /> }
                             <div className="plant-card-info" style={{ position: 'relative', padding: '5px 20px' }}>

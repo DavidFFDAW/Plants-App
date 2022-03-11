@@ -86,12 +86,29 @@ body.guest{
       box-shadow: 2px 2px 10px rgba(100, 100, 100, 0.349);
       transition: all 0.2s;
 }
-.plant-card-image:hover img {
+h4.plant-card-info-item.title {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    border: 3px solid #fff;
+    color: #eee;
+    padding: 20px 0;
+    margin: auto;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+h4.plant-card-info-item.title:hover{
+    background: rgba(0, 0, 0, 0.9);
+}
+h4.plant-card-info-item.title:hover ~ img{
     filter: blur(3px);
     opacity: 0.6;
-}
-.plant-card-image:hover .title {
-    background: rgba(0, 0, 0, 0.9);
 }
 .plant-card-info {
     margin-top: 330px;
@@ -197,22 +214,7 @@ body.guest{
     padding: 10px;
 }
 
-h4.plant-card-info-item.title {
-    position: absolute;
-    top: 90px;
-    left: 50%;
-    width: 85%;
-    transform: translate(-50%, 50%);
-    text-align: center;
-    background: rgba(0,0,0,0.4);
-    border: 3px solid #fff;
-    color: #eee;
-    padding: 20px 0;
-    margin: auto;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.2s;
-}
+
 
 
 .roster-card {
