@@ -7,8 +7,9 @@ Content-Type, Accept, Access-Control-Request-Method, Authorization");
 // $headers = apache_request_headers();
 
 require_once './functions.php';
+require_once './User.php';
 
-if (!isset($_POST['mail']) || empty($_POST['mail'])) {
+if (!isset($_POST['email']) || empty($_POST['email'])) {
     json(400,'No se ha recibido el email del usuario',true);      
     exit();
 }
@@ -17,19 +18,15 @@ if (!isset($_POST['password']) || empty($_POST['password'])) {
     json(400,'No se ha recibido la contraseña del usuario', true);      
     exit();
 }
+$user = User::findByEmail($_POST['email'],false);
 
-$getUser = "SELECT email,`password`,token FROM users WHERE email = ?";
-$stmt = $conn->prepare($getUser);
-$stmt->bind_param('s', $_POST['mail']);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$hashWithPassword = hash('sha256', $_POST['password'].$user['salt']);
 
 if (!$user) {
     json(404,'El usuario no existe',true);
 }
 
-if ($user['password'] !== md5($_POST['password'])) {
+if ($user['hash'] !== $hashWithPassword) {
     json(404,'La contraseña no es correcta',true);
 }
 
