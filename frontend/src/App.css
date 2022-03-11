@@ -84,6 +84,13 @@ body.guest{
       border-radius: 10px 10px 0 0;
       box-shadow: 2px 2px 10px rgba(100, 100, 100, 0.349);
 }
+.plant-card-image:hover img {
+    filter: blur(3px);
+    opacity: 0.6;
+}
+.plant-card-image:hover .title {
+    background: rgba(0, 0, 0, 0.9);
+}
 .plant-card-info {
     margin-top: 330px;
 }
