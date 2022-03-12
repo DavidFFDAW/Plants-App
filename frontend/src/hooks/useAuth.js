@@ -1,14 +1,14 @@
 import { useContext, useCallback } from 'react';
 import Context from './../context/UserContext';
-import { attemptLogIn, attemptRegisterUser, } from '../services/user.service';
+import { attemptLogIn } from '../services/user.service';
 
 
 export default function useAuth() {
 
     const { token, setToken } = useContext(Context);
 
-    const login = useCallback( ({ username, password }) => {
-        attemptLogIn({username, password})
+    const login = useCallback( (formData) => {
+        attemptLogIn(formData)
             .then(jwt => {
                 if(!jwt) return;
                 window.sessionStorage.setItem('token',jwt);
@@ -23,21 +23,10 @@ export default function useAuth() {
     const logout = useCallback( () => {
         window.sessionStorage.removeItem('jwt');
         setToken(null);
-    }, [setToken]);
-
-    // const register = useCallback( credentials => {
-    //   if(credentials.password !== credentials.repeatPassword){
-    //     alert('Las contraseñas no coinciden');
-    //     return;
-    //   }
-    //   attemptRegisterUser(credentials).then(jwt => {
-    //       SessionStorageService.addToken(jwt);
-    //       setJWT(jwt);
-    //   })
-    // },[setJWT]);    
+    }, [setToken]);    
 
     return {
-        isLogged: Boolean(jwt),
+        isLogged: Boolean(token),
         login,
         logout,
         token

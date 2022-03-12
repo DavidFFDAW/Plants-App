@@ -1,12 +1,15 @@
+import { Route, Redirect } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+
 export function PrivateRoute({ children, ...rest }) {
     // Hook for user loggedIn check
-     const auth = true;
+    const { isLogged } = useAuth();
 
     return (
       <Route
         {...rest}
         render={({ location }) =>
-          auth.user ? (
+          isLogged ? (
             children
           ) : (
             <Redirect

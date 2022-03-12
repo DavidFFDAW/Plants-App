@@ -100,6 +100,18 @@ class User {
         return $model ? new User($result->fetch_assoc()) : $result->fetch_assoc();
     }
 
+    public static function existsByToken(string $token) {
+        $db = DBConnection::getConnection();
+        $sql = "SELECT id FROM users WHERE token = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param('s', $token);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return (bool) $result->num_rows > 0;
+    }
+
     public static function findAll($json = false) {
         $db = DBConnection::getConnection();
         $sql = "SELECT * FROM users";

@@ -6,18 +6,15 @@ require_once './Plant.php';
 headersWithMethod('POST');
 
 if (!isset($_POST['name']) || empty($_POST['name'])) {
-      json(400,'No se han recibido los datos correctos',true);      
+      json(400,'No se ha enviado el nombre de la planta',true);      
       exit();
 }
-// VALIDACION DEL TOKEN
-// 83878c91171338902e0fe0fb97a8c47a
-/* if (!isset($headers['Authorization']) || $headers['Authorization'] != md5('p')) {
-      json(array(
-            'error' => true,
-		'message' => 'No hay un token valido para hacer la petición',
-            'code' => 403	
-	));
-} */
+if (!isset($_POST['real_name']) || empty($_POST['real_name'])) {
+      json(400,'No se ha enviado el nombre cientifico de la planta',true);      
+      exit();
+}
+
+validateHeaderToken();
 
 $ext = '.jpg';
 $imageIsUploaded = false;
@@ -51,6 +48,8 @@ $plant->setImage(file_exists($imagesDirPath.$finalFilename) ? $finalImageURL : '
 $plant->setLocation($_POST['location']);
 $plant->setExtraLocation($extraLocation);
 $plant->setType($_POST['type']);
+$plant->setQuantity((int) $_POST['quantity']);
+$plant->setWaterQuantity((int) $_POST['water_quantity']);
 $plant->setCreatedAt($createdAt);
 $plant->setLastTimeWatered(null);
 

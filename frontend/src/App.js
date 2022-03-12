@@ -4,6 +4,9 @@ import { UserContextProvider } from './context/UserContext';
 
 import Header from './components/Header';
 import Alert from './components/Alert';
+import { PrivateRoute } from './components/PrivateRoute';
+
+import { LogIn } from './pages/LogInPage';
 import PlantCreationPage from './pages/PlantCreationPage';
 import PlantsGallery from './pages/PlantGallery';
 import PlantDetailsPage from './pages/PlantDetailsPage';
@@ -38,24 +41,34 @@ function App() {
             <Route path="/" exact>
               <PlantsBasicListing showAlert={showAlert} />
             </Route>
+
+            <Route path="/login" exact>
+              <LogIn showAlert={showAlert} />
+            </Route>
+
             <Route path="/plant/gallery" exact>
               <PlantsGallery showAlert={showAlert} />
             </Route>
+
             <Route path="/plant/searcher" exact>
-              {/* <PokemonSearchPage/> */}
+
             </Route>
+
             <Route path="/plant/search/:name" exact>
-              {/* <PokemonSearchPage/> */}
+
             </Route>
-            <Route path="/plant/create/new" exact>
-              <PlantCreationPage showAlert={showAlert} />
-            </Route>
+
             <Route path="/plant/details/:id" exact>
               <PlantDetailsPage showAlert={showAlert} />
             </Route>
-            <Route path="/admin/plants">
+
+            <PrivateRoute path="/plant/create/new" exact>
+              <PlantCreationPage showAlert={showAlert} />
+            </PrivateRoute>
+
+            <PrivateRoute path="/admin/plants">
               <PlantsAdminList showAlert={showAlert} />  
-            </Route>
+            </PrivateRoute>
           </Switch>
       </Router>
     </UserContextProvider>

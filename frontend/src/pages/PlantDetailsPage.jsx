@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { apiURL, imagesURL } from "../constants/config";
+import { apiURL } from "../constants/config";
 
 export default function PlantDetailsPage() {
     const param = useParams();

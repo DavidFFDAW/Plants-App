@@ -1,4 +1,5 @@
 <?php
+    require_once './User.php';
 
     function json(int $code,string $message, bool $error, array $extra = array()): string {
         $array = array(
@@ -13,7 +14,6 @@
         die(json_encode($array));
     }
 
-    
     function headersWithMethod (string $method) {
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: '.$method);
@@ -22,5 +22,20 @@
 
         if ($_SERVER['REQUEST_METHOD'] != $method) {
             json(405, 'Method not allowed', true);
+        }
+    }
+
+    function validateHeaderToken () {
+        $headers = apache_request_headers();
+
+        if (!isset($headers['Authorization'])) {
+            json(403,'No se ha enviado el token',true);
+        }
+
+        $token = str_replace('Bearer ','',$headers['Authorization']);
+        $user = User::existsByToken($token);
+        
+        if (!isset($user) || empty($user) || !$user) {
+            json(403,'El token no es correcto',true);
         }
     }

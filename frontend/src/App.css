@@ -86,6 +86,13 @@ body.guest{
       box-shadow: 2px 2px 10px rgba(100, 100, 100, 0.349);
       transition: all 0.2s;
 }
+.img-form-side{
+    width: 60%;
+}
+.upload-img {
+    border-radius: 10px;
+    border: 2px solid var(--green);
+}
 h4.plant-card-info-item.title {
     position: absolute;
     top: 90px;
@@ -575,7 +582,8 @@ form.custom-form .inpt-form{
 .general-input::placeholder{
     color: #bcc2bc;
 }
-form.custom-form .inpt-textarea {
+form.custom-form .inpt-textarea,
+.inpt-textarea {
     width: 100%;
     font-weight: 500;
     box-sizing: border-box;
@@ -790,8 +798,11 @@ a{
     }
     .flex.between.relative{
         display: block;
+    }    
+    .img-form-side {
+        margin-top: 20px;
+        width: 100%;
     }
-    
     .content-container{
         margin-left: 0;
         margin-right: 0;

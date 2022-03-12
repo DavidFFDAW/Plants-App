@@ -1,16 +1,24 @@
 import { useState } from 'react';
 import { Divide as Hamburger } from 'hamburger-react';
 import HeadMenu from './HeadMenu';
+import useAuth from '../../hooks/useAuth';
 import { useHistory, useLocation } from 'react-router-dom';
 
 export default function Header() {
 
     const [ isMenuOpened, setOpenMenu ] = useState(false);
+    const { isLogged, logout } = useAuth();
     const url = useLocation();
     const hist = useHistory();
 
     const closeMenu = _ => {
         setOpenMenu(false);
+    }
+
+    const handleLogout = () => {
+        logout();
+        closeMenu();
+        hist.push('/login');
     }
 
     const getButtonOrName = () => {
@@ -34,6 +42,8 @@ export default function Header() {
             <HeadMenu 
                 isOpen={ isMenuOpened } 
                 closeMenu={ closeMenu }
+                logged={ isLogged }
+                handleLogout={ handleLogout }
             />
         </header>
     );
