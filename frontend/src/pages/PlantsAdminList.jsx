@@ -3,8 +3,9 @@ import { ContentContainer } from '../components/ContentContainer';
 import { Link } from 'react-router-dom';
 import { apiURL } from '../constants/config'
 import { formatDate } from '../services/date.services';
+import { deletePlant } from '../services/plants.service';
 
-export default function PlantAdminList () {
+export default function PlantAdminList ({ showAlert }) {
     const [plants, setPlants] = useState([]);    
 
     useEffect(_ => {
@@ -18,6 +19,15 @@ export default function PlantAdminList () {
               setPlants(res.plants);
         });
     }, []);
+
+    const deleteThisPlant = id => {
+        deletePlant(id).then(resp => {
+            if (resp.error) {
+                showAlert(resp.message);
+            }
+            setPlants(plants.filter(i => i.id !== id));
+        })
+    }
 
     return (
         <>
@@ -37,7 +47,7 @@ export default function PlantAdminList () {
                         <p>{ formatDate(it.created_at) }</p>
                         <div className="flex between">
                             <Link to={`/plant/update/${it.id}`} className="btn btn-secondary-static">Editar</Link>
-                            <Link to={`/plant/delete/${it.id}`} className="btn btn-principal-static">Borrar</Link>
+                            <button className="btn btn-principal-static" onClick={ _ => deleteThisPlant(it.id) }>Borrar</button>
                         </div>
                     </div>
                 )) }

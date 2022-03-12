@@ -1,11 +1,9 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-// $headers = apache_request_headers();
-
 require_once './functions.php';
 require_once './Plant.php';
+
+headersWithMethod('POST');
 
 if (!isset($_POST['name']) || empty($_POST['name'])) {
       json(400,'No se han recibido los datos correctos',true);      

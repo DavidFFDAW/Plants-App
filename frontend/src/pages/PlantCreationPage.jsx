@@ -1,30 +1,21 @@
 import { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { apiURL } from "../constants/config";
-import Alert from "../components/Alert";
+import ImageUpload from "../components/ImageUpload";
 
-export default function PlantCreationPage() {
+export default function PlantCreationPage({ showAlert }) {
     
     const histoire = useHistory();
-    const [alertInfo, setAlertInfo] = useState({ show: false, message: "" });
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         location: 'Cocina'
-    }); 
+    });
 
-    const setImage = (e) => {
-        const file = e.target.files[0];
-        if (!['image/jpeg', 'image/png','image/jpg'].includes(file.type)){
-            setAlertInfo({ 
-                show: true, 
-                message: 'Tipo de imagen no permitido',
-                seconds: 4,
-                showButton: true
-            });
-            return 0;
-        }
-        setFormData({ ...formData, image: e.target.files[0] });
+    const setImage = (receivedFile) => {        
+        setFormData({ ...formData, image: receivedFile });
+        console.log('Image must have been setted up');
+        console.log('Image: ', formData.image);
     }
 
     const handleSend = () => {
@@ -47,27 +38,14 @@ export default function PlantCreationPage() {
                 histoire.push('/');
                 return 0;
             }
-            setAlertInfo({ 
-                show: true, 
-                message: res.code+': '+res.message,
-                seconds: 5,
-                showButton: true
-             });
             if (res.error) {
-                setAlertInfo({ show: true, message: res.message });
+                showAlert(res.message);
             }
         });
     }
 
     return (
         <>
-            <Alert
-                show={alertInfo.show} 
-                message={alertInfo.message} 
-                setAlertInfo={setAlertInfo} 
-                seconds={alertInfo.seconds || 4}
-                acceptButton={ alertInfo.showButton || true}
-            />
             <div className="flex center">
                 <div className="content-container">
                     <h1 className="title-body">Crear nueva planta</h1>
@@ -113,14 +91,11 @@ export default function PlantCreationPage() {
                                     <option value="Balcón">Balcón</option>
                                 </select>
                             </div>
-                            <div >
-                                <label className="form-label block">Imagen</label>
-                                <button type="button" className="btn btn-secondary file-btn">
-                                    <input type="file" className="file-inpt" accept="image/*" onChange={ setImage }/>
-                                    Subir Imagen                            
-                                </button>
-                            </div>
                         </div>
+                        <div className="flex center">
+                            <ImageUpload setFile={ setImage } showAlert={ showAlert } />
+                        </div>
+
                         <button style={{ width: '100%' }} className="down btn btn-primary" type="button" onClick={ handleSend }>Mandar</button>
                     </div>
                 </div>

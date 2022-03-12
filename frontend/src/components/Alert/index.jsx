@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
 
-export default function Alert({ cssClass = '', message = '', seconds, setAlertInfo, show = false, extraBtn = { show: false } }) {
+export default function Alert({ cssClass = '', message = '', seconds, closeAlert, show = false, extraBtn = { show: false } }) {
 
     useEffect(() => {
         if (seconds && seconds > 0) {
             setTimeout(_ => {
-                setAlertInfo({ show: false, message: '' });
+                closeAlert();
             }, seconds * 1000);
         }
-    },[ seconds, setAlertInfo ]);
-
-    const closeAlert = _ => {
-        setAlertInfo({ show: false, message: '' });
-    };
+    },[ seconds, closeAlert ]);
 
     if (show) {
         return (

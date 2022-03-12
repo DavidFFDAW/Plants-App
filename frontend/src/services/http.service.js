@@ -12,10 +12,10 @@ export default class HttpService {
         const options = {
             method: method,
             mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
+            // headers: {
+            //    'Content-Type': 'application/json',
+            //    'Accept': 'application/json',
+            // },
         };
         if(token){
            options.headers = {...options.headers, 'Authorization': 'Bearer ' + token };

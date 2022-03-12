@@ -16,8 +16,8 @@ export default function PlantBasicListPage() {
                         alert(res.message);
                         return 0;
                   }
-                  const pl = res.plants.map(i => ({...i, watered_days_ago: getDifferenceInDaysBetweenDates(i.last_time_watered) }))
-                  setPlants(pl);
+                  
+                  setPlants(res.plants);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
@@ -46,8 +46,11 @@ export default function PlantBasicListPage() {
                   <div className="flex center">
                         <div className="content-container">
                               <div className="">
-                                    <div className="col-12">
+                                    <div className="flex between">
                                           <h1>LISTADO</h1>
+                                          <button onClick={ _ => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) }
+                                                className="btn btn-principal-static"
+                                          >Ir al final de la pagina</button>
                                     </div>
 
                                     <PlantList

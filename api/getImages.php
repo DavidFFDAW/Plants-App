@@ -1,10 +1,8 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-// $headers = apache_request_headers();
-
 require_once './functions.php';
+
+headersWithMethod('GET');
 
 $path = dirname(__DIR__).DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR;
 

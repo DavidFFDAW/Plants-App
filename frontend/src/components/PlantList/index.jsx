@@ -11,11 +11,11 @@ export default function PlantList({ plants, placeholdImg, waterPlant }) {
                     <div className="box-no-padding-total plant-card" key={plant.id} style={{ padding: '30px 0 !important' }}>
                             <div className="plant-card-image">
                                 <img src={plant.image ? plant.image : placeholdImg} alt="" />
+                                <h4 className="plant-card-info-item title" style={{ fontSize: '20px', textTransform: 'uppercase' }}>{plant.name}</h4>
                             </div>
-                            { plant.watered_days_ago > 4 && <GiDrop className="water-drop" /> }
-                            <div className="plant-card-info" style={{ padding: '5px 20px' }}>
-                                <h4 className="plant-card-info-item" style={{ marginBottom:0, fontSize: '20px', textTransform: 'uppercase' }}>{plant.name}</h4>
-                                <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.real_name}</p>
+                            { plant.watered_days_ago > 2 && <GiDrop className="water-drop" /> }
+                            <div className="plant-card-info" style={{ position: 'relative', padding: '5px 20px' }}>
+                                <h4 className="plant-card-info-item" style={{ margin: 0, marginTop: 15, marginBottom: 5, fontSize: '18px', textTransform: 'uppercase' }}>{plant.real_name}</h4>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.location}</p>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>Ultima vez regada: { plant.last_time_watered ? `Hace ${plant.watered_days_ago} días` : 'No regada' }</p>
                             
@@ -26,6 +26,12 @@ export default function PlantList({ plants, placeholdImg, waterPlant }) {
                             </div>
                     </div>                                                
                 )) } 
+            </div>
+            <div className="flex between">
+                <div></div>
+                <div>
+                    <button onClick={ _ => window.scrollTo({ top: 0, behavior: 'smooth' }) } className="btn btn-principal-static">Volver arriba</button>
+                </div>
             </div>
         </>
     );
