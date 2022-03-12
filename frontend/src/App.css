@@ -22,7 +22,7 @@
 body{
     min-height: 100vh;
     margin: 0;
-    background: radial-gradient(#b3b3b3 10%,#fff);
+    /* background: radial-gradient(#b3b3b3 10%,#fff); */
 }
 body.guest{
     background: #eee;    
