@@ -8,6 +8,7 @@ export default class HttpService {
     static delete = endpoint => this._makeFetchRequest(endpoint,'DELETE');
 
     static _makeFetchRequest(url,method,data){
+        const token = window.sessionStorage.getItem('token');
         const options = {
             method: method,
             mode: 'cors',
@@ -16,9 +17,9 @@ export default class HttpService {
                 'Accept': 'application/json',
             },
         };
-        // if(token){
-        //    options.headers = {...options.headers, 'Authorization': 'Bearer ' + token };
-        // }
+        if(token){
+           options.headers = {...options.headers, 'Authorization': 'Bearer ' + token };
+        }
         if(data){
             options.body = JSON.stringify(data);
         }
