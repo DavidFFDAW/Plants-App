@@ -18,7 +18,7 @@
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: '.$method);
         header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, 
-        Content-Type, Accept, Access-Control-Request-Method, Authorization");
+        Content-Type, Accept, Access-Control-Request-Method, Authorization, authorization");
 
         if ($_SERVER['REQUEST_METHOD'] != $method) {
             json(405, 'Method not allowed', true);
