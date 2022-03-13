@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-export default function ImageUpload({ setFile, showAlert }) {
+export default function ImageUpload({ setFile, showAlert, initialImage }) {
 
-    const [imageSrc,setImageSrc] = useState('https://via.placeholder.com/360x350.png&text=Image+could+not+be+found');
+    const initialImageSrc = initialImage || "https://via.placeholder.com/350x360.png"; 
+    const [imageSrc,setImageSrc] = useState(_ => initialImageSrc);
     // This could be simply done with state and probably will move to that after all
     const previewAndSetImage = (e) => {
         const file = e.target.files[0];

@@ -8,6 +8,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 
 import { LogIn } from './pages/LogInPage';
 import PlantCreationPage from './pages/PlantCreationPage';
+import { PlantEditionPage } from './pages/PlantEditionPage';
 import PlantsGallery from './pages/PlantGallery';
 import PlantDetailsPage from './pages/PlantDetailsPage';
 import PlantsBasicListing from './pages/PlantsBasicListPage';
@@ -19,7 +20,7 @@ function App() {
   const defaultOptions = { show: false, message: '', seconds: 4, acceptButton: true };
   const [alertInfo, setAlertInfo] = useState(defaultOptions);
 
-  const showAlert = (message, seconds = 5) => {
+  const showAlert = (message, seconds = 0) => {
     setAlertInfo({ show: true, message, seconds, acceptButton: true });
   }
   const closeAlert = () => {
@@ -34,7 +35,7 @@ function App() {
             show={alertInfo.show} 
             message={alertInfo.message}
             closeAlert={ closeAlert }
-            seconds={alertInfo.seconds || 4}
+            seconds={alertInfo.seconds || 0}
             acceptButton={ alertInfo.showButton || true}
           />
           <Switch>
@@ -68,6 +69,10 @@ function App() {
 
             <PrivateRoute path="/admin/plants">
               <PlantsAdminList showAlert={showAlert} />  
+            </PrivateRoute>
+
+            <PrivateRoute path="/admin/update/plants/:id">
+              <PlantEditionPage showAlert={showAlert} />  
             </PrivateRoute>
           </Switch>
       </Router>

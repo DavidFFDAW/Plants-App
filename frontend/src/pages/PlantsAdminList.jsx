@@ -46,7 +46,7 @@ export default function PlantAdminList ({ showAlert }) {
                         <p>{ it.location }</p>
                         <p>{ formatDate(it.created_at) }</p>
                         <div className="flex between">
-                            <Link to={`/plant/update/${it.id}`} className="btn btn-secondary-static">Editar</Link>
+                            <Link to={`/admin/update/plants/${it.id}`} className="btn btn-secondary-static">Editar</Link>
                             <button className="btn btn-principal-static" onClick={ _ => deleteThisPlant(it.id) }>Borrar</button>
                         </div>
                     </div>

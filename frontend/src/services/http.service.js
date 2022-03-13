@@ -3,12 +3,15 @@ export default class HttpService {
     // constructor(){}
 
     static get = endpoint => this._makeFetchRequest(endpoint,'GET');
-    static put = (endpoint,data) => this._makeFetchRequest(endpoint,'PUT',data);
+    static put = (endpoint,data,json = true) => this._makeFetchRequest(endpoint,'PUT',data,json);
     static post = (endpoint,data,json = true) => this._makeFetchRequest(endpoint,'POST', data, json);
     static delete = endpoint => this._makeFetchRequest(endpoint,'DELETE');
 
     static _makeFetchRequest(url,method,data,json){
         const token = window.sessionStorage.getItem('token');
+        const methodNeedsToken = (['POST','PUT','DELETE'].includes(method));
+        const addToken = token && methodNeedsToken;
+
         const options = {
             method: method,
             mode: 'cors',
@@ -17,13 +20,14 @@ export default class HttpService {
             //    'Accept': 'application/json',
             },
         };
-        if(token){
+        if(addToken){
            options.headers = {...options.headers, 'Authorization': 'Bearer ' + token };
         }
         if(data){
             options.body = json ? JSON.stringify(data) : data;
         }
         
+        console.log('options: ', options);
         return fetch(url, options).then(response => response.json());
     }
 
