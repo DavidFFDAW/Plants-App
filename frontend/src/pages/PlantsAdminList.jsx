@@ -32,6 +32,7 @@ export default function PlantAdminList ({ showAlert }) {
     return (
         <>
             <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
+                <Link to={'/plant/create/new'} className="btn btn-principal">Crear Nueva Planta</Link>
                 <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
                         <p style={{ width: '50%', color: '#FFF', fontWeight: 700 }}>NOMBRE</p>
                         <p style={{ width: '55%', color: '#FFF', fontWeight: 700 }}>LOCALIZACION</p>
