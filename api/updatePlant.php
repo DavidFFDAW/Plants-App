@@ -3,7 +3,7 @@
 require_once './functions.php';
 require_once './Plant.php';
 
-headersWithMethod('PUT');
+headersWithMethod('POST');
 
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric((int) $_GET['id'])) {
     json(400, 'No se ha enviado el id de la planta', true);
@@ -12,8 +12,6 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric((int) $_GET['id']))
 validateHeaderToken();
 
 $plant = Plant::find((int) $_GET['id'], true);
-
-json(200, 'Planta recibida', false, array('POST' => $_POST));
 
 $ext = '.jpg';
 $imageIsUploaded = false;
@@ -31,26 +29,27 @@ if (!file_exists($imagesDirPath.$previousImageName)) {
         $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
         $imageIsUploaded = move_uploaded_file($_FILES['file']['tmp_name'], $imagesDirPath . $finalFilename);
         $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants/images/'.$finalFilename;
+        $plant->setImage(file_exists($imagesDirPath.$finalFilename) ? $finalImageURL : '');
     }
 }
 
 $createdAt = (isset($_POST['created_at']) && !empty($_POST['created_at'])) ? $_POST['created_at'] : date('Y-m-d H:i:s');
 $extraLocation = (isset($_POST['extra_location']) && !empty($_POST['extra_location'])) ? $_POST['extra_location'] : '';
+// $lastWatered = 
 
 $plant->setName($_POST['name']);
 $plant->setRealName($_POST['real_name']);
 $plant->setDescription($_POST['description']);
-$plant->setImage(file_exists($imagesDirPath.$finalFilename) ? $finalImageURL : '');
 $plant->setLocation($_POST['location']);
 $plant->setExtraLocation($extraLocation);
 $plant->setType($_POST['type']);
 $plant->setQuantity((int) $_POST['quantity']);
 $plant->setWaterQuantity((int) $_POST['water_quantity']);
 $plant->setCreatedAt($createdAt);
-$plant->setLastTimeWatered(null);
+// $plant->setLastTimeWatered(null);
 
-if (!$plant->create()) {
-      json(500,'Error en la creación de la planta',true);
+if (!$plant->update()) {
+      json(500,'Error en la actualizacion de la planta',true);
 }
 
-json(201,'Planta creada correctamente',false);
+json(201,'Planta actualizada correctamente',false);

@@ -27,7 +27,6 @@ export default class HttpService {
             options.body = json ? JSON.stringify(data) : data;
         }
         
-        console.log('options: ', options);
         return fetch(url, options).then(response => response.json());
     }
 

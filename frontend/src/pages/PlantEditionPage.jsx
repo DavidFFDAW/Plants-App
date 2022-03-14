@@ -20,12 +20,13 @@ export function PlantEditionPage({ showAlert }) {
             if (res.error) {
                 showAlert(res.message);
             }
+            console.log(res);
             setFormData(res.plant);
             setLoading(false);
         }).catch(err => {
             showAlert(err.message);
         });
-    }, [ showAlert ]);
+    }, [  ]);
 
     if (isLoading) {
         return (
@@ -35,11 +36,12 @@ export function PlantEditionPage({ showAlert }) {
 
     const updatePlant = () => {
         updatePlantById(id, formData).then(res => {
+            console.log(res);
             if (res.error) {
                 showAlert(res.message);
             }
             showAlert(res.message);
-            histoire.push('/');
+            // histoire.push('/');
         });
     }
 
