@@ -10,12 +10,12 @@ export function LogIn ({ showAlert }) {
 
     useEffect(() => {
         if (isLogged) {
-            history.push("/admin/plants");
+            const finalRedirectURL = window.sessionStorage.getItem('access-route') || '/admin/plants';
+            history.push(finalRedirectURL);
         }
     }, [ history, isLogged ]);
 
     const handleSend = (_) => {
-        console.log(data);
         if (!data.email || !data.password) {
             showAlert("Por favor, rellene todos los campos");
             return 0;
@@ -25,11 +25,6 @@ export function LogIn ({ showAlert }) {
         sendingData.append("password", data.password);
 
         login(sendingData);
-        console.log(window.sessionStorage.getItem('access-route'));
-        const finalRedirectURL = window.sessionStorage.getItem('access-route') || '/admin/plants';
-        console.log(finalRedirectURL);
-        history.push(`${finalRedirectURL}`);
-        window.sessionStorage.removeItem('access-route');
     }
 
     return (
