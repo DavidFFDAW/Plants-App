@@ -40,7 +40,7 @@ export const getPlantByID = (id) => {
 
 export const updatePlantById = (id, plant) => {
     const data = getFormDataPlantInfo(plant);
-    return HttpService.post(`${apiURL}updatePlant.php?id=${id}`, data, false);
+    return HttpService.put(`${apiURL}updatePlant.php?id=${id}`, data, false);
 }
 
 export const deletePlant = (id) => {
