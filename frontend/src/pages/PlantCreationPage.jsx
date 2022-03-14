@@ -32,6 +32,9 @@ export default function PlantCreationPage({ showAlert }) {
             mode: 'cors',
             method: 'POST',
             body: frm,
+            headers: {
+                'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+            }
         })
         .then(res => res.json())
         .then(res => {
