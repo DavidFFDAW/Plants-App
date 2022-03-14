@@ -24,7 +24,9 @@ export function LogIn ({ showAlert }) {
         sendingData.append("password", data.password);
 
         login(sendingData);
-        history.push("/admin/plants");
+        const finalRedirectURL = window.sessionStorage.getItem('access-route') || '/admin/plants';
+        window.sessionStorage.removeItem('access-route');
+        history.push(finalRedirectURL);
     }
 
     return (
