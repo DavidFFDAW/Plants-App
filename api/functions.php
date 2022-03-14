@@ -16,11 +16,16 @@
 
     function headersWithMethod (string $method) {
         header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: '.$method);
-        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, 
-        Content-Type, Accept, Access-Control-Request-Method, Authorization, authorization");
-
-        if ($_SERVER['REQUEST_METHOD'] != $method) {
+        header("Access-Control-Allow-Methods: $method");
+        header("Access-Control-Allow-Headers: Authorization");
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            header("HTTP/1.1 200 OK");
+            return;
+        }
+        
+        if ($_SERVER['REQUEST_METHOD'] !== $method) {
             json(405, 'Method not allowed', true);
         }
     }

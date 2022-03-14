@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
 
-export default function PlantList({ plants, placeholdImg, waterPlant }) {
+export default function PlantList({ plants, placeholdImg, waterPlant, editButton }) {
 
     return (
         <>
@@ -20,7 +20,8 @@ export default function PlantList({ plants, placeholdImg, waterPlant }) {
                             
                                 <div className="down flex between">
                                         <button className="btn btn-secondary" onClick={ _ => waterPlant(plant.id) }><GiDrop style={{ fill: '#468d4f' }} /> Regar</button>                           
-                                        <Link to={ `/plant/details/${ plant.id }` } className="btn btn-principal">Detalles</Link>                              
+                                        <Link to={ `/plant/details/${ plant.id }` } className="btn btn-principal">Detalles</Link>
+                                        { editButton && <Link to={ `/admin/update/plants/${ plant.id }` } className="btn btn-principal">Editar</Link>}                      
                                 </div>
                             </div>
                     </div>                                                

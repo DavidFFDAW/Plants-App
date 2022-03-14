@@ -4,17 +4,18 @@ import useAuth from "../hooks/useAuth";
 
 export function LogIn ({ showAlert }) {
     const [ data, setData ] = useState({});
+    const [ visible, setVisible ] = useState(false);
     const { login, isLogged } = useAuth();
     const history = useHistory();
 
     useEffect(() => {
         if (isLogged) {
-            history.push("/admin/plants");
+            const finalRedirectURL = window.sessionStorage.getItem('access-route') || '/admin/plants';
+            history.push(finalRedirectURL);
         }
     }, [ history, isLogged ]);
 
     const handleSend = (_) => {
-        console.log(data);
         if (!data.email || !data.password) {
             showAlert("Por favor, rellene todos los campos");
             return 0;
@@ -24,7 +25,6 @@ export function LogIn ({ showAlert }) {
         sendingData.append("password", data.password);
 
         login(sendingData);
-        history.push("/admin/plants");
     }
 
     return (
@@ -43,9 +43,10 @@ export function LogIn ({ showAlert }) {
                             </div>
                             <div className="down">
                                 <label className="form-label block">Password</label>
-                                <input type="password" className="general-input" placeholder="****" onChange={ ev => {
+                                <input type={ visible ? 'text' : 'password' } className="general-input" placeholder="****" onChange={ ev => {
                                     setData({ ...data, password: ev.target.value });
-                                }} required />                                    
+                                }} required />
+                                <button className="btn btn-secondary-static" onClick={ _ => setVisible(!visible) }>Ver Contraseña</button>                                   
                             </div>
 
                             <div className="down flex center">

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
+import useAuth from '../hooks/useAuth'
 
 export default function PlantBasicListPage() {
 
       const [plants, setPlants] = useState([]);
+      const { isLoggedIn } = useAuth();
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
       useEffect(() => { 
@@ -54,8 +56,9 @@ export default function PlantBasicListPage() {
 
                                     <PlantList
                                           plants={ plants }
-                                          placeholdImg={placeholdImg}
-                                          waterPlant={waterPlant}
+                                          placeholdImg={ placeholdImg }
+                                          waterPlant={ waterPlant }
+                                          editButton={ isLoggedIn }
                                     />
                               </div>
                         </div>
