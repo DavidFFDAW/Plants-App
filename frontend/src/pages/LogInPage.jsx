@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 
 export function LogIn ({ showAlert }) {
     const [ data, setData ] = useState({});
+    const [ visible, setVisible ] = useState(false);
     const { login, isLogged } = useAuth();
     const history = useHistory();
 
@@ -26,8 +27,9 @@ export function LogIn ({ showAlert }) {
         login(sendingData);
         console.log(window.sessionStorage.getItem('access-route'));
         const finalRedirectURL = window.sessionStorage.getItem('access-route') || '/admin/plants';
+        console.log(finalRedirectURL);
+        history.push(`${finalRedirectURL}`);
         window.sessionStorage.removeItem('access-route');
-        history.push(finalRedirectURL);
     }
 
     return (
@@ -46,9 +48,10 @@ export function LogIn ({ showAlert }) {
                             </div>
                             <div className="down">
                                 <label className="form-label block">Password</label>
-                                <input type="password" className="general-input" placeholder="****" onChange={ ev => {
+                                <input type={ visible ? 'text' : 'password' } className="general-input" placeholder="****" onChange={ ev => {
                                     setData({ ...data, password: ev.target.value });
-                                }} required />                                    
+                                }} required />
+                                <button className="btn btn-secondary-static" onClick={ _ => setVisible(!visible) }>Ver Contraseña</button>                                   
                             </div>
 
                             <div className="down flex center">
