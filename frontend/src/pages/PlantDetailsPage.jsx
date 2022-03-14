@@ -20,7 +20,7 @@ export default function PlantDetailsPage() {
             }
             setPlant(res.plant);
         })
-    },[ param ]);
+    },[  ]);
 
     const checkQRCode = (id) => {
         const url = `${ apiURL }qr.php?id=${id}&url=${ urlLoc.pathname }`;

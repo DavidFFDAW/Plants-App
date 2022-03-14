@@ -25,7 +25,7 @@ export function PlantEditionPage({ showAlert }) {
         }).catch(err => {
             showAlert(err.message);
         });
-    }, [ id, showAlert ]);
+    }, [ showAlert ]);
 
     if (isLoading) {
         return (

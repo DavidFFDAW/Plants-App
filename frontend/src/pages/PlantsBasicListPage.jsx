@@ -6,7 +6,7 @@ import useAuth from '../hooks/useAuth'
 export default function PlantBasicListPage() {
 
       const [plants, setPlants] = useState([]);
-      const { isLoggedIn } = useAuth();
+      const { isLogged } = useAuth();
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
       useEffect(() => { 
@@ -58,7 +58,7 @@ export default function PlantBasicListPage() {
                                           plants={ plants }
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
-                                          editButton={ isLoggedIn }
+                                          editButton={ isLogged }
                                     />
                               </div>
                         </div>
