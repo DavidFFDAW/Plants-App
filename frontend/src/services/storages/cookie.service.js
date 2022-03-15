@@ -1,9 +1,8 @@
 const getParsedCookies = _ => {
-        return document.cookie.split(';').reduce((acc,cookie) => {
+    return document.cookie.split(';').reduce((acc,cookie) => {
         const [key, value] = cookie.split('=');
-        return acc[key] = value;
-    },{});
-}
+        return { ...acc, [key]: value };
+},{});
 
 const save = (key,value) => {
     const d = new Date(); // today's date
