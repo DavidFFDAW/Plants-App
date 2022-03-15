@@ -1,5 +1,5 @@
 const getParsedCookies = _ => {
-    return document.cookies.split(';').map(cookie => {
+        return document.cookie.split(';').map(cookie => {
         const [key, value] = cookie.split('=');
         return { [key]: value };
     });
