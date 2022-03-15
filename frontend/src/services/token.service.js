@@ -6,7 +6,7 @@ const addToken = token => {
 }
 
 const getToken = _ => {
-    storage.get(tokenName)
+    return storage.get(tokenName)
 }
 
 const removeToken = _ => {
