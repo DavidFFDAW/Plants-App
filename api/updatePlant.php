@@ -49,7 +49,9 @@ $plant->setCreatedAt($createdAt);
 // $plant->setLastTimeWatered(null);
 
 if (!$plant->update()) {
-      json(500,'Error en la actualizacion de la planta',true);
+      json(500,'Error en la actualizacion de la planta',true, array(
+          'received_data' => $plant
+      ));
 }
 
 json(201,'Planta actualizada correctamente',false);

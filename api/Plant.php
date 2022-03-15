@@ -199,14 +199,19 @@ class Plant {
 
     public function __toString()
     {
-        return (string) "<br><strong>Plant: </strong>" . $this->name . "</br>" .
-               "<strong>Real Name: </strong>" . $this->real_name . "</br>" .
-               "<strong>Description: </strong>" . $this->description . "</br>" .
-               "<strong>Image: </strong>" . $this->image . "</br>" .
-               "<strong>Location: </strong>" . $this->location . "</br>" .
-               "<strong>Extra Location: </strong>" . $this->extra_location . "</br>" .
-               "<strong>Type: </strong>" . $this->type . "</br>" .
-               "<strong>Created At: </strong>" . $this->created_at . "</br>" .
-               "<strong>Last Time Watered: </strong>" . $this->last_time_watered . "</br>";
+        return array(
+            'id'                => $this->id,
+            'name'              => $this->name,
+            'real_name'         => $this->real_name,
+            'image'             => $this->image,
+            'description'       => $this->description,
+            'location'          => $this->location,
+            'extra_location'    => $this->extra_location,
+            'type'              => $this->type,
+            'quantity'          => $this->quantity,
+            'water_quantity'    => $this->water_quantity,
+            'created_at'        => $this->created_at,
+            'last_time_watered' => $this->last_time_watered,
+        );
     }
 }
