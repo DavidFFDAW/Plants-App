@@ -1,8 +1,9 @@
 const getParsedCookies = _ => {
-    return document.cookie.split(';').reduce((acc,cookie) => {
+    return document.cookie.split(';').reduce((acc, cookie) => {
         const [key, value] = cookie.split('=');
-        return { ...acc, [key]: value };
-},{});
+        return { ...acc, [key]: value };    
+    }, {});
+}
 
 const save = (key,value) => {
     const d = new Date(); // today's date
@@ -13,7 +14,6 @@ const save = (key,value) => {
 
 const get = (key) => {
     const cookies = getParsedCookies();
-    console.log('las cookies disponibles son: ', cookies);
     return cookies[key];
 }
 
@@ -21,7 +21,8 @@ const remove = (key) => {
     document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
 }
 
+const TokenService = {
+    save, get, remove,
+};
 
-export default {
-    save, get, remove
-}
+export default TokenService;
