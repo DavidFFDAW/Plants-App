@@ -20,3 +20,8 @@ export const get = (key) => {
 export const remove = (key) => {
     document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
 }
+
+
+export default {
+    save, get, remove
+}

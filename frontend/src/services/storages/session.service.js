@@ -10,3 +10,7 @@ export const get = (key) => {
 export const remove = (key) => {
     window.sessionStorage.removeItem(key);
 }
+
+export default {
+    save, get, remove
+}
