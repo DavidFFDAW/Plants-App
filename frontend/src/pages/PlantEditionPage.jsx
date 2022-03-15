@@ -41,7 +41,7 @@ export function PlantEditionPage({ showAlert }) {
                 showAlert(res.message);
             }
             showAlert(res.message);
-            // histoire.push('/');
+            histoire.push('/');
         });
     }
 

@@ -28,6 +28,20 @@ body::-webkit-scrollbar-track {
 }
 /* END SCROLL BAR SHIT */
 
+.plant-quantity {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 60px;
+    height: 65px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    z-index: 10;
+    color: #c5d7df;
+    opacity: 0.5;
+    transform: rotate(15deg);
+}
+
+
 .login-cc{
     max-width: 58%;
     height: 650px;
