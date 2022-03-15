@@ -14,7 +14,8 @@ const save = (key,value) => {
 
 const get = (key) => {
     const cookies = getParsedCookies();
-    return cookies[key] || null;
+    console.log('las cookies disponibles son: ', cookies);
+    return cookies[key];
 }
 
 const remove = (key) => {

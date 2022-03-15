@@ -6,6 +6,7 @@ const addToken = token => {
 }
 
 const getToken = _ => {
+    console.log(storage.get(tokenName));
     return storage.get(tokenName)
 }
 
