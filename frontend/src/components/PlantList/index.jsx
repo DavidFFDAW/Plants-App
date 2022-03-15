@@ -13,7 +13,7 @@ export default function PlantList({ plants, placeholdImg, waterPlant, editButton
                                 <h4 className="plant-card-info-item title" style={{ fontSize: '20px', textTransform: 'uppercase' }}>{plant.name}</h4>
                             </div>
                             { plant.watered_days_ago > 2 && <GiDrop className="water-drop" /> }
-                            { plant.quantity > 1 && <div className="plant-quantity">x{plant.quantity}</div> }
+                            { plant.quantity > 1 && <span className="plant-quantity">x<strong>{plant.quantity}</strong></span> }
                             <div className="plant-card-info" style={{ position: 'relative', padding: '5px 20px' }}>
                                 <h4 className="plant-card-info-item" style={{ margin: 0, marginTop: 15, marginBottom: 5, fontSize: '18px', textTransform: 'uppercase' }}>{plant.real_name}</h4>
                                 <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.location}</p>
