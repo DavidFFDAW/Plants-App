@@ -1,8 +1,8 @@
 const getParsedCookies = _ => {
-        return document.cookie.split(';').map(cookie => {
+        return document.cookie.split(';').reduce((acc,cookie) => {
         const [key, value] = cookie.split('=');
-        return { [key]: value };
-    });
+        return acc[key] = value;
+    },{});
 }
 
 const save = (key,value) => {
