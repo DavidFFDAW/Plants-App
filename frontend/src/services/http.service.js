@@ -1,4 +1,4 @@
-import TokenService from './token.service';
+import TokenService from './token.service.js';
 
 export default class HttpService {
     
@@ -11,6 +11,7 @@ export default class HttpService {
 
     static _makeFetchRequest(url,method,data,json){
         const token = TokenService.getToken();
+        console.log('el token es: ', token);
         const methodNeedsToken = (['POST','PUT','DELETE'].includes(method));
         const addToken = token && methodNeedsToken;
 

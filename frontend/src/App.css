@@ -702,7 +702,7 @@ svg.water-drop {
     z-index: 10;
     fill: #1a779c;
     /* background: #b9b9b983; */
-    opacity: 0.5;
+    opacity: 0.8;
 }
 .btn.btn-secondary-static.disabled {
     opacity: 0.5;
