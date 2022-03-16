@@ -27,6 +27,11 @@ export default function PlantBasicListPage() {
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
+
+      const callback = response => {
+            setOffset(response);
+            setPlants(response.plants);
+      }
       
 
       const waterPlant = (id) => { 
@@ -71,7 +76,7 @@ export default function PlantBasicListPage() {
                                           limit={ 10 }
                                           list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
-                                          callback={ setPlants }
+                                          callback={ callback }
                                     />
                               </div>
                         </div>

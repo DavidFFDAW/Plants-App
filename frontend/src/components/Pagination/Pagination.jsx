@@ -9,6 +9,7 @@ export function PaginationComponent({ limit, list, callback }) {
         getPlantsCustomURL(list.prev).then(pl => {
             console.log('La respuesta previa: ',pl);
             callback(pl.plants);
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         });
     }
     const nextPage = () => {
@@ -17,6 +18,7 @@ export function PaginationComponent({ limit, list, callback }) {
         getPlantsCustomURL(list.next).then(pl => {
             console.log('La respuesta siguiente: ',pl);
             callback(pl.plants);
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         });
     }
 
