@@ -122,6 +122,16 @@ class Plant {
         return $this;
     }
 
+
+    private static function daysSinceLastWatering($wa, DateTime $now) {
+        if (!isset($wa) || !$wa) return false;
+
+        $lastTimeWatered = new DateTime($wa);
+        $diff = $now->diff($lastTimeWatered);
+        
+        return $diff->d;
+    }
+
     
     // ↓_DATABASE METHODS_↓
     public static function find(int $id, $model = false)  {
@@ -131,25 +141,52 @@ class Plant {
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
+
         $stmt->close();
         return $model ? new Plant($result->fetch_assoc()) : $result->fetch_assoc();
     }
 
-    public static function findAll($json = false) {
+    public static function findAll($json = false, $limit = false, $offset = false) {
         $db = DBConnection::getConnection();
-        $sql = "SELECT * FROM plants";
+        $simpleSQL = "SELECT * FROM plants";
+        $pagedSQL = "SELECT * FROM plants LIMIT $limit OFFSET $offset";
+        $sql = ($limit) ? $pagedSQL : $simpleSQL;
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
+        $now = new DateTime('NOW');
         $plants = [];
         
         while ($row = $result->fetch_assoc()) {
+            $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
+            if ($limit) $row['next'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .($offset + $limit);
             $plants[] = (array) $row;
         }        
 
         $stmt->close();
         return $json ? json_encode($plants) : $plants;
     }
+
+    public static function findAllPaged($json = false, $limit = false, $offset = false) {
+        $db = DBConnection::getConnection();
+        $sql = "SELECT * FROM plants LIMIT $limit OFFSET $offset";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $now = new DateTime('NOW');
+        $plants = [];
+        
+        while ($row = $result->fetch_assoc()) {
+            $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
+            $plants[][] = (array) $row;    
+        }     
+
+        if ($limit) $plants['next'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .($offset + $limit);
+        if ($offset > 0) $plants['prev'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .(($offset - $limit) > 0 ? ($offset - $limit) : 0);
+
+        $stmt->close();
+        return $json ? json_encode($plants) : $plants;
+    }   
 
     public function create(): bool {
         $db = DBConnection::getConnection();

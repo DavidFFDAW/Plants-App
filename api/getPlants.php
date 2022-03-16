@@ -11,19 +11,12 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric((int) $_GET['id'])) 
     exit();
 }
 
-function daysAgoWatered($lastTimeWatered) {
-    if (!isset($lastTimeWatered) || $lastTimeWatered == null) return false;
-    
-    $now = new DateTime('NOW');
-    $lastWatered = new DateTime($lastTimeWatered);
+$plants = [];
 
-    return $now->diff($lastWatered)->d;
-}
-
-$plants = Plant::findAll();
-
-foreach ($plants as &$item) {
-    $item['watered_days_ago'] = daysAgoWatered($item['last_time_watered']);
+if (isset($_GET['limit']) && isset($_GET['offset'])) {
+    $plants = Plant::findAllPaged(false, (int) $_GET['limit'], (int) $_GET['offset']);
+} else {
+    $plants = Plant::findAll();
 }
 
 if (!isset($plants) || empty($plants)) {

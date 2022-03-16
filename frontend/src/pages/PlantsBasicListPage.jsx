@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
-import useAuth from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth';
+import { apiURL } from '../constants/config';
+import { PaginationComponent } from "../components/Pagination/Pagination";
 
 export default function PlantBasicListPage() {
 
       const [plants, setPlants] = useState([]);
+      const [offset, setOffset] = useState(0);
       const { isLogged } = useAuth();
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
+      
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php?`)
+            fetch(`${ apiURL }getPlants.php?limit=10&offset=${offset}`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
@@ -22,6 +26,7 @@ export default function PlantBasicListPage() {
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
+      
 
       const waterPlant = (id) => { 
             fetch(`${apiURL}waterPlant.php?id=${id}`, {
@@ -59,6 +64,15 @@ export default function PlantBasicListPage() {
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
                                           editButton={ isLogged }
+                                    />
+
+                                    <PaginationComponent
+                                          limit={ 10 }
+                                          list={ plants }
+                                          offset={ offset }
+                                          setOffset={ setOffset }
+                                          baseUrl={ `${apiURL}getPlants.php` }
+                                          callback={ setPlants }
                                     />
                               </div>
                         </div>
