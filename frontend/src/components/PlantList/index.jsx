@@ -28,12 +28,12 @@ export default function PlantList({ plants, placeholdImg, waterPlant, editButton
                     </div>                                                
                 )) } 
             </div>
-            <div className="flex between">
+            { /* <div className="flex between">
                 <div></div>
                 <div>
                     <button onClick={ _ => window.scrollTo({ top: 0, behavior: 'smooth' }) } className="btn btn-principal-static">Volver arriba</button>
                 </div>
-            </div>
+            </div>*/ }
         </>
     );
 }
