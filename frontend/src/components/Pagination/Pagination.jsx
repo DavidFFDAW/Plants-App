@@ -4,13 +4,17 @@ export function PaginationComponent({ limit, list, callback }) {
 
     console.log(list);
     const previousPage = () => {
+        console.log('Siguiente URL: ', list.prev);
+
         getPlantsCustomURL(list.prev).then(pl => {
             console.log('La respuesta previa: ',pl);
             callback(pl.plants);
         });
     }
     const nextPage = () => {
-        getPlantsCustomURL(list.prev).then(pl => {
+        console.log('Siguiente URL: ', list.next);
+
+        getPlantsCustomURL(list.next).then(pl => {
             console.log('La respuesta siguiente: ',pl);
             callback(pl.plants);
         });
