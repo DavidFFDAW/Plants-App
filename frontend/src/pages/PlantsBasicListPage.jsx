@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
 import useAuth from '../hooks/useAuth';
-import { apiURL } from '../constants/config';
 import { PaginationComponent } from "../components/Pagination/Pagination";
 
 export default function PlantBasicListPage() {
