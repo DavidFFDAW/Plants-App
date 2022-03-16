@@ -178,11 +178,11 @@ class Plant {
         
         while ($row = $result->fetch_assoc()) {
             $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
-            $plants[][] = (array) $row;    
+            $plants[] = (array) $row;    
         }     
 
-        if ($limit) $plants['next'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .($offset + $limit);
-        if ($offset > 0) $plants['prev'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .(($offset - $limit) > 0 ? ($offset - $limit) : 0);
+        if ($limit) $plants[]['next'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .($offset + $limit);
+        if ($offset > 0) $plants[]['prev'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .(($offset - $limit) > 0 ? ($offset - $limit) : 0);
 
         $stmt->close();
         return $json ? json_encode($plants) : $plants;

@@ -2,6 +2,7 @@ import { getPlantsCustomURL } from '../../services/plants.service.js';
 
 export function PaginationComponent({ limit, list, baseUrl, offset, setOffset, callback }) {
 
+    console.log(list);
     const previousPage = () => {
         getPlantsCustomURL(list.prev).then(pl => callback(pl));
     }
