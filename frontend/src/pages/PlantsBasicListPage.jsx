@@ -21,7 +21,7 @@ export default function PlantBasicListPage() {
                         return 0;
                   }
                   
-                  setPlants(res.plants);
+                  setPlants(res);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
@@ -59,7 +59,7 @@ export default function PlantBasicListPage() {
                                     </div>
 
                                     <PlantList
-                                          plants={ plants }
+                                          plants={ plants.plants }
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
                                           editButton={ isLogged }

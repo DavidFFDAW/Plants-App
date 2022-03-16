@@ -15,6 +15,7 @@ $plants = [];
 
 if (isset($_GET['limit']) && isset($_GET['offset'])) {
     $plants = Plant::findAllPaged(false, (int) $_GET['limit'], (int) $_GET['offset']);
+    json(200, 'Se recibieron las plantas de forma correcta', false, $plants);
 } else {
     $plants = Plant::findAll();
 }
