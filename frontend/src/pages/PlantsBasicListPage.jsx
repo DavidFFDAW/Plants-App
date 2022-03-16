@@ -7,7 +7,7 @@ import { PaginationComponent } from "../components/Pagination/Pagination";
 export default function PlantBasicListPage() {
 
       const [plants, setPlants] = useState([]);
-      const [offset, setOffset] = useState(0);
+      const [offset, setOffset] = useState({});
       const { isLogged } = useAuth();
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
@@ -20,8 +20,10 @@ export default function PlantBasicListPage() {
                         alert(res.message);
                         return 0;
                   }
+                  console.log('La respuesta: ', res);
                   
-                  setPlants(res);
+                  setPlants(res.plants);
+                  setOffset(res);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
@@ -59,7 +61,7 @@ export default function PlantBasicListPage() {
                                     </div>
 
                                     <PlantList
-                                          plants={ plants.plants }
+                                          plants={ plants }
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
                                           editButton={ isLogged }
@@ -67,9 +69,7 @@ export default function PlantBasicListPage() {
 
                                     <PaginationComponent
                                           limit={ 10 }
-                                          list={ plants }
-                                          offset={ offset }
-                                          setOffset={ setOffset }
+                                          list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ setPlants }
                                     />
