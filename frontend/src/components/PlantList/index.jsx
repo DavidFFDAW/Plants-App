@@ -1,6 +1,6 @@
 import { PlantCard } from "../PlantCard";
 
-export default function PlantList({ plants, placeholdImg, waterPlant, editButton }) {
+export default function PlantList({ plants, placeholdImg, waterPlant, editButton, toTopScroll = false }) {
 
     return (
         <>
@@ -9,12 +9,11 @@ export default function PlantList({ plants, placeholdImg, waterPlant, editButton
                     <PlantCard plant={ plant } key={ plant.id } waterPlant={ waterPlant } editButton={ editButton } placeholdImg={ placeholdImg } />                                     
                 )) } 
             </div>
-            { /* <div className="flex between">
-                <div></div>
+            { toTopScroll && <div className="down flex center">
                 <div>
                     <button onClick={ _ => window.scrollTo({ top: 0, behavior: 'smooth' }) } className="btn btn-principal-static">Volver arriba</button>
                 </div>
-            </div>*/ }
+            </div> }
         </>
     );
 }

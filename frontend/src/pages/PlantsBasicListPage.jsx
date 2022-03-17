@@ -79,6 +79,7 @@ export default function PlantBasicListPage() {
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
                                           editButton={ isLogged }
+                                          toTopScroll={ true }
                                     />
 
                                     { /* <PaginationComponent
