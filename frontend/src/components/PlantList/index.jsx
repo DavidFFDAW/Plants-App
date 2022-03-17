@@ -6,7 +6,7 @@ export default function PlantList({ plants, placeholdImg, waterPlant, editButton
         <>
             <div className="down-little grid-images">
                 { plants.map((plant) => (
-                    <PlantCard plant={ plant } key={ plant.id } waterPlant={ waterPlant } editButton={ editButton } />                                     
+                    <PlantCard plant={ plant } key={ plant.id } waterPlant={ waterPlant } editButton={ editButton } placeholdImg={ placeholdImg } />                                     
                 )) } 
             </div>
             { /* <div className="flex between">
