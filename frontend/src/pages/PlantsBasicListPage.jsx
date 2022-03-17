@@ -73,7 +73,7 @@ export default function PlantBasicListPage() {
                                     />
 
                                     <PaginationComponent
-                                          limit={ 10 }
+                                          limit={ 6 }
                                           list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
