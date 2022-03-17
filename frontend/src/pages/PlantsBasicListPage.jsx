@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
 import useAuth from '../hooks/useAuth';
+import { LoadingComponent } from "../components/LoadingComponent";
 import { PaginationComponent } from "../components/Pagination/Pagination";
 
 export default function PlantBasicListPage() {
 
       const [plants, setPlants] = useState([]);
       const [offset, setOffset] = useState({});
+      const [loading, setLoading] = useState(true);
       const { isLogged } = useAuth();
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
@@ -24,6 +26,7 @@ export default function PlantBasicListPage() {
                   
                   setPlants(res.plants);
                   setOffset(res);
+                  setLoading(false);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
@@ -31,8 +34,7 @@ export default function PlantBasicListPage() {
       const callback = response => {
             setOffset(response);
             setPlants(response.plants);
-      }
-      
+      }     
 
       const waterPlant = (id) => { 
             fetch(`${apiURL}waterPlant.php?id=${id}`, {
@@ -49,6 +51,12 @@ export default function PlantBasicListPage() {
                         const newPlants = plants.map(plant => plant.id !== id ? plant : { ...plant, last_time_watered: res.watered });
                         setPlants(newPlants);
                   });
+      }
+
+      if (loading) {
+            return (
+                  <LoadingComponent type='spokes' />
+            );
       }
 
     
