@@ -16,7 +16,7 @@ export default function PlantBasicListPage() {
 
       
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php?limit=${limit}&offset=0`)
+            fetch(`${ apiURL }getPlants.php`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
@@ -81,12 +81,12 @@ export default function PlantBasicListPage() {
                                           editButton={ isLogged }
                                     />
 
-                                    <PaginationComponent
+                                    { /* <PaginationComponent
                                           limit={ limit }
                                           list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
-                                    />
+                                    /> */ }
                               </div>
                         </div>
                   </div>

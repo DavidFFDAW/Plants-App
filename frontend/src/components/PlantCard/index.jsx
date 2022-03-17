@@ -1,13 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
 
 export function PlantCard ({ plant, placeholdImg, waterPlant, editButton }) {
+
+    const h = useHistory();
+
+    const redirectToPlant = id => {
+        h.push(`/plant/details/${ plant.id }`);
+    }
 
     return (
         <div className="box-no-padding-total plant-card" key={plant.id} style={{ padding: '30px 0 !important' }}>
                 <div className="plant-card-image">
                     <img src={plant.image ? plant.image : placeholdImg} alt="" />
-                    <Link className="plant-card-info-item title" style={{ fontSize: '20px', textTransform: 'uppercase' }}>{plant.name}</Link>
+                    <h4 className="plant-card-info-item title" style={{ fontSize: '20px', textTransform: 'uppercase' }} onClick={ _ => redirectToPlant(plant.id) }>{plant.name}</h4>
                 </div>
                 { plant.watered_days_ago > 2 && <GiDrop className="water-drop" /> }
                 { plant.quantity > 1 && <span className="plant-quantity">x<strong>{plant.quantity}</strong></span> }
