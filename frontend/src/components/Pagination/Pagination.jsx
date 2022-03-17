@@ -17,7 +17,7 @@ export function PaginationComponent({ limit, list, callback }) {
     }
     const nextPage = () => {
         console.log('Siguiente URL: ', list.next);
-        if (+list.next.replace('http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=10&offset=','') > off.offset) {
+        if (+list.next.replace(`http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=${ limit }&offset=`,'') > off.offset) {
             setOff({ show: false });
         }
 
