@@ -7,6 +7,7 @@ import { PaginationComponent } from "../components/Pagination/Pagination";
 
 export default function PlantBasicListPage() {
 
+      const limit = 6;
       const [plants, setPlants] = useState([]);
       const [offset, setOffset] = useState({});
       const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ export default function PlantBasicListPage() {
 
       
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php?limit=10&offset=${offset}`)
+            fetch(`${ apiURL }getPlants.php?limit=${limit}&offset=0`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
@@ -81,7 +82,7 @@ export default function PlantBasicListPage() {
                                     />
 
                                     <PaginationComponent
-                                          limit={ 6 }
+                                          limit={ limit }
                                           list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
