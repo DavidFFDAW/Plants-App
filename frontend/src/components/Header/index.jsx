@@ -34,7 +34,7 @@ export default function Header() {
             <div>
                 { getButtonOrName() }
             </div>
-            <div style={{ margin: 0, color: '#FFF' }}>v1.1.3</div>
+            <div style={{ margin: 0, color: '#FFF' }}>v1.1.4</div>
             <div>
                 <Hamburger toggled={ isMenuOpened } color={'#FFF'} toggle={ setOpenMenu } size={30} label="Show Menu" hideOutline={true} rounded />
             </div>
