@@ -106,7 +106,7 @@ body.guest{
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 50px 20px 50px 20px;
+    border-radius: 50px 20px 50px 20px !important;
 }
 .plant-card-image {
     position: absolute;
