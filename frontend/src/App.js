@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { UserContextProvider } from './context/UserContext';
 
 import Header from './components/Header';
