@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { apiURL } from "../constants/config";
 import ImageUpload from "../components/ImageUpload";
+import TokenService from '../services/token.service';
 
 export default function PlantCreationPage({ showAlert }) {
     
@@ -33,7 +34,7 @@ export default function PlantCreationPage({ showAlert }) {
             method: 'POST',
             body: frm,
             headers: {
-                'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+                'Authorization': `Bearer ${ TokenService.getToken() }`
             }
         })
         .then(res => res.json())

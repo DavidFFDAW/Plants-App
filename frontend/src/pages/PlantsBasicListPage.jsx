@@ -1,27 +1,41 @@
 import { useState, useEffect } from "react";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
-import useAuth from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth';
+import { LoadingComponent } from "../components/LoadingComponent";
+import { PaginationComponent } from "../components/Pagination/Pagination";
 
 export default function PlantBasicListPage() {
 
+      const limit = 6;
       const [plants, setPlants] = useState([]);
+      const [offset, setOffset] = useState({});
+      const [loading, setLoading] = useState(true);
       const { isLogged } = useAuth();
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
+      
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php?`)
+            fetch(`${ apiURL }getPlants.php`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
                         alert(res.message);
                         return 0;
                   }
+                  console.log('La respuesta: ', res);
                   
                   setPlants(res.plants);
+                  setOffset(res);
+                  setLoading(false);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
       }, []);
+
+      const callback = response => {
+            setOffset(response);
+            setPlants(response.plants);
+      }     
 
       const waterPlant = (id) => { 
             fetch(`${apiURL}waterPlant.php?id=${id}`, {
@@ -38,6 +52,12 @@ export default function PlantBasicListPage() {
                         const newPlants = plants.map(plant => plant.id !== id ? plant : { ...plant, last_time_watered: res.watered });
                         setPlants(newPlants);
                   });
+      }
+
+      if (loading) {
+            return (
+                  <LoadingComponent type='spokes' />
+            );
       }
 
     
@@ -59,7 +79,15 @@ export default function PlantBasicListPage() {
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
                                           editButton={ isLogged }
+                                          toTopScroll={ true }
                                     />
+
+                                    { /* <PaginationComponent
+                                          limit={ limit }
+                                          list={ offset }
+                                          baseUrl={ `${apiURL}getPlants.php` }
+                                          callback={ callback }
+                                    /> */ }
                               </div>
                         </div>
                   </div>

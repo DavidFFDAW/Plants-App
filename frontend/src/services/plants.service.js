@@ -34,6 +34,10 @@ export const getAllPlants = () => {
     return HttpService.get(`${apiURL}getPlants.php`)
 }
 
+export const getPlantsCustomURL = url => {
+    return HttpService.get(url);
+}
+
 export const getPlantByID = (id) => {
     return HttpService.get(`${apiURL}getPlants.php?id=${id}`);
 }

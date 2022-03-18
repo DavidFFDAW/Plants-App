@@ -5,6 +5,11 @@ import { BiLogOut } from 'react-icons/bi';
 
 
 export default function HeadMenu ({ isOpen, closeMenu, logged, handleLogout }) {
+
+    const logoutClickEvent = ev => {
+        ev.preventDefault();
+        handleLogout();
+    }
     
     return (
         <>
@@ -14,7 +19,7 @@ export default function HeadMenu ({ isOpen, closeMenu, logged, handleLogout }) {
                     <Link to={ '/plant/gallery' } className="link" onClick={closeMenu}><FaImages/> Galería</Link>
                     <Link to={ '/plant/create/new' } className="link" onClick={closeMenu}><FaPlusSquare/> Crear Planta</Link>
                     <Link to={ '/admin/plants' } className="link" onClick={closeMenu}><RiDashboard2Line/> Admin</Link>
-                    { logged && <button className="link" onClick={handleLogout}><BiLogOut/> Logout</button> }
+                    { logged && <Link className="link" to={'#'} onClick={ logoutClickEvent }><BiLogOut/> Logout</Link> }
             </div> }
         </>
     );

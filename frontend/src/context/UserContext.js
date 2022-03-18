@@ -1,11 +1,12 @@
 import React,{ useState } from 'react';
+import TokenService from '../services/token.service';
 
 const Context = React.createContext({});
 
 export function UserContextProvider({ children }){
 
     const [token, setToken] = useState(
-        () => window.sessionStorage.getItem('token')
+        () => TokenService.getToken()
     );
 
     return (<Context.Provider value={{ 

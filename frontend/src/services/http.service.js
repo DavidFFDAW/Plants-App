@@ -1,3 +1,5 @@
+import TokenService from './token.service.js';
+
 export default class HttpService {
     
     // constructor(){}
@@ -8,7 +10,8 @@ export default class HttpService {
     static delete = endpoint => this._makeFetchRequest(endpoint,'DELETE');
 
     static _makeFetchRequest(url,method,data,json){
-        const token = window.sessionStorage.getItem('token');
+        const token = TokenService.getToken();
+        console.log('el token es: ', token);
         const methodNeedsToken = (['POST','PUT','DELETE'].includes(method));
         const addToken = token && methodNeedsToken;
 
