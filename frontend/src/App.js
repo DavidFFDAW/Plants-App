@@ -28,7 +28,7 @@ function App() {
     setAlertInfo(defaultOptions);
   }
 
-  const maintenance = true;
+  const maintenance = false;
 
   return (
     <UserContextProvider>
