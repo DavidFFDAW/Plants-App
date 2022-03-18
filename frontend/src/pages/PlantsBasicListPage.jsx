@@ -82,12 +82,12 @@ export default function PlantBasicListPage() {
                                           toTopScroll={ true }
                                     />
 
-                                    { /* <PaginationComponent
+                                    <PaginationComponent
                                           limit={ limit }
                                           list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
-                                    /> */ }
+                                    />
                               </div>
                         </div>
                   </div>
