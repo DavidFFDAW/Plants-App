@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { apiURL } from "../constants/config";
 import PlantList from "../components/PlantList";
 import useAuth from '../hooks/useAuth';
@@ -8,6 +9,9 @@ import { PaginationComponent } from "../components/Pagination/Pagination";
 export default function PlantBasicListPage() {
 
       const limit = 6;
+      const { page } = useParams();
+      const hist = useHistory();
+      const offsetPage = page ? limit * page : 0;
       const [plants, setPlants] = useState([]);
       const [offset, setOffset] = useState({});
       const [loading, setLoading] = useState(true);
@@ -16,7 +20,7 @@ export default function PlantBasicListPage() {
 
       
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php?limit=${ limit }&offset=0`)
+            fetch(`${ apiURL }getPlants.php?limit=${ limit }&offset=${ offsetPage }`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
@@ -30,7 +34,7 @@ export default function PlantBasicListPage() {
                   setLoading(false);
                   // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
-      }, []);
+      }, [ offsetPage ]);
 
       const callback = response => {
             setOffset(response);
@@ -87,6 +91,8 @@ export default function PlantBasicListPage() {
                                           list={ offset }
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
+                                          redirector={ hist }
+                                          page={ offsetPage }
                                     />
                               </div>
                         </div>
