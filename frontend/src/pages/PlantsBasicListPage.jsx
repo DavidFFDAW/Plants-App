@@ -16,7 +16,7 @@ export default function PlantBasicListPage() {
 
       
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php`)
+            fetch(`${ apiURL }getPlants.php?limit=${ limit }&offset=0`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
