@@ -9,9 +9,7 @@ import { PaginationComponent } from "../components/Pagination/Pagination";
 export default function PlantBasicListPage() {
 
       const limit = 6;
-      const parameters = useParams();
-      const { page } = parameters;
-      console.log(parameters);
+      const { page } = useParams();
       const hist = useHistory();
       const offsetPage = page ? limit * (page - 1) : 0;
       const [plants, setPlants] = useState([]);
@@ -94,7 +92,7 @@ export default function PlantBasicListPage() {
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
                                           redirector={ hist }
-                                          page={ offsetPage }
+                                          page={ page }
                                     />
                               </div>
                         </div>
