@@ -43,6 +43,10 @@ function App() {
           />
           <Switch>
             
+            <Route path="/" exact>
+              <PlantsBasicListing showAlert={showAlert} />
+            </Route>
+            
             <Route path="/:page" exact>
               <PlantsBasicListing showAlert={showAlert} />
             </Route>
