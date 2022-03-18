@@ -4,9 +4,10 @@ import { getPlantsCustomURL } from '../../services/plants.service.js';
 export function PaginationComponent({ limit, list, callback, redirector, page }) {
 
     const [ off, setOff ] = useState({ show: true, offset: list.plants.length });
+    const pageRoute = '/page/';
 
     const previousPage = () => {
-        const nextPage = `/${ page + 1}`;
+        const nextPage = `${ pageRoute }${ page - 1}`;
         redirector.push(nextPage);
         
     }
@@ -14,7 +15,7 @@ export function PaginationComponent({ limit, list, callback, redirector, page })
         if (+list.next.replace(`http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=${ limit }&offset=`,'') > off.offset * off.currentPage) {
             setOff({ show: false });
         }
-        redirector.push(`/${ +page + 1}`);
+        redirector.push(`${ pageRoute }${ +page + 1}`);
     }
     
 
