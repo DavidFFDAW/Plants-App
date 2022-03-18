@@ -9,8 +9,8 @@ import { PaginationComponent } from "../components/Pagination/Pagination";
 export default function PlantBasicListPage() {
 
       const limit = 6;
-      const { page } = useParams();
-      console.log(page);
+      const parameters = useParams();
+      console.log(parameters);
       const hist = useHistory();
       const offsetPage = page ? limit * (page - 1) : 0;
       const [plants, setPlants] = useState([]);
