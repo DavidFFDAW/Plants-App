@@ -13,6 +13,7 @@ import PlantsGallery from './pages/PlantGallery';
 import PlantDetailsPage from './pages/PlantDetailsPage';
 import PlantsBasicListing from './pages/PlantsBasicListPage';
 import PlantsAdminList from './pages/PlantsAdminList';
+import MaintenancePage from './pages/MaintenancePage';
 
 import './App.css';
 
@@ -27,6 +28,8 @@ function App() {
     setAlertInfo(defaultOptions);
   }
 
+  const maintenance = true;
+
   return (
     <UserContextProvider>
       <Router>
@@ -39,8 +42,7 @@ function App() {
             acceptButton={ alertInfo.showButton || true}
           />
           <Switch>
-            <Redirect from="/" to="/:page"/>
-            <Route path="/:page" exact>
+            <Route path="/" exact>
               <PlantsBasicListing showAlert={showAlert} />
             </Route>
 
@@ -64,6 +66,10 @@ function App() {
               <PlantDetailsPage showAlert={showAlert} />
             </Route>
 
+            <Route path="/maintenance" exact>
+              <MaintenancePage />
+            </Route>
+
             <PrivateRoute path="/plant/create/new" exact>
               <PlantCreationPage showAlert={showAlert} />
             </PrivateRoute>
@@ -76,6 +82,7 @@ function App() {
               <PlantEditionPage showAlert={showAlert} />  
             </PrivateRoute>
           </Switch>
+          { maintenance && <Redirect from="*" to="/maintenance"/> }
       </Router>
     </UserContextProvider>
   );
