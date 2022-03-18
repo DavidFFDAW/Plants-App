@@ -42,8 +42,8 @@ function App() {
             acceptButton={ alertInfo.showButton || true}
           />
           <Switch>
-            <Redirect from="/" to="/plants/list/page/1"/>
-            <Route path="/plants/list/page/:page" exact>
+            
+            <Route path="/:page" exact>
               <PlantsBasicListing showAlert={showAlert} />
             </Route>
 
