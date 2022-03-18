@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { apiURL } from '../constants/config'
 import { formatDate } from '../services/date.services';
 import { deletePlant } from '../services/plants.service';
+import { BiSearchAlt2 } from 'react-icons/bi';
 
 export default function PlantAdminList ({ showAlert }) {
-    const [plants, setPlants] = useState([]);    
+    const [plants, setPlants] = useState([]); 
+    const [originalPlants, setOriginalPlants] = useState([]); 
 
     useEffect(_ => {
         fetch(`${ apiURL }getPlants.php`)
@@ -17,6 +19,7 @@ export default function PlantAdminList ({ showAlert }) {
                     return 0;
               }
               setPlants(res.plants);
+              setOriginalPlants(res.plants);
         });
     }, []);
 
@@ -29,10 +32,23 @@ export default function PlantAdminList ({ showAlert }) {
         })
     }
 
+    const searchPlant = (ev) => {
+        const search = ev.target.value.toLowerCase();
+        setPlants(originalPlants.filter(i => i.name.toLowerCase().includes(search)));
+    }
+
     return (
         <>
             <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
-                <Link to={'/plant/create/new'} className="btn btn-principal">Crear Nueva Planta</Link>
+                <div className='down flex between'>
+                    <div>
+                        <Link to={'/plant/create/new'} className="btn btn-principal">Crear Nueva Planta</Link>
+                    </div>
+                    <div className='flex center'>
+                        <input type="text" className='general-input' onInput={ searchPlant }/>
+                        <span className='icon-search-input'><BiSearchAlt2 className=''/></span>
+                    </div>
+                </div>
                 <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
                         <p style={{ width: '50%', color: '#FFF', fontWeight: 700 }}>NOMBRE</p>
                         <p style={{ width: '55%', color: '#FFF', fontWeight: 700 }}>LOCALIZACION</p>

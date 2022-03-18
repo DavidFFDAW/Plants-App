@@ -44,3 +44,12 @@
             json(403,'El token no es correcto',true);
         }
     }
+
+    function debugInsomnia ($deb) {
+        http_response_code(200);
+        die(json_encode($deb));
+    }
+
+    function existsNotEmpty ($field, $dfValue = '') {
+        return (isset($field) && !empty($field)) ? $field : $dfValue;
+    }

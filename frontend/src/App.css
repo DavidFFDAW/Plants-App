@@ -44,6 +44,17 @@ body{
 body.guest{
     background: #eee;    
 }
+.icon-search-input{
+    border: none;
+    background: none;
+    font-size: 1.5em;
+    color: #aaa;
+    fill: #468d4f;
+    padding: 0 20px;
+    margin: 0;
+    background: #eee;
+    outline: none;
+}
 .alert {
     position: fixed;
     top: 5px;

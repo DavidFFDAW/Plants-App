@@ -34,40 +34,40 @@ class Plant {
     // GETTERS
 
     public function getId() {
-        return $this->id;
+        return (int) $this->id;
     }
     public function getName() {
-        return $this->name;
+        return ''.$this->name;
     }
     public function getRealName() {
-        return $this->real_name;
+        return ''.$this->real_name;
     }
     public function getDescription() {
-        return $this->description;
+        return ''.$this->description;
     }
     public function getImage() {
-        return $this->image;
+        return ''.$this->image;
     }
     public function getLocation() {
-        return $this->location;
+        return ''.$this->location;
     }
     public function getExtraLocation() {
-        return $this->extra_location;
+        return ''.$this->extra_location;
     }
     public function getType() {
-        return $this->type;
+        return ''.$this->type;
     }
     public function getQuantity() {
-        return $this->quantity;
+        return (int) $this->quantity;
     }
     public function getWaterQuantity() {
-        return $this->water_quantity;
+        return (int) $this->water_quantity;
     }
     public function getCreatedAt() {
-        return $this->created_at;
+        return ''.$this->created_at;
     }
     public function getLastTimeWatered() {
-        return $this->last_time_watered;
+        return ''.$this->last_time_watered;
     }
 
 
@@ -122,6 +122,16 @@ class Plant {
         return $this;
     }
 
+
+    private static function daysSinceLastWatering($wa, DateTime $now) {
+        if (!isset($wa) || !$wa) return false;
+
+        $lastTimeWatered = new DateTime($wa);
+        $diff = $now->diff($lastTimeWatered);
+        
+        return $diff->d;
+    }
+
     
     // ↓_DATABASE METHODS_↓
     public static function find(int $id, $model = false)  {
@@ -131,25 +141,52 @@ class Plant {
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
+
         $stmt->close();
         return $model ? new Plant($result->fetch_assoc()) : $result->fetch_assoc();
     }
 
-    public static function findAll($json = false) {
+    public static function findAll($json = false, $limit = false, $offset = false) {
         $db = DBConnection::getConnection();
-        $sql = "SELECT * FROM plants";
+        $simpleSQL = "SELECT * FROM plants";
+        $pagedSQL = "SELECT * FROM plants LIMIT $limit OFFSET $offset";
+        $sql = ($limit) ? $pagedSQL : $simpleSQL;
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
+        $now = new DateTime('NOW');
         $plants = [];
         
         while ($row = $result->fetch_assoc()) {
+            $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
+            if ($limit) $row['next'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .($offset + $limit);
             $plants[] = (array) $row;
         }        
 
         $stmt->close();
         return $json ? json_encode($plants) : $plants;
     }
+
+    public static function findAllPaged($json = false, $limit = false, $offset = false) {
+        $db = DBConnection::getConnection();
+        $sql = "SELECT * FROM plants LIMIT $limit OFFSET $offset";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $now = new DateTime('NOW');
+        $plants = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
+            $plants[] = (array) $row;  
+        }     
+
+        if ($limit) $resultarray['next'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .($offset + $limit);
+        if ($offset > 0) $resultarray['prev'] = "http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=$limit&offset=" .(($offset - $limit) > 0 ? ($offset - $limit) : 0);
+        $resultarray['plants'] = $plants;
+        $stmt->close();
+        return $json ? json_encode($resultarray) : $resultarray;
+    }   
 
     public function create(): bool {
         $db = DBConnection::getConnection();
@@ -165,11 +202,11 @@ class Plant {
 
     public function update(): bool {
         $db = DBConnection::getConnection();
-        $sql = "UPDATE plants SET name = ?, real_name = ?, image = ?, description = ?, location = ?, extra_location = ?, type = ?, created_at = ?, last_time_watered = ?, quantity = ? WHERE id = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param('sssssssssii', $this->name, $this->real_name, $this->image, $this->description, $this->location, $this->extra_location, $this->type, $this->created_at, $this->last_time_watered, $this->quantity, $this->id);
-        $updated = $stmt->execute();
-        $stmt->close();
+
+        $assocArray = $this->toArray(false);
+        $updateString = $this->updateArray($assocArray);
+        $sql = "UPDATE plants SET $updateString WHERE id = " . $this->id;
+        $updated = $db->query($sql);
 
         return $updated;
     }
@@ -197,16 +234,42 @@ class Plant {
     }
 
 
-    public function __toString()
+    private function updateArray (array $array) {
+        $returned = array();
+        $integers = array('id', 'quantity', 'water_quantity');
+
+        foreach ($array as $key => $value) {
+            if (in_array($key, $integers)) {
+                $returned[] = "`$key` = $value";
+            } else {
+                $returned[] = $value ? "`$key` = '$value'" : "`$key` = NULL";
+            }
+        }
+        
+        return implode(', ', $returned);
+    }
+
+
+    public function toArray(bool $withID = true)
     {
-        return (string) "<br><strong>Plant: </strong>" . $this->name . "</br>" .
-               "<strong>Real Name: </strong>" . $this->real_name . "</br>" .
-               "<strong>Description: </strong>" . $this->description . "</br>" .
-               "<strong>Image: </strong>" . $this->image . "</br>" .
-               "<strong>Location: </strong>" . $this->location . "</br>" .
-               "<strong>Extra Location: </strong>" . $this->extra_location . "</br>" .
-               "<strong>Type: </strong>" . $this->type . "</br>" .
-               "<strong>Created At: </strong>" . $this->created_at . "</br>" .
-               "<strong>Last Time Watered: </strong>" . $this->last_time_watered . "</br>";
+        $arr = array(
+            'name'              => $this->name, // s
+            'real_name'         => $this->real_name, // s
+            'image'             => $this->image, // s
+            'description'       => $this->description, // s
+            'location'          => $this->location, // s
+            'extra_location'    => $this->extra_location, // s
+            'type'              => $this->type, // s
+            'quantity'          => $this->quantity, // i
+            'water_quantity'    => $this->water_quantity, // i
+            'created_at'        => $this->created_at, // s
+            'last_time_watered' => $this->last_time_watered, // s
+        );
+
+        if ($withID) {
+            $arr = array_merge(array('id' => $this->id), $arr);
+        }
+
+        return $arr;
     }
 }
