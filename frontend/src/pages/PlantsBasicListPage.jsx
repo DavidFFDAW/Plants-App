@@ -10,6 +10,7 @@ export default function PlantBasicListPage() {
 
       const limit = 6;
       const { page } = useParams();
+      console.log(page);
       const hist = useHistory();
       const offsetPage = page ? limit * (page - 1) : 0;
       const [plants, setPlants] = useState([]);

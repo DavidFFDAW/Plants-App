@@ -12,7 +12,7 @@ export function PaginationComponent({ limit, list, callback, redirector, page })
         
     }
     const nextPage = () => {
-        if (+list.next.replace(`http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=${ limit }&offset=`,'') > off.offset * off.currentPage) {
+        if (+list.next.replace(`http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=${ limit }&offset=`,'') > off.offset * page) {
             setOff({ show: false });
         }
         redirector.push(`${ pageRoute }${ +page + 1}`);
