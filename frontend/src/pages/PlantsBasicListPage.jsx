@@ -94,7 +94,7 @@ export default function PlantBasicListPage() {
                                           baseUrl={ `${apiURL}getPlants.php` }
                                           callback={ callback }
                                           redirector={ hist }
-                                          page={ page }
+                                          page={ finalPage }
                                     />
                               </div>
                         </div>
