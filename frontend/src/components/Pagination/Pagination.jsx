@@ -5,13 +5,6 @@ export function PaginationComponent({ limit, list, callback, redirector, page })
 
     const [ off, setOff ] = useState({ show: true, offset: list.plants.length });
 
-    const previousPage = _ => {
-        const nextPage = `/${ page + 1}`;
-        redirector.push(nextPage);
-    }
-
-    
-    console.log(list);
     const previousPage = () => {
         const nextPage = `/${ page + 1}`;
         redirector.push(nextPage);
