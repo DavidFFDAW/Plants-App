@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { UserContextProvider } from './context/UserContext';
+import { ROUTES } from './constants/routes';
 
 import Header from './components/Header';
 import Alert from './components/Alert';
@@ -43,47 +44,37 @@ function App() {
           />
           <Switch>
             
-            <Route path="/" exact>
-              <PlantsBasicListing showAlert={showAlert} />
-            </Route>
+            <Redirect exact from={ ROUTES.home } to={`${ROUTES.plants}1`} />
             
-            <Route path="/:page" exact>
+            <Route path={`${ ROUTES.plants }:page`} exact>
               <PlantsBasicListing showAlert={showAlert} />
             </Route>
 
-            <Route path="/login" exact>
+            <Route path={ ROUTES.login } exact>
               <LogIn showAlert={showAlert} />
             </Route>
 
-            <Route path="/plant/gallery" exact>
+            <Route path={ ROUTES.gallery } exact>
               <PlantsGallery showAlert={showAlert} />
             </Route>
 
-            <Route path="/plant/searcher" exact>
-
-            </Route>
-
-            <Route path="/plant/search/:name" exact>
-
-            </Route>
-
-            <Route path="/plant/details/:id" exact>
+            <Route path={`${ ROUTES.details }:id` } exact>
               <PlantDetailsPage showAlert={showAlert} />
             </Route>
 
-            <Route path="/maintenance" exact>
+            <Route path={ROUTES.maintenance} exact>
               <MaintenancePage />
             </Route>
 
-            <PrivateRoute path="/plant/create/new" exact>
+            <PrivateRoute path={ ROUTES.create } exact>
               <PlantCreationPage showAlert={showAlert} />
             </PrivateRoute>
 
-            <PrivateRoute path="/admin/plants">
+            <PrivateRoute path={ ROUTES.admin }>
               <PlantsAdminList showAlert={showAlert} />  
             </PrivateRoute>
 
-            <PrivateRoute path="/admin/update/plants/:id">
+            <PrivateRoute path={ ROUTES.updatePlant }>
               <PlantEditionPage showAlert={showAlert} />  
             </PrivateRoute>
           </Switch>

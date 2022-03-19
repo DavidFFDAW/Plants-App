@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import useAuth from "../hooks/useAuth";
+import { ROUTES } from "../constants/routes";
 
 export function LogIn ({ showAlert }) {
     const [ data, setData ] = useState({});
@@ -10,7 +12,7 @@ export function LogIn ({ showAlert }) {
 
     useEffect(() => {
         if (isLogged) {
-            const finalRedirectURL = window.sessionStorage.getItem('access-route') || '/admin/plants';
+            const finalRedirectURL = window.sessionStorage.getItem('access-route') || ROUTES.admin;
             history.push(finalRedirectURL);
         }
     }, [ history, isLogged ]);
@@ -43,14 +45,16 @@ export function LogIn ({ showAlert }) {
                             </div>
                             <div className="down">
                                 <label className="form-label block">Password</label>
-                                <input type={ visible ? 'text' : 'password' } className="general-input" placeholder="****" onChange={ ev => {
-                                    setData({ ...data, password: ev.target.value });
-                                }} required />
-                                <button className="btn btn-secondary-static" onClick={ _ => setVisible(!visible) }>Ver Contraseña</button>                                   
+                                <div className="flex center">
+                                    <input type={ visible ? 'text' : 'password' } className="general-input" placeholder="****" onChange={ ev => {
+                                        setData({ ...data, password: ev.target.value });
+                                    }} required />
+                                    <button className="btn btn-secondary-static" onClick={ _ => setVisible(!visible) }>{ visible ? <RiEyeOffLine/> : <RiEyeLine/> }</button>                                   
+                                </div>
                             </div>
 
                             <div className="down flex center">
-                                <button type="button" className="btn btn-principal" onClick={ handleSend }>Iniciar Sesión</button>
+                                <button type="submit" className="btn btn-principal" onClick={ handleSend }>Iniciar Sesión</button>
                             </div>
                         </div>
                     </div>

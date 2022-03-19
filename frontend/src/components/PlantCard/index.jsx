@@ -1,12 +1,13 @@
 import { Link, useHistory } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
+import { ROUTES } from "../../constants/routes";
 
 export function PlantCard ({ plant, placeholdImg, waterPlant, editButton }) {
 
     const h = useHistory();
 
     const redirectToPlant = id => {
-        h.push(`/plant/details/${ plant.id }`);
+        h.push(`${ROUTES.details}${ id }`);
     }
 
     return (

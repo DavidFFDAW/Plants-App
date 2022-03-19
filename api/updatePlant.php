@@ -45,11 +45,13 @@ $finalImageURL = '';
 $imageName = str_replace(' ', '_', $_POST['name']);
 $finalFilename = date('Y-m-d').'_'.$imageName.'.jpg';
 
-if (!file_exists($imagesDirPath.$previousImageName)) {
+$previousImageFile = $imagesDirPath.$previousImageName;
+if (!isset($previousImageName) || empty($previousImageName) || !file_exists($previousImageFile)) {
+    
     if (isset($_FILES['file'])) {
         $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
-        unlink($imagesDirPath.$previousImageName);
+        if(file_exists($previousImageFile)) unlink($previousImageFile);
         $imageIsUploaded = move_uploaded_file($_FILES['file']['tmp_name'], $imagesDirPath . $finalFilename);
         $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants/images/'.$finalFilename;
 

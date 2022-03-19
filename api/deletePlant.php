@@ -14,20 +14,20 @@ validateHeaderToken();
 
 $plant = Plant::find((int) $_GET['id'], true);
 
-if (!isset($plant) || !$plant) json(404,'Plant not found in DB',true);
+if (!isset($plant) || !$plant) json(404,'Plant not found in DB', true);
 
 $imagesDirPath = dirname(__DIR__).DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR;
 $imageURL = $plant->getImage();
-$imageFileName = str_replace($imageURL,'http://vps-f87b433e.vps.ovh.net/plants/images/','');
+$imageFileName = str_replace('http://vps-f87b433e.vps.ovh.net/plants/images/','',$imageURL);
 
 $hasBeenRemoved = $plant->remove();
 
-if (file_exists($imagesDirPath.$imageFileName)) {
-    unlink($imagesDirPath.$imageFileName)
-};
+if ($hasBeenRemoved && file_exists($imagesDirPath.$imageFileName)) {
+    unlink($imagesDirPath.$imageFileName);
+}
 
 if (!$hasBeenRemoved) {
-    json(500,'Hubo un problema intentando borrar esta planta');
+    json(500,'Hubo un problema intentando borrar esta planta', true);
 }
 
 json(200, 'Esta planta ha sido borrada correctamente', false);

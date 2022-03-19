@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { getPlantsCustomURL } from '../../services/plants.service.js';
+import { ROUTES } from '../../constants/routes';
 
 export function PaginationComponent({ limit, list, callback, redirector, page }) {
 
     const [ off, setOff ] = useState({ show: true, offset: list.plants.length });
-    const pageRoute = '/';
+    const pageRoute = ROUTES.plants;
 
     const previousPage = () => {
         const nextPage = `${ pageRoute }${ page - 1}`;

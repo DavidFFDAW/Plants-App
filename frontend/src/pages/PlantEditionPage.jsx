@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import ImageUpload from "../components/ImageUpload";
 import { LoadingComponent } from "../components/LoadingComponent";
+import { ROUTES } from "../constants/routes";
 import { getEmptyPlantObject, getPlantByID, updatePlantById } from "../services/plants.service";
 
 export function PlantEditionPage({ showAlert }) {
@@ -41,7 +42,7 @@ export function PlantEditionPage({ showAlert }) {
                 showAlert(res.message);
             }
             showAlert(res.message);
-            histoire.push('/');
+            histoire.push(ROUTES.admin);
         });
     }
 

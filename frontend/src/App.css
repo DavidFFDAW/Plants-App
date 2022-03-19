@@ -685,6 +685,19 @@ form.custom-form .inpt-textarea,
     border: 2px solid #953030;
     background-color: #953030;
 }
+
+.btn-admin-delete-form {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+}
+
+
+
 /* .btn.btn-danger:hover{
 
 } */

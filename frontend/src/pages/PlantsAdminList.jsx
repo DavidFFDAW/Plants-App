@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { apiURL } from '../constants/config'
 import { formatDate } from '../services/date.services';
 import { deletePlant } from '../services/plants.service';
-import { BiSearchAlt2 } from 'react-icons/bi';
+import { BiSearchAlt2, BiTrash } from 'react-icons/bi';
+import { ROUTES } from '../constants/routes';
 
 export default function PlantAdminList ({ showAlert }) {
     const [plants, setPlants] = useState([]); 
@@ -37,15 +38,24 @@ export default function PlantAdminList ({ showAlert }) {
         setPlants(originalPlants.filter(i => i.name.toLowerCase().includes(search)));
     }
 
+    const deleteSearch = (ev) => {
+        if (!ev.target.previousElementSibling) return 0;
+        ev.target.previousElementSibling.value = '';
+        setPlants(originalPlants);
+    }
+
     return (
         <>
             <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
                 <div className='down flex between'>
                     <div>
-                        <Link to={'/plant/create/new'} className="btn btn-principal">Crear Nueva Planta</Link>
+                        <Link to={ROUTES.create} className="btn btn-principal">Crear Nueva Planta</Link>
                     </div>
                     <div className='flex center'>
-                        <input type="text" className='general-input' onInput={ searchPlant }/>
+                        <div className="relative">
+                            <input type="text" className='general-input' onInput={ searchPlant }/>
+                            <button type='button' onClick={ ev => deleteSearch(ev) } className="btn-admin-delete-form"><BiTrash/></button>
+                        </div>
                         <span className='icon-search-input'><BiSearchAlt2 className=''/></span>
                     </div>
                 </div>

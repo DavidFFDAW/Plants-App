@@ -3,6 +3,7 @@ import { Divide as Hamburger } from 'hamburger-react';
 import HeadMenu from './HeadMenu';
 import useAuth from '../../hooks/useAuth';
 import { useHistory, useLocation } from 'react-router-dom';
+import { ROUTES } from '../../constants/routes';
 
 export default function Header() {
 
@@ -18,7 +19,7 @@ export default function Header() {
     const handleLogout = () => {
         logout();
         closeMenu();
-        hist.push('/login');
+        hist.push(ROUTES.login);
     }
 
     const getButtonOrName = () => {

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { apiURL } from "../constants/config";
 import ImageUpload from "../components/ImageUpload";
 import TokenService from '../services/token.service';
+import { ROUTES } from "../constants/routes";
 
 export default function PlantCreationPage({ showAlert }) {
     
@@ -40,7 +41,7 @@ export default function PlantCreationPage({ showAlert }) {
         .then(res => res.json())
         .then(res => {
             if (res.code === 201) {
-                histoire.push('/');
+                histoire.push(ROUTES.home);
                 return 0;
             }
             if (res.error) {
