@@ -24,7 +24,7 @@ export default function ImageUpload({ setFile, showAlert, initialImage }) {
         <div className="down-little">
             <label className="form-label block">Imagen</label>
             <div style={{ width: '100%' }}>
-                <img className="upload-img" src={ imageSrc } style={{ width: '350px', height: '360px' }} alt="Upload preview" />
+                <img className="upload-img" src={ imageSrc } alt="Upload preview" />
             </div> 
             <button type="button" className="btn btn-secondary file-btn">
                 <input type="file" className="file-inpt" accept="image/*" onChange={ previewAndSetImage }/>

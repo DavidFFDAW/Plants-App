@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ContentContainer } from '../components/ContentContainer';
 import { Link } from 'react-router-dom';
 import { apiURL } from '../constants/config'
@@ -9,7 +9,8 @@ import { ROUTES } from '../constants/routes';
 
 export default function PlantAdminList ({ showAlert }) {
     const [plants, setPlants] = useState([]); 
-    const [originalPlants, setOriginalPlants] = useState([]); 
+    const [originalPlants, setOriginalPlants] = useState([]);
+    const reference = useRef(null);
 
     useEffect(_ => {
         fetch(`${ apiURL }getPlants.php`)
@@ -38,9 +39,8 @@ export default function PlantAdminList ({ showAlert }) {
         setPlants(originalPlants.filter(i => i.name.toLowerCase().includes(search)));
     }
 
-    const deleteSearch = (ev) => {
-        if (!ev.target.previousElementSibling) return 0;
-        ev.target.previousElementSibling.value = '';
+    const deleteSearch = () => {
+        reference.current.value = '';
         setPlants(originalPlants);
     }
 
@@ -53,8 +53,8 @@ export default function PlantAdminList ({ showAlert }) {
                     </div>
                     <div className='flex center'>
                         <div className="relative">
-                            <input type="text" className='general-input' onInput={ searchPlant }/>
-                            <button type='button' onClick={ ev => deleteSearch(ev) } className="btn-admin-delete-form"><BiTrash/></button>
+                            <input type="text" ref={reference} className='general-input' onInput={ searchPlant }/>
+                            <button type='button' onClick={ deleteSearch } className="btn-admin-delete-form"><BiTrash/></button>
                         </div>
                         <span className='icon-search-input'><BiSearchAlt2 className=''/></span>
                     </div>
