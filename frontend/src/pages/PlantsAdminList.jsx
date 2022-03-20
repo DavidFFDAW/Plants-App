@@ -25,13 +25,15 @@ export default function PlantAdminList ({ showAlert }) {
         });
     }, []);
 
-    const deleteThisPlant = id => {
-        deletePlant(id).then(resp => {
-            if (resp.error) {
-                showAlert(resp.message);
-            }
-            setPlants(plants.filter(i => i.id !== id));
-        })
+    const deleteThisPlant = (id,name) => {
+        if (confirm(`¿Estás seguro de eliminar ${name}?`)) {
+            deletePlant(id).then(resp => {
+                if (resp.error) {
+                    showAlert(resp.message);
+                }
+                setPlants(plants.filter(i => i.id !== id));
+            });
+        }
     }
 
     const searchPlant = (ev) => {
@@ -74,7 +76,7 @@ export default function PlantAdminList ({ showAlert }) {
                         <p>{ formatDate(it.created_at) }</p>
                         <div className="flex between">
                             <Link to={`/admin/update/plants/${it.id}`} className="btn btn-secondary-static">Editar</Link>
-                            <button className="btn btn-principal-static" onClick={ _ => deleteThisPlant(it.id) }>Borrar</button>
+                            <button className="btn btn-principal-static" onClick={ _ => deleteThisPlant(it.id,it.name) }>Borrar</button>
                         </div>
                     </div>
                 )) }

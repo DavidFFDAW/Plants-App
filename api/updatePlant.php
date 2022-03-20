@@ -46,17 +46,18 @@ $imageName = str_replace(' ', '_', $_POST['name']);
 $finalFilename = date('Y-m-d').'_'.$imageName.'.jpg';
 
 $previousImageFile = $imagesDirPath.$previousImageName;
-if (!isset($previousImageName) || empty($previousImageName) || !file_exists($previousImageFile)) {
-    
-    if (isset($_FILES['file'])) {
-        $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
-        if(file_exists($previousImageFile)) unlink($previousImageFile);
-        $imageIsUploaded = move_uploaded_file($_FILES['file']['tmp_name'], $imagesDirPath . $finalFilename);
-        $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants/images/'.$finalFilename;
 
-        $plant->setImage(file_exists($imagesDirPath.$finalFilename) ? $finalImageURL : '');
+if (isset($_FILES['file'])) {
+    $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+    $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
+    
+    if (isset($previousImageName) && !empty($previousImageName) && file_exists($previousImageFile)) {
+        unlink($previousImageFile);
     }
+    $imageIsUploaded = move_uploaded_file($_FILES['file']['tmp_name'], $imagesDirPath . $finalFilename);
+    $finalImageURL = 'http://vps-f87b433e.vps.ovh.net/plants/images/'.$finalFilename;
+    
+    $plant->setImage($imageIsUploaded ? $finalImageURL : NULL);
 }
 
 if (!$plant->update()) {
