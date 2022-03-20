@@ -20,8 +20,9 @@ export default function ImageUpload({ setFile, showAlert, initialImage }) {
         reader.readAsDataURL(file);
 
         new Compressor(file, {
-            quality: 0.8,
+            quality: 0.6,
             success: (compressedImage) => {
+                window.alert('Imagen comprimida');
                 setFile(compressedImage);
             }
         });
