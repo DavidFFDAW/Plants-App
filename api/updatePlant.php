@@ -60,6 +60,17 @@ if (isset($_FILES['file'])) {
     $plant->setImage($imageIsUploaded ? $finalImageURL : NULL);
 }
 
+
+$debugVar = "
+    Recibe imagen: ".boolval(isset($_FILES['file']))."\n
+    Nombre imagen: ".$finalFilename."\n
+    DB Imagen: ".$plant->getImage()."\n
+    Extensión: ".$ext."\n
+    Se ha subido: ".boolval($imageIsUploaded)."\n
+";
+
+file_put_contents($imagesDirPath.'debug.log', $debugVar, FILE_APPEND);
+
 if (!$plant->update()) {
       json(500,'Error en la actualizacion de la planta',true, array(
           'received_data' => $plant->toArray()

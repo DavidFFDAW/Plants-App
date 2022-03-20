@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Compressor from 'compressorjs';
 
 export default function ImageUpload({ setFile, showAlert, initialImage }) {
 
@@ -18,7 +19,12 @@ export default function ImageUpload({ setFile, showAlert, initialImage }) {
         }
         reader.readAsDataURL(file);
 
-        setFile(file);
+        new Compressor(file, {
+            quality: 0.8,
+            success: (compressedImage) => {
+                setFile(compressedImage);
+            }
+        }
     }
 
     return (
