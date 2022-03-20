@@ -24,7 +24,7 @@ export default function ImageUpload({ setFile, showAlert, initialImage }) {
             success: (compressedImage) => {
                 setFile(compressedImage);
             }
-        }
+        });
     }
 
     return (
