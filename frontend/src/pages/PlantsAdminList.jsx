@@ -26,7 +26,7 @@ export default function PlantAdminList ({ showAlert }) {
     }, []);
 
     const deleteThisPlant = (id,name) => {
-        if (confirm(`¿Estás seguro de eliminar ${name}?`)) {
+        if (window.confirm(`¿Estás seguro de eliminar ${name}?`)) {
             deletePlant(id).then(resp => {
                 if (resp.error) {
                     showAlert(resp.message);

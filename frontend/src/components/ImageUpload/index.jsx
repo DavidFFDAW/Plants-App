@@ -7,7 +7,7 @@ export default function ImageUpload({ setFile, showAlert, initialImage }) {
     // This could be simply done with state and probably will move to that after all
     const previewAndSetImage = (e) => {
         const file = e.target.files[0];
-        alert(file.type);
+        window.alert(file.type);
         if (!['image/jpeg', 'image/png','image/jpg'].includes(file.type)){
             showAlert('Tipo de imagen no permitido');
             return 0;
