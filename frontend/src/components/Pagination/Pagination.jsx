@@ -1,30 +1,34 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { ROUTES } from '../../constants/routes';
+import { paginate } from '../../services/plants.service';
 
-export function PaginationComponent({ limit, list, callback, redirector, page }) {
+export function PaginationComponent({ limit, callback, plants, page, redirector, offset }) {
 
-    const [ off, setOff ] = useState({ show: true, offset: list.plants.length });
-    const pageRoute = ROUTES.plants;
+    const nextButton = () => plants.original.length > page * limit;
 
-    const previousPage = () => {
-        const nextPage = `${ pageRoute }${ page - 1}`;
-        redirector.push(nextPage);
-        
-    }
-    const nextPage = () => {
-        if (+list.next.replace(`http://vps-f87b433e.vps.ovh.net/plants/api/getPlants.php?limit=${ limit }&offset=`,'') > off.offset * page) {
-            setOff({ show: false });
+    const next = () => {
+        if (page * limit < plants.original.length) {
+            const paginated = paginate(plants.original, limit, offset + limit);
+            plants.current = paginated;
+            callback(plants);
+            redirector.replace(`${ROUTES.plants}${+page + 1}`);
         }
-        redirector.push(`${ pageRoute }${ +page + 1}`);
     }
-    
+    const prev = () => {
+        if (page > 1) {
+            const paginated = paginate(plants.original, limit, offset - limit);
+            plants.current = paginated;
+            callback(plants);
+            redirector.replace(`${ROUTES.plants}${+page - 1}`);
+        }
+    }
 
     return (
         <>
             <div className="down flex between">
-                { list.prev ? <button className="btn btn-secondary" onClick={ previousPage }> &lt; </button> : <div></div> }
+                { page > 1 ? <button className="btn btn-secondary" onClick={ prev }> &lt; </button> : <div></div> }
                 <div>Pagina: { page }</div>
-                { off.show && <button className="btn btn-secondary" onClick={ nextPage }> &gt; </button> }
+                { nextButton() ? <button className="btn btn-secondary" onClick={ next }> &gt; </button> : <div></div> }
             </div>
         </>
     );

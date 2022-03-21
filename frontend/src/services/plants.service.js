@@ -30,6 +30,13 @@ export const getEmptyPlantObject = () => {
     }
 }
 
+export const paginate = (plants, limit, offset) => {
+    const sliced = plants.slice(offset);
+    sliced.length = limit;
+    // const p = +page === 1 ? 0: page;
+    return sliced;
+}
+
 export const getAllPlants = () => {
     return HttpService.get(`${apiURL}getPlants.php`)
 }

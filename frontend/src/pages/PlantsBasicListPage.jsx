@@ -5,43 +5,38 @@ import PlantList from "../components/PlantList";
 import useAuth from '../hooks/useAuth';
 import { LoadingComponent } from "../components/LoadingComponent";
 import { PaginationComponent } from "../components/Pagination/Pagination";
+import { paginate } from "../services/plants.service";
 
 export default function PlantBasicListPage() {
 
       const limit = 6;
       const { page } = useParams();
       const hist = useHistory();
-      console.log('Current Page: ',page);
+
       const finalPage = !page ? 1 : page;
-      const offsetPage = (finalPage > 0) ? limit * (finalPage - 1) : 0
-      const [plants, setPlants] = useState([]);
-      const [offset, setOffset] = useState({});
+      const offsetPage = (finalPage > 0) ? limit * (finalPage - 1) : 0;
+
+      const [plants, setPlants] = useState({original: [], current: []});
       const [loading, setLoading] = useState(true);
       const { isLogged } = useAuth();
+      
       const placeholdImg = 'https://via.placeholder.com/350x450.png?text=Image+could+not+be+found';
 
       
       useEffect(() => { 
-            fetch(`${ apiURL }getPlants.php?limit=${ limit }&offset=${ offsetPage }`)
+            fetch(`${ apiURL }getPlants.php`)
             .then(res => res.json())
             .then(res => {
                   if ( res.error ) {
                         alert(res.message);
                         return 0;
                   }
-                  console.log('La respuesta: ', res);
+                  console.log('Otra peticion: ');
                   
-                  setPlants(res.plants);
-                  setOffset(res);
+                  setPlants({ ...plants, original: res.plants, current: paginate(res.plants,limit,offsetPage) });
                   setLoading(false);
-                  // localStorage.setItem('plants', JSON.stringify(res.plants));
             });
-      }, [ offsetPage ]);
-
-      const callback = response => {
-            setOffset(response);
-            setPlants(response.plants);
-      }     
+      }, [ ]);    
 
       const waterPlant = (id) => { 
             fetch(`${apiURL}waterPlant.php?id=${id}`, {
@@ -74,14 +69,14 @@ export default function PlantBasicListPage() {
                         <div className="content-container">
                               <div className="">
                                     <div className="flex between">
-                                          <h1>LISTADO</h1>
+                                          <h1>Plantas Totales: { plants.original.length }</h1>
                                           <button onClick={ _ => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) }
                                                 className="btn btn-principal-static"
                                           >Ir al final de la pagina</button>
                                     </div>
 
                                     <PlantList
-                                          plants={ plants }
+                                          plants={ plants.current }
                                           placeholdImg={ placeholdImg }
                                           waterPlant={ waterPlant }
                                           editButton={ isLogged }
@@ -90,11 +85,11 @@ export default function PlantBasicListPage() {
 
                                     <PaginationComponent
                                           limit={ limit }
-                                          list={ offset }
-                                          baseUrl={ `${apiURL}getPlants.php` }
-                                          callback={ callback }
+                                          plants={ plants }
+                                          callback={ setPlants }
                                           redirector={ hist }
                                           page={ finalPage }
+                                          offset={ offsetPage }
                                     />
                               </div>
                         </div>

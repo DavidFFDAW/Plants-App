@@ -49,6 +49,7 @@ $previousImageFile = $imagesDirPath.$previousImageName;
 
 if (isset($_FILES['file'])) {
     $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+    $ext = isset($ext) && !empty($ext) ? $ext : '.jpg';
     $finalFilename = date('Y-m-d').'_'.$imageName.'.'.$ext;
     
     if (isset($previousImageName) && !empty($previousImageName) && file_exists($previousImageFile)) {
