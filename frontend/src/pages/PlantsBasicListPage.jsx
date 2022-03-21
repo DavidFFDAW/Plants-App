@@ -6,6 +6,8 @@ import useAuth from '../hooks/useAuth';
 import { LoadingComponent } from "../components/LoadingComponent";
 import { PaginationComponent } from "../components/Pagination/Pagination";
 import { paginate } from "../services/plants.service";
+import { ROUTES } from "../constants/routes";
+
 
 export default function PlantBasicListPage() {
 
@@ -55,6 +57,13 @@ export default function PlantBasicListPage() {
                   });
       }
 
+      const goToLastPage = () => {
+            const lastPage = Math.ceil(plants.original.length / limit);
+            hist.replace(`${ROUTES.plants}${lastPage}`);
+            plants.current = paginate(plants.original, limit, (lastPage - 1) * limit);
+            setPlants(plants);
+      }
+
       if (loading) {
             return (
                   <LoadingComponent type='spokes' />
@@ -73,6 +82,9 @@ export default function PlantBasicListPage() {
                                           <button onClick={ _ => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) }
                                                 className="btn btn-principal-static"
                                           >Ir al final de la pagina</button>
+                                          <button onClick={ goToLastPage }
+                                          className="btn btn-principal-static"
+                                          >Ir a la última pagina</button>
                                     </div>
 
                                     <PlantList

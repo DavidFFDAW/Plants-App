@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
 import { ROUTES } from "../../constants/routes";
 
