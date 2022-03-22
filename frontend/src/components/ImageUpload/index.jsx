@@ -17,6 +17,8 @@ export default function ImageUpload({ setFile, showAlert, initialImage }) {
             setImageSrc(reader.result);
         }
         reader.readAsDataURL(file);
+
+        setFile(file);
     }
 
     return (
