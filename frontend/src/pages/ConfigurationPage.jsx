@@ -8,7 +8,7 @@ import { ROUTES } from "../constants/routes";
 export default function PlantCreationPage({ showAlert }) {
 
     const handleSaveConfig = (key,param) => {
-        const storageConfs = localStorage.getItem('configs') || {};
+        const storageConfs = JSON.parse(localStorage.getItem('configs')) || {};
         storageConfs[key] = param;
         localStorage.setItem('configs', JSON.stringify(storageConfs));
     }
