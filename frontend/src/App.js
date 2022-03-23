@@ -15,6 +15,7 @@ import PlantDetailsPage from './pages/PlantDetailsPage';
 import PlantsBasicListing from './pages/PlantsBasicListPage';
 import PlantsAdminList from './pages/PlantsAdminList';
 import MaintenancePage from './pages/MaintenancePage';
+import ConfigurationsPage from './pages/ConfigurationsPage';
 
 import './App.css';
 
@@ -62,9 +63,13 @@ function App() {
               <PlantDetailsPage showAlert={showAlert} />
             </Route>
 
-            <Route path={ROUTES.maintenance} exact>
-              <MaintenancePage />
-            </Route>
+          <Route path={ROUTES.maintenance} exact>
+            <MaintenancePage />
+          </Route>
+
+          <Route path={ROUTES.configs} exact>
+            <ConfigurationsPage />
+          </Route>
 
             <PrivateRoute path={ ROUTES.create } exact>
               <PlantCreationPage showAlert={showAlert} />

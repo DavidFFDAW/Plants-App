@@ -11,7 +11,7 @@ import { ROUTES } from "../constants/routes";
 
 export default function PlantBasicListPage() {
 
-      const limit = 6;
+      const limit = localStorage.getItem('configs').perPage || 6;
       const { page } = useParams();
       const hist = useHistory();
 
