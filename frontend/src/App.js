@@ -15,7 +15,7 @@ import PlantDetailsPage from './pages/PlantDetailsPage';
 import PlantsBasicListing from './pages/PlantsBasicListPage';
 import PlantsAdminList from './pages/PlantsAdminList';
 import MaintenancePage from './pages/MaintenancePage';
-import ConfigurationsPage from './pages/ConfigurationsPage';
+import ConfigurationsPage from './pages/ConfigurationPage';
 
 import './App.css';
 
