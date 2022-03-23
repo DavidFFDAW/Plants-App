@@ -15,6 +15,7 @@ class Plant {
     private $water_quantity = false;
     private $created_at = '';
     private $last_time_watered = '';
+    private $insertedID;
 
     public function __construct(array $data = array()) {
         $this->id             = isset($data['id']) ? $data['id'] : 0;
@@ -195,9 +196,14 @@ class Plant {
         $stmt = $db->prepare($sql);
         $stmt->bind_param('sssssssssii', $this->name, $this->real_name, $this->image, $this->description, $this->location, $this->extra_location, $this->type, $this->created_at, $this->last_time_watered, $this->quantity, $this->water_quantity);
         $created = $stmt->execute();
+        $this->insertedID = $stmt->insert_id
         $stmt->close();
 
         return $created;
+    }
+
+    public function getLastInsertedID () {
+        return $this->insertedID;
     }
 
     public function update(): bool {

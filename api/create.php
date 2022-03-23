@@ -57,4 +57,19 @@ if (!$plant->create()) {
       json(500,'Error en la creación de la planta',true);
 }
 
+$mail_template = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'mail_template');
+$finalMail = str_replace('[PLANT_NAME]',$plant->getName(), $mail_template);
+$finalMail = str_replace('[PLANT_ID]',$plant->getLastInsertedID(), $mail_template);
+$finalMail = str_replace('[PLANT_DATE]',date('d/m/Y H:i:s'), $mail_template);
+
+$mailHeaders  = "MIME-Version: 1.0\r\n";
+$mailHeaders .= "Content-type: text/html; charset=iso-8859-1\r\n";
+$mailHeaders .= "From: 2kAdmin <2kadmin@server.com>\r\n";
+$mailHeaders .= "X-MSMail-Priority: High\r\n";
+$mailHeaders .= "X-Mailer: PHP/".phpversion()."\r\n";
+$subject = 'Nueva Planta Registrada';
+$to = 'davidferflo2@gmail.com';
+
+mail($to, $subject, $finalMail, $mailHeaders);
+
 json(201,'Planta creada correctamente',false);
