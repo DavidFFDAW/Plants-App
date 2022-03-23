@@ -23,14 +23,14 @@ export default function PlantCreationPage({ showAlert }) {
                     <div className="down box-no-padding-total">                          
                             
                         <div className="down">                        
-                            <div>
+                            <div className="down-little">
                                 <label className="form-label block">Plantas por página <span className="optional"> ¿Cuántas plantas quieres que se muestren por cada página?</span></label>
                                 <input type="number" className="general-input" placeholder="6" onChange={ ev => {
                                     if (ev.target.value === '' || ev.target.value === 0) return ev.target.value = 6;
                                     handleSaveConfig('perPage', +(ev.target.value));
                                 }} />
                             </div>
-                            <div>
+                            <div className="down-little">
                                 <label className="form-label block">Tema de la aplicación <span className="optional"> ¿Prefieres un tema claro u oscuro?</span></label>
                                 <select className="general-input" defaultValue={"Claro"} onChange={ ev => handleSaveConfig('theme', ev.target.value) }>
                                     <option value="Claro">Claro</option>
