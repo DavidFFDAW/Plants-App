@@ -26,7 +26,6 @@ export default function PlantCreationPage({ showAlert }) {
                             <div className="down-little">
                                 <label className="form-label block">Plantas por página <span className="optional"> ¿Cuántas plantas quieres que se muestren por cada página?</span></label>
                                 <input type="number" className="general-input" placeholder="6" onChange={ ev => {
-                                    if (ev.target.value === '' || ev.target.value === 0) return ev.target.value = 6;
                                     handleSaveConfig('perPage', +(ev.target.value));
                                 }} />
                             </div>
