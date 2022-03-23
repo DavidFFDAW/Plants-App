@@ -10,7 +10,7 @@ export default function PlantCreationPage({ showAlert }) {
     const handleSaveConfig = (key,param) => {
         const storageConfs = localStorage.getItem('configs') || {};
         const final = { ...storageConfs, [key]: param };
-        localStorage.setItem('configs', final);
+        localStorage.setItem('configs', JSON.stringify(final));
     }
     
 
@@ -25,7 +25,10 @@ export default function PlantCreationPage({ showAlert }) {
                         <div className="down grid-images">                        
                             <div>
                                 <label className="form-label block">Plantas por página <span className="optional"> ¿Cuántas plantas quieres que se muestren por cada página?</span></label>
-                                <input type="number" className="general-input" placeholder="6" onChange={ ev => handleSaveConfig('perPage',ev.target.value) } />
+                                <input type="number" className="general-input" placeholder="6" onChange={ ev => {
+                                    if (ev.target.value === '' || ev.target.value === 0) return ev.target.value = 6;
+                                    handleSaveConfig('perPage',ev.target.value);
+                                }} />
                             </div>
                             <div>
                                 <label className="form-label block">Tema de la aplicación <span className="optional"> ¿Prefieres un tema claro u oscuro?</span></label>

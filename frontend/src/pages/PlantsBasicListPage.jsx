@@ -11,7 +11,7 @@ import { ROUTES } from "../constants/routes";
 
 export default function PlantBasicListPage() {
 
-      const localConfigs = localStorage.getItem('configs') || {};
+      const localConfigs = JSON.parse(localStorage.getItem('configs')) || {};
       const limit = localConfigs.perPage || 6;
       const { page } = useParams();
       const hist = useHistory();
