@@ -1,13 +1,13 @@
-export function Pages ({ array, changePage, page }) {
+export function Pages ({ array, changePage, current }) {
 
     return (
         <>
             { array.map((item, index) => {
                 const realItem = +item;
                 console.log(realItem);
-                console.log(page);
+                console.log(current);
 
-                const btnType = (+page === realItem) ? 'btn active': 'btn';
+                const btnType = (+current === realItem) ? 'btn active': 'btn';
                 console.log(btnType);
 
                 return (
