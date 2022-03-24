@@ -372,7 +372,17 @@ h4.plant-card-info-item.title {
 }
 
 .btn.active {
-    background: #468d4f;
+    color: #468d4f;
+    border-radius: 5px;
+    border-width: 3px;
+    border-style: solid;
+    border-image: 
+        linear-gradient(
+        to bottom, 
+        #468d4f, 
+        rgba(0, 0, 0, 0)
+        ) 1 100%;
+    /* background: #468d4f; */
 }
 
 /*? Checkbox Radio Button CSS */
