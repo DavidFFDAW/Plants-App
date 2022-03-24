@@ -37,7 +37,8 @@ export function PaginationComponent({ limit, callback, plants, page, redirector,
         <>
             <div className="down flex between">
                 { page > 1 ? <button className="btn btn-secondary" onClick={ prev }> &lt; </button> : <div></div> }
-                <Pages 
+                <Pages
+                    current={ page }
                     array={ [...Array(+Math.ceil(plants.original.length / limit)).keys()] }
                     changePage={ changePageFromPageMenu }
                 />
