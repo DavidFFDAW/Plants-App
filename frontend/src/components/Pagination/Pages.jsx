@@ -1,4 +1,4 @@
-export function Pages ({ array, changePage }) {
+export function Pages ({ array, changePage, page }) {
 
     return (
         <>
