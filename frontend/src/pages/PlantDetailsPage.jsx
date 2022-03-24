@@ -48,7 +48,7 @@ export default function PlantDetailsPage() {
 
     return (
         <>
-            <ContentContainer title={plant.name} center="center" extraCss={{ width: '40%' }}>
+            <ContentContainer title={plant.name} center="center" extraClass="content-container-plant-details">
                 <div className="down box-no-padding-total plant-details">
                     <p>{plant.real_name}</p>
                     <img src={ plant.image } width="100%" height="450" alt="" />

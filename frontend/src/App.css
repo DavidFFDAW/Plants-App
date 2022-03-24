@@ -204,6 +204,7 @@ h4.plant-card-info-item.title {
     /* padding: 70px 5px; */
     padding: 85px 10px 49px 10px;
 }
+.content-container.content-container-plant-details { width: 40%; }
 .grid-images{
     display: grid;
     grid-template-columns: repeat(3, 350px);
@@ -882,7 +883,8 @@ a{
         margin-right: 0;
         width: 95%;
         /* padding: 70px 12px; */
-    }
+    }    
+    .content-container.content-container-plant-details { width: 100%; }
     .flex.between {
         flex-wrap: wrap;
     }
