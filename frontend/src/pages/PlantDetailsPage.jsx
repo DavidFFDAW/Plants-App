@@ -55,7 +55,7 @@ export default function PlantDetailsPage() {
                     <p>{plant.id}</p>
                     <p>{plant.location}</p>
                     <p>{plant.type}</p>
-                    <p style={{ width: '50%' }}>{plant.description}</p>
+                    <p style={{ width: '100%' }}>{plant.description}</p>
                     <p>{plant.created_at}</p>
 
                     { qr.shown && <div className="flex center">
