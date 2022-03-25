@@ -15,6 +15,7 @@ class Plant {
     private $water_quantity = false;
     private $created_at = '';
     private $last_time_watered = '';
+    private $visits = 0;
     private $insertedID;
 
     public function __construct(array $data = array()) {
@@ -30,6 +31,7 @@ class Plant {
         $this->water_quantity = isset($data['water_quantity']) ? $data['water_quantity'] : false;
         $this->created_at     = isset($data['created_at']) ? $data['created_at'] : date('Y-m-d H:i:s');
         $this->last_time_watered = isset($data['last_time_watered']) ? $data['last_time_watered'] : '';
+        $this->visits         = isset($data['visits']) ? $data['visits'] : 0;
     }
 
     // GETTERS
@@ -69,6 +71,9 @@ class Plant {
     }
     public function getLastTimeWatered() {
         return ''.$this->last_time_watered;
+    }
+    public function getVisits() {
+        return (int) $this->visits;
     }
 
 
@@ -120,6 +125,10 @@ class Plant {
     }
     public function setLastTimeWatered(?string $last_time_watered): self {
         $this->last_time_watered = $last_time_watered;
+        return $this;
+    }
+    public function setVisits(int $newVisits): self {
+        $this->visits = $newVisits;
         return $this;
     }
 
@@ -187,8 +196,38 @@ class Plant {
         $resultarray['plants'] = $plants;
         $stmt->close();
         return $json ? json_encode($resultarray) : $resultarray;
-    }   
+    }
 
+    public static function incrementVisits(int $id) {
+        $db = DBConnection::getConnection();
+        $sql = "UPDATE plants SET `visits` = `visits` + 1 WHERE `id` = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $hasIncrementedVisits = $stmt->execute();
+        $stmt->close();
+
+        return $hasIncrementedVisits;
+    }
+
+    public static function findMostViewedPlants ($json = false) {
+        $db = DBConnection::getConnection();
+        $sql = "SELECT * FROM plants WHERE `visits` > 0 ORDER BY `visits` DESC LIMIT 3";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $now = new DateTime('NOW');
+        $plants = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
+            $plants[] = (array) $row;  
+        }    
+
+        $stmt->close();
+        return $json ? json_encode($resultarray) : $resultarray;
+    }
+
+    // ↓ NON-STATIC METHODS ↓
     public function create(): bool {
         $db = DBConnection::getConnection();
         $sql = "INSERT INTO plants (name, real_name, image, description, location, extra_location, type, created_at, last_time_watered, quantity, water_quantity)";
@@ -270,6 +309,7 @@ class Plant {
             'water_quantity'    => $this->water_quantity, // i
             'created_at'        => $this->created_at, // s
             'last_time_watered' => $this->last_time_watered, // s
+            'visits'            => $this->visits, // i
         );
 
         if ($withID) {
