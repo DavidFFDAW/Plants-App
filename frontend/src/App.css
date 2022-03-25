@@ -801,6 +801,12 @@ a{
     background: #FFFFFF;
     z-index: 12;
 }
+.head .head-menu .label-adm {
+    padding: 10px 35%;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.2);
+}
 .head .head-menu .link {
     width: 100%;
     text-align: left;

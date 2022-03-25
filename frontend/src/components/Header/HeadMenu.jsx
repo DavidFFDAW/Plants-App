@@ -20,7 +20,7 @@ export default function HeadMenu ({ isOpen, closeMenu, logged, handleLogout }) {
                     {/* <Link to={ '/plant/searcher' } className="link" onClick={closeMenu}><FaSearch/> Buscar</Link> */}
                     <Link to={ ROUTES.gallery } className="link" onClick={closeMenu}><FaImages/> Galería</Link>
                     <Link to={ ROUTES.configs } className="link" onClick={closeMenu}><GoGear/> Configuración</Link>
-                    <label style={{ padding: '2px 10px' }}>Admins</label>
+                    <label class="label-adm">Admins</label>
                     <Link to={ ROUTES.create } className="link" onClick={closeMenu}><FaPlusSquare/> Crear Planta</Link>
                     <Link to={ ROUTES.admin } className="link" onClick={closeMenu}><RiDashboard2Line/> Admin</Link>
                     { logged && <Link className="link" to={'#'} onClick={ logoutClickEvent }><BiLogOut/> Logout</Link> }

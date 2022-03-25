@@ -23,7 +23,7 @@ export default function Header() {
     }
 
     const getButtonOrName = () => {
-        if (url.pathname !== '/') {
+        if (!['/', 'plants/page/1'].includes(url.pathname)) {
             return <button className='btn' onClick={ _ => hist.goBack() }>&lt;</button>
         }
         return <h1 style={{ margin: 0, color: '#FFF' }}>Plant-App</h1>
