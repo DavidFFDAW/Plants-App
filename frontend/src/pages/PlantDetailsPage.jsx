@@ -44,7 +44,7 @@ export default function PlantDetailsPage() {
                 code: res.qr
             });
         });
-    }  
+    }
 
     return (
         <>
@@ -56,7 +56,7 @@ export default function PlantDetailsPage() {
                     <p>ID de la planta: {plant.id}</p>
                     <p>Localización: {plant.location}</p>
                     <p>Detalles de localización: {plant.extra_location}</p>
-                    <p>TIpo: {plant.type}</p>
+                    <p>TIpo: <span className={`plant-type-label ${plant.type}`}>{plant.type}</span></p>
                     <p style={{ width: '100%' }}>{plant.description}</p>
                     <p>Cantidad de esta planta: {plant.quantity}</p>
                     <p>Cada cuantos días requiere regado: {plant.water_quantity}</p>

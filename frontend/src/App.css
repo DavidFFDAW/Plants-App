@@ -34,6 +34,24 @@ body::-webkit-scrollbar-track {
     width: 50%;
     height: 100%;
 }
+.plant-type-label {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    background: #eef;
+    color: var(--black);
+    width: 45%;
+    border-radius: 50px;
+}
+.plant-type-label.Sol {
+    color: var(--black);
+    text-transform: uppercase;
+    background: linear-gradient(#ffffcc,#ffcc66);
+}
+.plant-type-label.Interior {
+    color: var(--black);
+    text-transform: uppercase;
+    background: linear-gradient(#e6ffff,#ccccff);
+}
 
 span.plant-quantity {
     position: absolute;
