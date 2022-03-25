@@ -39,7 +39,7 @@ body::-webkit-scrollbar-track {
     padding: 5px 20px;
     background: #eef;
     color: var(--black);
-    width: 45%;
+    width: 100%;
     border-radius: 50px;
 }
 .plant-type-label.Sol {
