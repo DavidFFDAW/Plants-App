@@ -50,13 +50,19 @@ export default function PlantDetailsPage() {
         <>
             <ContentContainer title={plant.name} center="center" extraClass="content-container-plant-details">
                 <div className="down box-no-padding-total plant-details">
-                    <p>{plant.real_name}</p>
+                    <p style={{ color: 'rgba(0,0,0,.3)', opacity: '.4' }}># Esto puede ir en una tabla #</p>
+                    <p>Nombre científico: {plant.real_name}</p>
                     <img src={ plant.image } width="100%" height="450" alt="" />
-                    <p>{plant.id}</p>
-                    <p>{plant.location}</p>
-                    <p>{plant.type}</p>
+                    <p>ID de la planta: {plant.id}</p>
+                    <p>Localización: {plant.location}</p>
+                    <p>Detalles de localización: {plant.extra_location}</p>
+                    <p>TIpo: {plant.type}</p>
                     <p style={{ width: '100%' }}>{plant.description}</p>
-                    <p>{plant.created_at}</p>
+                    <p>Cantidad de esta planta: {plant.quantity}</p>
+                    <p>Cada cuantos días requiere regado: {plant.water_quantity}</p>
+                    <p>¿Cuando se regó por última vez?: {plant.last_time_watered}, es decir {plant.watered_days_ago} días...</p>
+                    <p>Visitas de esta planta: {plant.visits}</p>
+                    <p>Creada: {plant.created_at}</p>
 
                     { qr.shown && <div className="flex center">
                         <img src={ qr.code } alt={ plant.name + 'QR code'} />
