@@ -63,6 +63,12 @@ export default function PlantDetailsPage() {
                     
                     <img src={plant.image} alt={plant.name} className="plant-details-img" />
 
+                    <TypeLabel type={plant.type}/>
+
+                    <div className="down-little">
+                        { plant.description }
+                    </div>
+
                     <table style={{ width: '100%' }} className="down">
                         <thead>
                             <tr>
