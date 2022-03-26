@@ -1,5 +1,6 @@
 import { Link, useHistory } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
+import { MdModeEdit } from "react-icons/md";
 import { ROUTES } from "../../constants/routes";
 import { TypeLabel } from "../TypeLabel";
 
