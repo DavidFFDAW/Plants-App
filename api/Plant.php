@@ -221,10 +221,10 @@ class Plant {
         while ($row = $result->fetch_assoc()) {
             $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'],$now);
             $plants[] = (array) $row;  
-        }    
+        }        
 
         $stmt->close();
-        return $json ? json_encode($resultarray) : $resultarray;
+        return $json ? json_encode($plants) : $plants;
     }
 
     // ↓ NON-STATIC METHODS ↓

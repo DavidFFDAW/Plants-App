@@ -18,6 +18,11 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric((int) $_GET['id'])) 
 
 $plants = [];
 
+if (isset($_GET['type']) && $_GET['type'] == 'most_visited') {
+    $plants = Plant::findMostViewedPlants(false);
+    json(200,'Plantas mas vistas',false, array('plants' => $plants));
+} 
+
 if (isset($_GET['limit']) && isset($_GET['offset'])) {
     $plants = Plant::findAllPaged(false, (int) $_GET['limit'], (int) $_GET['offset']);
     json(200, 'Se recibieron las plantas de forma correcta', false, $plants);
