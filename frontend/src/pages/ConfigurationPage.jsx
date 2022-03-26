@@ -1,10 +1,3 @@
-import { useState } from "react";
-import { useHistory } from 'react-router-dom';
-import { apiURL } from "../constants/config";
-import ImageUpload from "../components/ImageUpload";
-import TokenService from '../services/token.service';
-import { ROUTES } from "../constants/routes";
-
 export default function PlantCreationPage({ showAlert }) {
 
     const handleSaveConfig = (key,param) => {
@@ -36,7 +29,7 @@ export default function PlantCreationPage({ showAlert }) {
                                     <option value="Oscuro">Oscuro</option>
                                 </select>
                             </div>
-                            <div>
+                            <div className="down">
                                 <span>...</span>
                             </div>
                         </div>

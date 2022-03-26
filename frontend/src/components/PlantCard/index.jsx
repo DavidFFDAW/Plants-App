@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
 import { ROUTES } from "../../constants/routes";
+import { TypeLabel } from "../TypeLabel";
 
 export function PlantCard ({ plant, placeholdImg, waterPlant, editButton }) {
 
@@ -20,7 +21,7 @@ export function PlantCard ({ plant, placeholdImg, waterPlant, editButton }) {
                 { plant.quantity > 1 && <span className="plant-quantity">x<strong>{plant.quantity}</strong></span> }
                 <div className="plant-card-info" style={{ position: 'relative', padding: '5px 20px' }}>
                     <h4 className="plant-card-info-item" style={{ margin: 0, marginTop: 15, marginBottom: 5, fontSize: '18px', textTransform: 'uppercase' }}>{plant.real_name}</h4>
-                    <div className={`plant-type-label ${plant.type}`} style={{ margin: '10px 0' }}>{plant.type}</div>
+                    <TypeLabel type={plant.type} />
                     <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.location}</p>
                     <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>Ultima vez regada: { plant.last_time_watered ? `Hace ${plant.watered_days_ago} días` : 'No regada' }</p>
                 

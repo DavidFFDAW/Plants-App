@@ -7,6 +7,7 @@ import { LoadingComponent } from "../components/LoadingComponent";
 import { PaginationComponent } from "../components/Pagination/Pagination";
 import { paginate } from "../services/plants.service";
 import { ROUTES } from "../constants/routes";
+import { MostViewedCarrousel } from "../components/Carrousel";
 
 
 export default function PlantBasicListPage() {
@@ -95,6 +96,8 @@ export default function PlantBasicListPage() {
                                           editButton={ isLogged }
                                           toTopScroll={ true }
                                     />
+
+                                    {/* <MostViewedCarrousel/> */}
 
                                     <PaginationComponent
                                           limit={ limit }

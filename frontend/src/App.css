@@ -391,17 +391,22 @@ h4.plant-card-info-item.title {
 }
 
 .btn.active {
-    color: #468d4f;
-    border-radius: 5px;
-    border-width: 3px;
-    border-style: solid;
-    border-image: 
-        linear-gradient(
-        to bottom, 
-        #468d4f, 
-        rgba(0, 0, 0, 0)
-        ) 1 100%;
-    /* background: #468d4f; */
+    color: #FFF;
+    background: #468d4f;
+    transition: all 0.2s ease-in-out;
+}
+table .key {
+    color: var(--green);
+    font-weight: bold;
+    text-align: left;
+    width: 50%;
+    transition: all 0.2s ease-in-out;
+}
+.plant-details-img {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
 }
 
 /*? Checkbox Radio Button CSS */
