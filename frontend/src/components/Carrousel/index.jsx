@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMostVisitedPlants } from "../../services/plants.service";
 import { LoadingComponent } from "../LoadingComponent";
+import { ContentContainer } from '../ContentContainer';
 import Carousel from 'react-grid-carousel'
 import { PlantCard } from "../PlantCard";
 
@@ -24,7 +25,7 @@ export function MostViewedCarrousel () {
 
     return (
         <>
-            <ContentContainer center={center}>
+            <ContentContainer center={'center'}>
                 <div className="down">
                     <h5 className="title-body">Plantas más visitadas</h5>
                     <Carousel cols={3} rows={1} gap={10} loop>
