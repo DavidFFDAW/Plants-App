@@ -25,18 +25,16 @@ export function MostViewedCarrousel () {
 
     return (
         <>
-            <ContentContainer center={'center'}>
-                <div className="down">
-                    <h5 className="title-body">Plantas más visitadas</h5>
-                    <Carousel cols={3} rows={1} gap={10} loop>
-                        {carrouselArray.map(plant => (
-                            <Carousel.Item key={plant.id}>
-                                <PlantCard plant={ plant } />
-                            </Carousel.Item>
-                        ))}
-                    </Carousel>
-                </div>
-            </ContentContainer>
+            <div className="down">
+                <h5 className="title-body">Plantas más visitadas</h5>
+                <Carousel cols={3} rows={1} gap={10} loop>
+                    {carrouselArray.map(plant => (
+                        <Carousel.Item key={plant.id}>
+                            <PlantCard plant={ plant } />
+                        </Carousel.Item>
+                    ))}
+                </Carousel>
+            </div>
         </>
     );
 }
