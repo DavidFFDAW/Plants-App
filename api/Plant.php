@@ -6,6 +6,7 @@ class Plant {
     private $id;
     private $name = '';
     private $real_name = '';
+    private $custom_name = '';
     private $image = '';
     private $description = '';
     private $location = '';
@@ -22,6 +23,7 @@ class Plant {
         $this->id             = isset($data['id']) ? $data['id'] : 0;
         $this->name           = isset($data['name']) ? $data['name'] : '';
         $this->real_name      = isset($data['real_name']) ? $data['real_name'] : '';
+        $this->custom_name      = isset($data['custom_name']) ? $data['custom_name'] : '';
         $this->image          = isset($data['image']) ? $data['image'] : '';
         $this->description    = isset($data['description']) ? $data['description'] : '';
         $this->location       = isset($data['location']) ? $data['location'] : '';
@@ -44,6 +46,9 @@ class Plant {
     }
     public function getRealName() {
         return ''.$this->real_name;
+    }
+    public function getCustomName() {
+        return ''.$this->custom_name;
     }
     public function getDescription() {
         return ''.$this->description;
@@ -89,6 +94,10 @@ class Plant {
     }
     public function setRealName(string $real_name): self {
         $this->real_name = $real_name;
+        return $this;
+    }
+    public function setCustomName(string $customName): self {
+        $this->custom_name = $customName;
         return $this;
     }
     public function setDescription(string $description): self {
@@ -230,10 +239,10 @@ class Plant {
     // ↓ NON-STATIC METHODS ↓
     public function create(): bool {
         $db = DBConnection::getConnection();
-        $sql = "INSERT INTO plants (name, real_name, image, description, location, extra_location, type, created_at, last_time_watered, quantity, water_quantity)";
-        $sql .= " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO plants (name, real_name, custom_name, image, description, location, extra_location, type, created_at, last_time_watered, quantity, water_quantity)";
+        $sql .= " VALUES (?, ?,, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
-        $stmt->bind_param('sssssssssii', $this->name, $this->real_name, $this->image, $this->description, $this->location, $this->extra_location, $this->type, $this->created_at, $this->last_time_watered, $this->quantity, $this->water_quantity);
+        $stmt->bind_param('ssssssssssii', $this->name, $this->real_name, $this->custom_name, $this->image, $this->description, $this->location, $this->extra_location, $this->type, $this->created_at, $this->last_time_watered, $this->quantity, $this->water_quantity);
         $created = $stmt->execute();
         $this->insertedID = $stmt->insert_id;
         $stmt->close();
@@ -300,6 +309,7 @@ class Plant {
         $arr = array(
             'name'              => $this->name, // s
             'real_name'         => $this->real_name, // s
+            'custom_name'         => $this->custom_name, // s
             'image'             => $this->image, // s
             'description'       => $this->description, // s
             'location'          => $this->location, // s

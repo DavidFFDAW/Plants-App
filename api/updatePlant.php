@@ -25,6 +25,7 @@ $plant = Plant::find((int) $_GET['id'], true);
 
 $plant->setName(existsNotEmpty($_POST['name'], $plant->getName()));
 $plant->setRealName(existsNotEmpty($_POST['real_name'], $plant->getRealName()));
+$plant->setCustomName(existsNotEmpty($_POST['custom_name'], $plant->getCustomName()));
 
 $plant->setDescription(existsNotEmpty($_POST['description'], $plant->getDescription()));
 $plant->setLocation(existsNotEmpty($_POST['location'], $plant->getLocation()));

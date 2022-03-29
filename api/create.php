@@ -43,6 +43,7 @@ $extraLocation = (isset($_POST['extra_location']) && !empty($_POST['extra_locati
 $plant = new Plant();
 $plant->setName($_POST['name']);
 $plant->setRealName($_POST['real_name']);
+$plant->setCustomName($_POST['custom_name']);
 $plant->setDescription($_POST['description']);
 $plant->setImage(file_exists($imagesDirPath.$finalFilename) ? $finalImageURL : '');
 $plant->setLocation($_POST['location']);

@@ -86,7 +86,13 @@ export function PlantEditionPage({ showAlert }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="down grid-images">                        
+                        <div className="down grid-images">
+                            <div>
+                                <label className="form-label block">Nombre común <span className="optional"> (APODO)</span></label>
+                                <input type="number" className="general-input" placeholder="María Luisa" value={ formData.custom_name || '' } onChange={ ev => {
+                                    setFormData({ ...formData, custom_name: ev.target.value });
+                                }} />
+                            </div>                      
                             <div>
                                 <label className="form-label block">Cantidad <span className="optional"> Opcional</span></label>
                                 <input type="number" className="general-input" 

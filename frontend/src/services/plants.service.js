@@ -7,6 +7,7 @@ const getFormDataPlantInfo = (plant) => {
     frm.append("description", plant.description);
     frm.append("location", plant.location);
     frm.append("real_name", plant.real_name);
+    frm.append("custom_name", plant.custom_name);
     frm.append("type", plant.type);
     frm.append("quantity", plant.quantity);
     frm.append("water_quantity", plant.waterQt);
