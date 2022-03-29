@@ -240,9 +240,11 @@ class Plant {
     public function create(): bool {
         $db = DBConnection::getConnection();
         $sql = "INSERT INTO plants (name, real_name, custom_name, image, description, location, extra_location, type, created_at, last_time_watered, quantity, water_quantity)";
-        $sql .= " VALUES (?, ?,, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql .= " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
+        
         $stmt->bind_param('ssssssssssii', $this->name, $this->real_name, $this->custom_name, $this->image, $this->description, $this->location, $this->extra_location, $this->type, $this->created_at, $this->last_time_watered, $this->quantity, $this->water_quantity);
+              
         $created = $stmt->execute();
         $this->insertedID = $stmt->insert_id;
         $stmt->close();

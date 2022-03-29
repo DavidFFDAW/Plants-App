@@ -24,7 +24,7 @@ function App() {
   const [alertInfo, setAlertInfo] = useState(defaultOptions);
 
   const showAlert = (message, seconds = 0) => {
-    setAlertInfo({ show: true, message, seconds, acceptButton: true });
+    setAlertInfo({ show: true, message, acceptButton: true });
   }
   const closeAlert = () => {
     setAlertInfo(defaultOptions);
