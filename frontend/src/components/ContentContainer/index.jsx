@@ -1,4 +1,4 @@
-export function ContentContainer ({ title = 'LISTADO', center = true, extraCss = {}, extraClass = '', children }) {
+export function ContentContainer ({ title, center = true, extraCss = {}, extraClass = '', children }) {
     return (
         <div className={`flex ${center}`}>
             <div className={`content-container ${extraClass}`} style={extraCss}>
