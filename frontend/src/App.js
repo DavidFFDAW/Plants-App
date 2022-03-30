@@ -63,13 +63,17 @@ function App() {
               <PlantDetailsPage showAlert={showAlert} />
             </Route>
 
-          <Route path={ROUTES.maintenance} exact>
-            <MaintenancePage />
-          </Route>
+            <Route path={ ROUTES.search } exact>
+              <PlantSearchPage/>
+            </Route>
 
-          <Route path={ROUTES.configs} exact>
-            <ConfigurationsPage />
-          </Route>
+            <Route path={ROUTES.maintenance} exact>
+              <MaintenancePage />
+            </Route>
+
+            <Route path={ROUTES.configs} exact>
+              <ConfigurationsPage />
+            </Route>
 
             <PrivateRoute path={ ROUTES.create } exact>
               <PlantCreationPage showAlert={showAlert} />

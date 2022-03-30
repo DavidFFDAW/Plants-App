@@ -186,6 +186,27 @@ class Plant {
         return $json ? json_encode($plants) : $plants;
     }
 
+
+    public static function findByName($name, $json = false) {
+        $db = DBConnection::getConnection();
+        $sql = "SELECT * FROM plants WHERE `name` = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param('s', $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $now = new DateTime('NOW');
+        $plants = [];
+        
+        while ($row = $result->fetch_assoc()) {
+            $row['watered_days_ago'] = self::daysSinceLastWatering($row['last_time_watered'], $now);
+            $plants[] = (array) $row;
+        }        
+
+        $stmt->close();
+        return $json ? json_encode($plants) : $plants;
+    }
+
+
     public static function findAllPaged($json = false, $limit = false, $offset = false) {
         $db = DBConnection::getConnection();
         $sql = "SELECT * FROM plants LIMIT $limit OFFSET $offset";
