@@ -2,12 +2,14 @@ import { useState } from 'react';
 import PlantList from '../components/PlantList';
 import { MostViewedCarrousel } from '../components/Carrousel';
 import { searchPlantByName } from '../services/plants.service';
+import { useAuth } from '../hooks/useAuth';
 
 export default function PlantSearchPage () {
 
     const [ inputData, setInputData ] = useState({});
     const [ filteredPlants, setFilteredPlants ] = useState([]);
     const [ receivedResponse, setReceivedResponse ] = useState(false);
+    const { isLogged } = useAuth();
 
     const handleSend = _ => {
         searchPlantByName(inputData.name).then(resp => {
@@ -43,7 +45,6 @@ export default function PlantSearchPage () {
                 <div className="down">
                     { receivedResponse && <PlantList
                         plants={ plants }
-                        waterPlant={ waterPlant }
                         editButton={ isLogged }
                         toTopScroll={ true }
                     /> }
