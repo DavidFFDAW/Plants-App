@@ -5,6 +5,12 @@ require_once './Plant.php';
 
 headersWithMethod('GET');
 
+if (isset($_GET['type']) && $_GET['type'] == 'most_viewed') {
+    $mostViewedPlants = Plant::findMostViewedPlants(false);
+    json(200, 'Most viewed plants', false, array('plants' => $mostViewedPlants));
+}
+
+
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric((int) $_GET['id'])) {
     $plantID = (int) $_GET['id'];
     $plant = Plant::find($plantID);
