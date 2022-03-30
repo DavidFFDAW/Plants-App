@@ -12,7 +12,10 @@ export default function PlantSearchPage () {
     const { isLogged } = useAuth();
 
     const handleSend = _ => {
-        searchPlantByName(inputData.name).then(resp => {
+        const formData = new FormData();
+        formData.append('name', inputData.name);
+        
+        searchPlantByName(formData).then(resp => {
             if (resp.error) {
                 console.error('ERROR: ',resp.message);
                 return 0;

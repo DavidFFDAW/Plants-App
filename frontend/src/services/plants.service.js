@@ -46,8 +46,8 @@ export const getMostVisitedPlants = _ => {
     return HttpService.get(`${apiURL}getPlants.php?type=most_visited`);
 }
 
-export const searchPlantByName = _ => {
-    return HttpService.post(`${apiURL}search.php`)
+export const searchPlantByName = plant => {
+    return HttpService.post(`${apiURL}search.php`, plant, false);
 }
 
 export const getPlantsCustomURL = url => {
