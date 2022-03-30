@@ -44,7 +44,7 @@ export default function PlantSearchPage () {
 
                 <div className="down">
                     { receivedResponse && <PlantList
-                        plants={ plants }
+                        plants={ filteredPlants }
                         editButton={ isLogged }
                         toTopScroll={ true }
                     /> }
