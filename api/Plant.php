@@ -189,9 +189,9 @@ class Plant {
 
     public static function findByName($name, $json = false) {
         $db = DBConnection::getConnection();
-        $sql = "SELECT * FROM plants WHERE `name` = ?";
+        $sql = "SELECT * FROM plants WHERE `name` LIKE ?";
         $stmt = $db->prepare($sql);
-        $stmt->bind_param('s', $name);
+        $stmt->bind_param('s', "%$name%");
         $stmt->execute();
         $result = $stmt->get_result();
         $now = new DateTime('NOW');
