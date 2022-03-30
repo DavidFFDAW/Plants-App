@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PlantList from '../components/PlantList';
 import { MostViewedCarrousel } from '../components/Carrousel';
 import { searchPlantByName } from '../services/plants.service';
-import { useAuth } from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 
 export default function PlantSearchPage () {
 
