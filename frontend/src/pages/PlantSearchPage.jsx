@@ -29,7 +29,11 @@ export default function PlantSearchPage () {
         <div className="flex center">
             <div className="content-container">
                 <h1 className="title-body">Crear nueva planta</h1>
-                    
+                
+                <div className="down">
+                    <MostViewedCarrousel />                
+                </div>
+
                 <div className="down box-no-padding-total">                      
                     <div>
                         <label className="form-label block">Nombre</label>
@@ -39,12 +43,8 @@ export default function PlantSearchPage () {
                     </div>
 
                     <button style={{ width: '100%' }} className="down btn btn-primary" type="button" onClick={ handleSend }>Buscar</button>
-                </div>
+                </div>              
                 
-                <div className="down">
-                    <MostViewedCarrousel />
-                </div>
-
                 <div className="down">
                     { receivedResponse && <PlantList
                         plants={ filteredPlants }

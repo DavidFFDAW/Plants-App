@@ -56,7 +56,7 @@ class Search {
 
 
 
-    public function find(string $search, $model = false) {
+    public static function find(string $search, $model = false) {
         $db = DBConnection::getConnection();
 
         $sql = "SELECT * FROM searchs WHERE `search` = ? LIMIT 1";
@@ -84,7 +84,7 @@ class Search {
 
     public static function incrementOrInsertSearch($search, $date): bool {
         $db = DBConnection::getConnection();
-
+        
         $searchDB = Search::find($search, true);
         
         if (!isset($searchDB) || !$searchDB) {
