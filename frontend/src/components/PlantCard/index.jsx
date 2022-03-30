@@ -1,5 +1,6 @@
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { GiDrop } from "react-icons/gi";
+import { MdModeEdit } from "react-icons/md";
 import { ROUTES } from "../../constants/routes";
 import { TypeLabel } from "../TypeLabel";
 
@@ -25,11 +26,9 @@ export function PlantCard ({ plant, placeholdImg, waterPlant, editButton }) {
                     <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>{plant.location}</p>
                     <p className="plant-card-info-item" style={{ fontSize: '16px', margin: 0 }}>Ultima vez regada: { plant.last_time_watered ? `Hace ${plant.watered_days_ago} días` : 'No regada' }</p>
                 
-                    { /* <div className="down flex between">
-                            <button className="btn btn-secondary" onClick={ _ => waterPlant(plant.id) }><GiDrop style={{ fill: '#468d4f' }} /> Regar</button>                           
-                            <Link to={ `/plant/details/${ plant.id }` } className="btn btn-principal">Detalles</Link>
-                            { editButton && <Link to={ `/admin/update/plants/${ plant.id }` } className="btn btn-principal">Editar</Link>                      
-                    </div> */ } 
+                    { editButton && <div className="down flex between">
+                        <Link to={`${ROUTES.update}${plant.id}`} className="btn btn-principal-static"><MdModeEdit style={{ fill: '#FFFFFF' }}/></Link>               
+                    </div> }
                 </div>
         </div>
     );

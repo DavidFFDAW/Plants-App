@@ -24,6 +24,7 @@ export default function PlantCreationPage({ showAlert }) {
         frm.append("description", formData.description);
         frm.append("location", formData.location);
         frm.append("real_name", formData.real_name);
+        frm.append("custom_name", formData.custom_name);
         frm.append("type", formData.type);
         frm.append("quantity", formData.quantity);
         frm.append("water_quantity", formData.waterQt);
@@ -83,6 +84,12 @@ export default function PlantCreationPage({ showAlert }) {
                             </div>
                         </div>
                         <div className="down grid-images">                        
+                            <div>
+                                <label className="form-label block">Nombre común <span className="optional"> (APODO)</span></label>
+                                <input type="text" className="general-input" placeholder="María Luisa" max={ 50 } onChange={ ev => {
+                                    setFormData({ ...formData, custom_name: ev.target.value });
+                                }} />
+                            </div>
                             <div>
                                 <label className="form-label block">Cantidad <span className="optional"> Opcional</span></label>
                                 <input type="number" className="general-input" placeholder="1" onChange={ ev => {

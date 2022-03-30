@@ -10,5 +10,6 @@ export const ROUTES = {
     create: '/admin/plant/create/new',
     admin: '/admin/plants',
     updatePlant: '/admin/update/plants/:id',
+    update: '/admin/update/plants/',
 
 };

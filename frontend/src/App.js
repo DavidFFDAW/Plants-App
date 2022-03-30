@@ -16,6 +16,7 @@ import PlantsBasicListing from './pages/PlantsBasicListPage';
 import PlantsAdminList from './pages/PlantsAdminList';
 import MaintenancePage from './pages/MaintenancePage';
 import ConfigurationsPage from './pages/ConfigurationPage';
+import PlantSearchPage from './pages/PlantSearchPage';
 
 import './App.css';
 
@@ -24,7 +25,7 @@ function App() {
   const [alertInfo, setAlertInfo] = useState(defaultOptions);
 
   const showAlert = (message, seconds = 0) => {
-    setAlertInfo({ show: true, message, seconds, acceptButton: true });
+    setAlertInfo({ show: true, message, acceptButton: true });
   }
   const closeAlert = () => {
     setAlertInfo(defaultOptions);
@@ -63,13 +64,17 @@ function App() {
               <PlantDetailsPage showAlert={showAlert} />
             </Route>
 
-          <Route path={ROUTES.maintenance} exact>
-            <MaintenancePage />
-          </Route>
+            <Route path={ ROUTES.search } exact>
+              <PlantSearchPage/>
+            </Route>
 
-          <Route path={ROUTES.configs} exact>
-            <ConfigurationsPage />
-          </Route>
+            <Route path={ROUTES.maintenance} exact>
+              <MaintenancePage />
+            </Route>
+
+            <Route path={ROUTES.configs} exact>
+              <ConfigurationsPage />
+            </Route>
 
             <PrivateRoute path={ ROUTES.create } exact>
               <PlantCreationPage showAlert={showAlert} />

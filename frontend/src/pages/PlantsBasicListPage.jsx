@@ -89,6 +89,7 @@ export default function PlantBasicListPage() {
                                           >Ir a la última pagina</button>
                                     </div>
 
+
                                     <PlantList
                                           plants={ plants.current }
                                           placeholdImg={ placeholdImg }
@@ -97,7 +98,7 @@ export default function PlantBasicListPage() {
                                           toTopScroll={ true }
                                     />
 
-                                    {/* <MostViewedCarrousel/> */}
+                                    { localConfigs.most_viewed && <MostViewedCarrousel/> }
 
                                     <PaginationComponent
                                           limit={ limit }

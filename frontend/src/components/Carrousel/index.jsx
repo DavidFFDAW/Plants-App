@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMostVisitedPlants } from "../../services/plants.service";
 import { LoadingComponent } from "../LoadingComponent";
+import { ContentContainer } from '../ContentContainer';
 import Carousel from 'react-grid-carousel'
 import { PlantCard } from "../PlantCard";
 

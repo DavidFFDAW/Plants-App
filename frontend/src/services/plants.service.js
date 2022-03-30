@@ -7,6 +7,7 @@ const getFormDataPlantInfo = (plant) => {
     frm.append("description", plant.description);
     frm.append("location", plant.location);
     frm.append("real_name", plant.real_name);
+    frm.append("custom_name", plant.custom_name);
     frm.append("type", plant.type);
     frm.append("quantity", plant.quantity);
     frm.append("water_quantity", plant.waterQt);
@@ -43,6 +44,10 @@ export const getAllPlants = () => {
 
 export const getMostVisitedPlants = _ => {
     return HttpService.get(`${apiURL}getPlants.php?type=most_visited`);
+}
+
+export const searchPlantByName = _ => {
+    return HttpService.post(`${apiURL}search.php`)
 }
 
 export const getPlantsCustomURL = url => {
