@@ -17,7 +17,7 @@ export default function HeadMenu ({ isOpen, closeMenu, logged, handleLogout }) {
         <>
             { isOpen && <div className="head-menu">
                     <Link to={ ROUTES.home } className="link" onClick={closeMenu}><FaHome/> Home</Link>
-                    {/* <Link to={ '/plant/searcher' } className="link" onClick={closeMenu}><FaSearch/> Buscar</Link> */}
+                    <Link to={ ROUTES.search } className="link" onClick={closeMenu}><FaSearch/> Buscar</Link>
                     <Link to={ ROUTES.gallery } className="link" onClick={closeMenu}><FaImages/> Galería</Link>
                     <Link to={ ROUTES.configs } className="link" onClick={closeMenu}><GoGear/> Configuración</Link>
                     <label className="label-adm">Admins</label>
