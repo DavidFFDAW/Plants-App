@@ -74,7 +74,7 @@ class Search {
     public static function findAll(bool $json = false) {
         $db = DBConnection::getConnection();
 
-        $sql = "SELECT * FROM searchs WHERE `search`";
+        $sql = "SELECT * FROM searchs";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -107,7 +107,7 @@ class Search {
         $searchDB = Search::find($search, true);
         
         if (!isset($searchDB) || !$searchDB) {
-            return Search::insert();
+            return Search::insert($search, $date);
         }
         $sq = "UPDATE searchs SET `times_searched` = `times_searched` + 1 WHERE id = ?";
         $searchDatabaseID = $searchDB->getId();
