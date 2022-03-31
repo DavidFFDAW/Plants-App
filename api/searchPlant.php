@@ -4,7 +4,7 @@ require_once './Plant.php';
 require_once './Search.php';
 
 
-if (getRequestMethod() === 'GET') {
+if (getRequestMethod() == 'GET') {
       headersWithMethod('GET');
 
       $searches = Search::findAll(false);
@@ -12,7 +12,7 @@ if (getRequestMethod() === 'GET') {
       json(200, 'Here are all searches been made so far', false, array('searches' => $searches));
 }
 
-if (getRequestMethod() === 'POST') {
+if (getRequestMethod() == 'POST') {
 
       headersWithMethod('POST');
       
@@ -21,7 +21,7 @@ if (getRequestMethod() === 'POST') {
             exit();
       }
 
-      $search = $_POST['name'];
+      $search = (string) $_POST['name'];
 
       Search::incrementOrInsertSearch($search, date('Y-m-d H:i:s'));
 

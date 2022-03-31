@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PlantList from '../components/PlantList';
 import { MostViewedCarrousel } from '../components/Carrousel';
+import { LoadingComponent } from "../components/LoadingComponent";
 import { searchPlantByName } from '../services/plants.service';
 import useAuth from '../hooks/useAuth';
 
@@ -8,10 +9,11 @@ export default function PlantSearchPage () {
 
     const [ inputData, setInputData ] = useState({});
     const [ filteredPlants, setFilteredPlants ] = useState([]);
-    const [ receivedResponse, setReceivedResponse ] = useState(false);
+    const [ response, setResponse ] = useState({ loading: false, received: false });
     const { isLogged } = useAuth();
 
     const handleSend = _ => {
+        setResponse({ ...response, loading: true });
         const formData = new FormData();
         formData.append('name', inputData.name);
         
@@ -21,7 +23,7 @@ export default function PlantSearchPage () {
                 return 0;
             }
             setFilteredPlants(resp.plants || []);
-            setReceivedResponse(true);
+            setResponse({...response, received: true, loading: false });
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         });
     }
@@ -50,7 +52,8 @@ export default function PlantSearchPage () {
                 </div>              
                 
                 <div className="down">
-                    { receivedResponse && <PlantList
+                    { response.loading && <LoadingComponent/> }
+                    { response.received && <PlantList
                         plants={ filteredPlants }
                         editButton={ isLogged }
                         toTopScroll={ true }
