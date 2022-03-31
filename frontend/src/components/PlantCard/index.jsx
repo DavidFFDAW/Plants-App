@@ -44,7 +44,7 @@ export function SimpleCard ({ plant }) {
     return (
         <div className="box-no-padding-total plant-card-alt" key={plant.id} style={{ padding: '30px 0 !important' }}>
                 <div className="plant-card-image">
-                    <img src={plant.image ? plant.image : placeholdImg} alt="" />
+                    <img src={ plant.image } alt="" />
                     <h4 className="plant-card-info-item title" style={{ fontSize: '20px', textTransform: 'uppercase' }} onClick={ _ => redirectToPlant(plant.id) }>{plant.name}</h4>
                 </div>                
         </div>
