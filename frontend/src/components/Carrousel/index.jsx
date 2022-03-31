@@ -3,7 +3,7 @@ import { getMostVisitedPlants } from "../../services/plants.service";
 import { LoadingComponent } from "../LoadingComponent";
 import { ContentContainer } from '../ContentContainer';
 import Carousel from 'react-grid-carousel'
-import { PlantCard } from "../PlantCard";
+import { PlantCard, SimpleCard } from "../PlantCard";
 
 export function MostViewedCarrousel () {
     const [carrouselArray, setCarrouselArray] = useState([]);
@@ -30,7 +30,7 @@ export function MostViewedCarrousel () {
                 <Carousel cols={3} rows={1} gap={10} loop>
                     {carrouselArray.map(plant => (
                         <Carousel.Item key={plant.id}>
-                            <PlantCard plant={ plant } />
+                            <SimpleCard plant={ plant } />
                         </Carousel.Item>
                     ))}
                 </Carousel>
