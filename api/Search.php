@@ -56,7 +56,7 @@ class Search {
 
 
 
-    public function find(string $search, $model = false) {
+    public static function find(string $search, $model = false) {
         $db = DBConnection::getConnection();
 
         $sql = "SELECT * FROM searchs WHERE `search` = ? LIMIT 1";
@@ -69,6 +69,25 @@ class Search {
     
         $stmt->close();
         return $model ? new Search($result->fetch_assoc()) : $result->fetch_assoc();        
+    }
+
+    public static function findAll(bool $json = false) {
+        $db = DBConnection::getConnection();
+
+        $sql = "SELECT * FROM searchs WHERE `search`";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $searches = [];
+        
+        if ($result->num_rows <= 0) return $searches;
+        
+        while ($row = $result->fetch_assoc()) {
+            $searches[] = (array) $row;
+        }
+
+        $stmt->close();
+        return $model ? json_encode($searches) : $searches;      
     }
 
     public static function insert(string $searchValue, string $date): bool {

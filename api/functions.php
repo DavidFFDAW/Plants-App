@@ -53,3 +53,7 @@
     function existsNotEmpty ($field, $dfValue = '') {
         return (isset($field) && !empty($field)) ? $field : $dfValue;
     }
+
+    function getRequestMethod() {
+        return $_SERVER['REQUEST_METHOD'];
+    }

@@ -23,6 +23,7 @@ export default function HeadMenu ({ isOpen, closeMenu, logged, handleLogout }) {
                     <label className="label-adm">Admins</label>
                     <Link to={ ROUTES.create } className="link" onClick={closeMenu}><FaPlusSquare/> Crear Planta</Link>
                     <Link to={ ROUTES.admin } className="link" onClick={closeMenu}><RiDashboard2Line/> Admin</Link>
+                    <Link to={ ROUTES.searchs } className="link" onClick={closeMenu}><FaSearch/> Búsquedas</Link>
                     { logged && <Link className="link" to={'#'} onClick={ logoutClickEvent }><BiLogOut/> Logout</Link> }
             </div> }
         </>

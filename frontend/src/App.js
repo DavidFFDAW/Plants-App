@@ -17,6 +17,7 @@ import PlantsAdminList from './pages/PlantsAdminList';
 import MaintenancePage from './pages/MaintenancePage';
 import ConfigurationsPage from './pages/ConfigurationPage';
 import PlantSearchPage from './pages/PlantSearchPage';
+import SearchsAdminList from './pages/SearchsAdminList';
 
 import './App.css';
 
@@ -86,6 +87,10 @@ function App() {
 
             <PrivateRoute path={ ROUTES.updatePlant }>
               <PlantEditionPage showAlert={showAlert} />  
+            </PrivateRoute>
+
+            <PrivateRoute path={ ROUTES.searchs }>
+              <SearchsAdminList showAlert={showAlert} />  
             </PrivateRoute>
           </Switch>
           { maintenance && <Redirect from="*" to="/maintenance"/> }

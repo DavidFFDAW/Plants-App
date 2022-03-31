@@ -50,6 +50,10 @@ export const searchPlantByName = plant => {
     return HttpService.post(`${apiURL}searchPlant.php`, plant, false);
 }
 
+export const getSearches = _ => {
+    return HttpService.get(`${apiURL}searchPlant.php`);
+}
+
 export const getPlantsCustomURL = url => {
     return HttpService.get(url);
 }

@@ -3,17 +3,29 @@ require_once './functions.php';
 require_once './Plant.php';
 require_once './Search.php';
 
-headersWithMethod('POST');
 
-if (!isset($_POST['name']) || empty($_POST['name'])) {
-      json(400,'No se ha enviado el nombre de la planta',true);      
-      exit();
+if (getRequestMethod() === 'GET') {
+      headersWithMethod('GET');
+
+      $searches = Search::findAll(false);
+
+      json(200, 'Here are all searches been made so far', false, array('searches' => $searches));
 }
 
-$search = $_POST['name'];
+if (getRequestMethod() === 'POST') {
 
-Search::incrementOrInsertSearch($search, date('Y-m-d H:i:s'));
+      headersWithMethod('POST');
+      
+      if (!isset($_POST['name']) || empty($_POST['name'])) {
+            json(400,'No se ha enviado el nombre de la planta',true);      
+            exit();
+      }
 
-$plants = Plant::findByName($search, false);
+      $search = $_POST['name'];
 
-json(200, 'No errors', false, array('plants' => $plants) );
+      Search::incrementOrInsertSearch($search, date('Y-m-d H:i:s'));
+
+      $plants = Plant::findByName($search, false);
+
+      json(200, 'No errors', false, array('plants' => $plants) );
+}

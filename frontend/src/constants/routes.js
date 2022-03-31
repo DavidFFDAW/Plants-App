@@ -11,5 +11,5 @@ export const ROUTES = {
     admin: '/admin/plants',
     updatePlant: '/admin/update/plants/:id',
     update: '/admin/update/plants/',
-
+    searchs: '/admin/search/list',
 };
