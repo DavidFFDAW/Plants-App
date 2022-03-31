@@ -243,7 +243,7 @@ class Plant {
 
     public static function findMostViewedPlants ($json = false) {
         $db = DBConnection::getConnection();
-        $sql = "SELECT * FROM plants WHERE `visits` > 0 ORDER BY `visits` DESC LIMIT 3";
+        $sql = "SELECT * FROM plants WHERE `visits` > 0 ORDER BY `visits` DESC LIMIT 6";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();

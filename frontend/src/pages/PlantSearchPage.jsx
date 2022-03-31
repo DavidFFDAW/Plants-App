@@ -22,16 +22,20 @@ export default function PlantSearchPage () {
             }
             setFilteredPlants(resp.plants || []);
             setReceivedResponse(true);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         });
     }
 
     return (
         <div className="flex center">
             <div className="content-container">
-                <h1 className="title-body">Crear nueva planta</h1>
                 
                 <div className="down">
                     <MostViewedCarrousel />                
+                </div>
+
+                <div className="down">
+                    <h1 className="title-body">Buscar</h1>
                 </div>
 
                 <div className="down box-no-padding-total">                      
