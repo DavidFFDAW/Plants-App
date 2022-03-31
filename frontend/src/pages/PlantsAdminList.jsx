@@ -49,25 +49,27 @@ export default function PlantAdminList ({ showAlert }) {
     return (
         <>
             <ContentContainer title="LISTADO ADMIN" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
-                <div className='down flex between'>
-                    <div>
-                        <Link to={ROUTES.create} className="btn btn-principal">Crear Nueva Planta</Link>
-                    </div>
-                    <div className='flex center'>
-                        <div className="relative">
-                            <input type="text" ref={reference} className='general-input' onInput={ searchPlant }/>
-                            <button type='button' onClick={ deleteSearch } className="btn-admin-delete-form"><BiTrash/></button>
+                <div className="sticky">
+                    <div className='down flex between'>
+                        <div>
+                            <Link to={ROUTES.create} className="btn btn-principal">Crear Nueva Planta</Link>
                         </div>
-                        <span className='icon-search-input'><BiSearchAlt2 className=''/></span>
-                    </div>
-                </div>
-                <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
-                        <p style={{ width: '50%', color: '#FFF', fontWeight: 700 }}>NOMBRE</p>
-                        <p style={{ width: '55%', color: '#FFF', fontWeight: 700 }}>LOCALIZACION</p>
-                        <p style={{ width: '65%', color: '#FFF', fontWeight: 700 }}>FECHA CREACIÓN</p>
-                        <div style={{ width: '25%', color: '#FFF', fontWeight: 700 }}>
-                            <p style={{ color: '#FFF', fontWeight: 700 }}>ACCIONES</p>
+                        <div className='flex center'>
+                            <div className="relative">
+                                <input type="text" ref={reference} className='general-input' onInput={ searchPlant }/>
+                                <button type='button' onClick={ deleteSearch } className="btn-admin-delete-form"><BiTrash/></button>
+                            </div>
+                            <span className='icon-search-input'><BiSearchAlt2 className=''/></span>
                         </div>
+                    </div>
+                    <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
+                            <p style={{ width: '50%', color: '#FFF', fontWeight: 700 }}>NOMBRE</p>
+                            <p style={{ width: '55%', color: '#FFF', fontWeight: 700 }}>LOCALIZACION</p>
+                            <p style={{ width: '65%', color: '#FFF', fontWeight: 700 }}>FECHA CREACIÓN</p>
+                            <div style={{ width: '25%', color: '#FFF', fontWeight: 700 }}>
+                                <p style={{ color: '#FFF', fontWeight: 700 }}>ACCIONES</p>
+                            </div>
+                    </div>
                 </div>
                 { plants.map(it => (
                     <div key={it.id} className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '20px 0' }}>

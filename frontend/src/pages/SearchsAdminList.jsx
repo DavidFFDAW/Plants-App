@@ -28,7 +28,7 @@ export default function PlantAdminList ({ showAlert }) {
         <>
             <ContentContainer title="LISTADO BUSQUEDAS" center={false} extraCss={ { width: '90%', margin: '0 auto' } }>
                 
-                <div className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
+                <div className="box flex between sticky" style={{ width: '100%', boxSizing: 'border-box', margin: '10px 0px', padding: '0px 26px', background: '#7fad64', color: '#fff' }}>
                         <p style={{ width: '50%', color: '#FFF', fontWeight: 700 }}>BUSQUEDA</p>
                         <p style={{ width: '55%', color: '#FFF', fontWeight: 700 }}>ULTIMA VEZ BUSCADO</p>
                         <p style={{ width: '65%', color: '#FFF', fontWeight: 700 }}>VECES BUSCADO</p>

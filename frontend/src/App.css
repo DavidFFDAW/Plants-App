@@ -170,6 +170,11 @@ body.guest{
     border-radius: 20px !important;
 }
 
+.sticky {
+    position: sticky;
+    top: 50px;
+}
+
 .plant-card-alt .plant-card-image {
     height: auto;    
 }
