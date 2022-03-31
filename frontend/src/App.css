@@ -172,7 +172,9 @@ body.guest{
 
 .sticky {
     position: sticky;
-    top: 50px;
+    top: 15px;
+    padding-top: 5px;
+    background-color: #eee;
 }
 
 .plant-card-alt .plant-card-image {
