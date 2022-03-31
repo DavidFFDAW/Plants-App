@@ -73,10 +73,10 @@ export default function PlantAdminList ({ showAlert }) {
                 </div>
                 { plants.map(it => (
                     <div key={it.id} className="box flex between" style={{ width: '100%', boxSizing: 'border-box', margin: '20px 0' }}>
-                        <p>{ it.name }</p>
-                        <p>{ it.location }</p>
-                        <p>{ formatDate(it.created_at) }</p>
-                        <div className="flex between">
+                        <p style={{ width: 75 }}>{ it.name }</p>
+                        <p style={{ width: 75 }}>{ it.location }</p>
+                        <p style={{ width: 75 }}>{ formatDate(it.created_at) }</p>
+                        <div className="flex between" style={{ width: 200 }}>
                             <Link to={`/admin/update/plants/${it.id}`} className="btn btn-secondary-static">Editar</Link>
                             <button className="btn btn-principal-static" onClick={ _ => deleteThisPlant(it.id,it.name) }>Borrar</button>
                         </div>
