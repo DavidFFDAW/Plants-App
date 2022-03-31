@@ -14,6 +14,18 @@
         die(json_encode($array));
     }
 
+    function generalHeaders(){
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Methods: GET,POST,DELETE,PUT,PATCH,OPTIONS");
+        header("Access-Control-Allow-Headers: Authorization");
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            header("HTTP/1.1 200 OK");
+            return;
+        }
+    }
+
     function headersWithMethod (string $method) {
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Methods: $method");

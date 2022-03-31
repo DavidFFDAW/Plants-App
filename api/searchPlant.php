@@ -3,9 +3,9 @@ require_once './functions.php';
 require_once './Plant.php';
 require_once './Search.php';
 
+generalHeaders();
 
 if (getRequestMethod() == 'GET') {
-      headersWithMethod('GET');
 
       $searches = Search::findAll(false);
 
@@ -13,8 +13,6 @@ if (getRequestMethod() == 'GET') {
 }
 
 if (getRequestMethod() == 'POST') {
-
-      headersWithMethod('POST');
       
       if (!isset($_POST['name']) || empty($_POST['name'])) {
             json(400,'No se ha enviado el nombre de la planta',true);      
