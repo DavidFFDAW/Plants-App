@@ -96,7 +96,7 @@ class Search {
         $finalDate = (isset($date) && !empty($date)) ? $date : date('Y-m-d H:i:s');
         $sq = "INSERT INTO searchs(`search`, `date_searched`) VALUES (?, ?)";
         $stmt = $db->prepare($sq);
-        $stmt->bind_param('ss', $search, $finalDate);
+        $stmt->bind_param('ss', $searchValue, $finalDate);
 
         return $stmt->execute();
     }
