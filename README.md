@@ -1,3 +1,3 @@
-# plants-app
+# Plants-app
 
 Aplicacion de plantas
