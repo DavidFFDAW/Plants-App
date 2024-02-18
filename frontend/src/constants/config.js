@@ -1,2 +1,2 @@
-export const apiURL = 'https://vps-f87b433e.vps.ovh.net/plants/api/';
-export const imagesURL = 'https://vps-f87b433e.vps.ovh.net/plants/images/';
+export const apiURL = "https://davidfernandezdeveloper.es/plants/api/";
+export const imagesURL = "https://davidfernandezdeveloper.es/plants/images/";
